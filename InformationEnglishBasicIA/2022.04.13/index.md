@@ -62,7 +62,7 @@
 
 ## 英語で「いいね」
 - sound
-  - good, gread, like a plan
+  - good, great, like a plan
 ビジネスでも使える！
 ※相手には同意していると捉えられる(日本人的な言ってるけど結構ですみたいな使い方は良くない)
 相槌程度ならgoodぐらいがいいか
@@ -97,7 +97,7 @@
   - デジタル
     - 段階的なデータ
     - デジタル時計 -> カチ、カチと動く
-- avator
+- avatar
   - 化身、具現など
 - App(エァップ)
   - application software
