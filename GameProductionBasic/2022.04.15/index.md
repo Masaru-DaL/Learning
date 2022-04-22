@@ -1,4 +1,4 @@
-・・# GameProductionBasic
+# 2022.04.15.GameProductionBasic
 # 流れ
 ##  ガイダンス
 ##  最近のゲーム業界について

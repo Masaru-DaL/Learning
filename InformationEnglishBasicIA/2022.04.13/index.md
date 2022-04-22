@@ -1,4 +1,4 @@
-# InformationEnglishBasicIA
+# 2022.04.13.InformationEnglishBasicIA
 - IT業界はフルリモートが増えてきている
   - --> Slackを使った情報共有
   - 端的に短い英語でのやり取りが主流

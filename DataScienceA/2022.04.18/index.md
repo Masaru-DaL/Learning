@@ -1,4 +1,4 @@
-# DataScienceA 2022.04.18
+# 2022.04.18.DataScienceA
 # OR手法
 - 組織データによる最適化
   - OR手法
