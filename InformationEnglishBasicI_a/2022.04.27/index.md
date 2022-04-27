@@ -28,3 +28,17 @@
 - 発音を気を付けないと通じないことがある(多い‼)
 - 海外では数えられるかどうかは重要
   - a bag, bagsなど
+
+## Numbers 1-10
+1. one
+2. two
+   1. ツー ✖
+3. three
+   1. スリー ✖
+4. four
+5. five
+6. six
+7. seven
+8. eight
+9. nine
+10. ten
