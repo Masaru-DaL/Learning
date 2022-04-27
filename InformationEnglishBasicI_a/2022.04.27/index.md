@@ -88,3 +88,22 @@ physical distancing(肉体的距離という意味を使おうという流れ)
 closed
 clouded
 close contact setting
+
+# IT用語
+- ~able
+  - CD Recordable
+  - ～が出来るという意味になる
+- cyberterrorism
+  - cyber-terrorismなどのハイフンや空白を空けることが多い
+- suspend
+  - 一時停止する
+  - コンピュータの一部の機能を停止して省電力モードで待機させること
+    - 作業内容は保存されている
+    - 節電
+    - 再開時に起動が早い
+- sequential
+  - 対象が複数ある場合に、並んでいる順番に処理すること
+  - 主に検索方法の時に使う時が多い
+    - ～スキャン
+  - index スキャン
+    - index(ラベル)から検索する
