@@ -15,4 +15,16 @@
   - 最近ではphoneのみで通じる
   - iphoneでも通じる‼
     - apple製品すごい
-- bath
+- photo
+  - 写真のみ
+  - photo grapher
+    - 写真家
+    - アクセントはフォトのト！
+- picture
+  - 写真以外に絵画、CGなどのimage, 心に浮かぶような事も含む
+  - 動画(video, movie)は含まない
+
+## Tpics
+- 発音を気を付けないと通じないことがある(多い‼)
+- 海外では数えられるかどうかは重要
+  - a bag, bagsなど
