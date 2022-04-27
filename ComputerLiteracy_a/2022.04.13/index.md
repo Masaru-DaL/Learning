@@ -1,4 +1,4 @@
-# 2022.04.13.Computer Literacy
+# 2022.04.13.ComputerLiteracy_a
 ## 最終到達目標
 パソコンの使い方、Officeソフト(Word)を使いこなせるようになる
 

@@ -1,4 +1,4 @@
-# 2022.04.14.PythonProgrammingA
+# 2022.04.14.PythonProgramming_a
 ## 作業環境の構築
 - Visual Stadio Codeのインストール
 - Python3.10.4のインストール
