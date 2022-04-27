@@ -24,7 +24,7 @@
   - 写真以外に絵画、CGなどのimage, 心に浮かぶような事も含む
   - 動画(video, movie)は含まない
 
-## Tpics
+## Tips
 - 発音を気を付けないと通じないことがある(多い‼)
 - 海外では数えられるかどうかは重要
   - a bag, bagsなど
@@ -42,3 +42,36 @@
 8. eight
 9. nine
 10. ten
+
+- 可算名刺 a/an ~sを付ける
+
+- 普通
+  - book, egg
+- 集合
+  - 一塊ならis
+  - 個々のことならare
+
+## aの大事さ
+- 数えられる
+  - few
+    - 肯定的
+      - a few(少しある)
+    - 否定的
+      - few(ほとんどない)
+- 数えられない
+  - little
+    - 肯定的
+      - a little(少しある)
+    - 否定的
+      - little(ほとんどない)
+
+# Tips
+ソーシャルディスタンスは海外では使わない
+否定的な意味、社会的距離間
+--> social distancing
+physical distancing(肉体的距離という意味を使おうという流れ)
+
+3CS
+closed
+clouded
+close contact setting
