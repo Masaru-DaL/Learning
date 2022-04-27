@@ -107,3 +107,6 @@ close contact setting
     - ～スキャン
   - index スキャン
     - index(ラベル)から検索する
+- specification
+  - スペックとは、specificationの略語
+  - 仕様、明細、諸元表、設計書
