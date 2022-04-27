@@ -30,6 +30,10 @@
   - a bag, bagsなど
 
 ## Numbers 1-10
+- 奇数
+  - odd number
+- 偶数
+  - even number
 1. one
 2. two
    1. ツー ✖
@@ -43,13 +47,22 @@
 9. nine
 10. ten
 
-- 可算名刺 a/an ~sを付ける
-
+## 可算名詞 a/an ~sを付ける
 - 普通
   - book, egg
 - 集合
-  - 一塊ならis
-  - 個々のことならare
+  - family, team, committee, audience, data
+    - 一塊ならis
+      - family is ~(あなたの家族は～だよね)
+    - 個々のことならare
+      - family are ~(あなたの家族のだれだれは～だよね)
+## 不可算名詞 a/an ~sはつけない
+- 物質
+  - gold
+- 抽象
+  - happiness
+- 固有
+  - Tokyo
 
 ## aの大事さ
 - 数えられる
