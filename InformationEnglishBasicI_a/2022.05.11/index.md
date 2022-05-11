@@ -1,4 +1,5 @@
 # 2022.05.11.InformationEnglishBasic_a
+## Country
 - Australlia
   - 首都: canberra
     - melbourneが有名
@@ -16,4 +17,15 @@
     - Im from England/Irish/UK
   - 首都: London
 - France
-  - 
+  - 首都: Paris
+- South Korea(韓国)
+  - 首都: Seoul
+- Mexico(読み: xを意識)
+- Canada
+  - 首都: Ottawa(オタワ)
+- Spain
+- the United States(アメリカ)
+  - 首都: Washington D.C.
+  - 50の州と1つの特別区
+  - 州ごとに法律などが違ったりする
+
