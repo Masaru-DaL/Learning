@@ -1,0 +1,19 @@
+# 2022.05.11.InformationEnglishBasic_a
+- Australlia
+  - 首都: canberra
+    - melbourneが有名
+  - 南半球で季節は日本と逆
+- Brazil
+  - 首都: Brasilia
+    - リオ、サンパウロ有名
+- Egypt(読み: イージプト)
+  - 首都: Cairo
+  - pyramids (s)を付ける
+- China
+  - 首都: Bijing
+- England
+  - 自分の出身地やアイデンティティを表したい時
+    - Im from England/Irish/UK
+  - 首都: London
+- France
+  - 
