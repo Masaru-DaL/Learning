@@ -8,18 +8,17 @@
 
 # 問題１：「1 2 3 4 5」と出力
 for i in range(1, 6):
-    print(i)
+    print(i, end=' ')
 print('\n---')
 
 # 問題２：「1 1,2 2,3 3,4 4,5 5,」と出力
 for i in range(1, 6):
-    print(i, i)
+    print(i, i, sep=' ', end=',')
 print('\n---')
 
 # 問題３：「1 1,2-2|3 3,4-4|5 5,」と出力
 for i in range(1, 6):
-    print(i, i)
-
-
-
-
+    if i % 2 == 0:
+        print(i, i, sep='-', end='|')
+    else:
+        print(i, i, sep=' ', end=',')
