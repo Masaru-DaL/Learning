@@ -2,12 +2,12 @@
 - スタック
   - Last in First out
   - 追加: プッシュ
-    - append
+    - append()
   - 取り出す: ポップ
-    - pop
+    - pop()
 - キュー
   - First in First out
   - 追加: エンキュー
-    - append
+    - append()
   - 取り出す: デキュー
-    - pop
+    - pop(0)
