@@ -17,6 +17,7 @@ for i in range(1, 6):
 print('\n---')
 
 # 問題３：「1 1,2-2|3 3,4-4|5 5,」と出力
+# 奇数の場合と偶数の場合で処理を分ける
 for i in range(1, 6):
     if i % 2 == 0:
         print(i, i, sep='-', end='|')

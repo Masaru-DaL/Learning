@@ -1,0 +1,13 @@
+# 2022.05.12.PythonProgramming_a
+- スタック
+  - Last in First out
+  - 追加: プッシュ
+    - append
+  - 取り出す: ポップ
+    - pop
+- キュー
+  - First in First out
+  - 追加: エンキュー
+    - append
+  - 取り出す: デキュー
+    - pop
