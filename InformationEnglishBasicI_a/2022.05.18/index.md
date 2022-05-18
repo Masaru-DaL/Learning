@@ -18,3 +18,18 @@ don't, isn't
 - 海外は番地から住所を書く
 
 - 0はo(オー)と呼ぶことが多い
+
+# IT用語
+- disc / disk
+  - イギリス英語 -> disc
+  - アメリカ英語 -> disk
+  - 厳格な違い見当たらない
+
+- phishing(≠fishing)
+  - phishing scam -> フィッシング詐欺
+
+- i google it.
+  - -> ググったよ！という意味でも使われる
+
+- Blu-ray
+  - Blueではない
