@@ -1,3 +1,5 @@
+# 関数の基本4
+# return 途中で終了する
 
 def print_number(input_num):
     for i in range(0, 101):
@@ -13,6 +15,3 @@ while True:
     if num == 0:
         break
     print_number(num)
-
-
-
