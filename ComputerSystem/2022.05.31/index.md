@@ -20,3 +20,9 @@
 
 [業務の改善提案に対する報奨を次の行に基づいて決めるとき、改善額が200万円で、かつ、期間短縮が3日の改善提案に対する報奨は何円になるか。ここで表は、条件が成立の場合は Y を、不成立の場合は N を記入し、これらの条件に対応した時の報奨を○で表してある。](https://www.itpassportsiken.com/kakomon/22_haru/q79.html)
 
+[PCの基本構成を表す図中のa～cに相当する機能の組合せはどれか。](https://www.itpassportsiken.com/bunya.php?m=15&s=1&no=22)
+
+[コンピュータの基本構成を表す図中のa～cに入れるべき適切な字句の組合せはどれか。](https://www.fe-siken.com/bunya.php?m=3&s=1&no=62)
+
+[データ量の大小関係のうち、正しいものはどれか。](https://www.itpassportsiken.com/kakomon/23_aki/q78.html)
+
