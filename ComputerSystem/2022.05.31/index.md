@@ -80,4 +80,10 @@
 
 [リンカの機能として，適切なものはどれか。](https://www.fe-siken.com/bunya.php?m=5&s=4&no=3)
 
+[UMLを用いて表した図のデータモデルの多重度の説明のうち、適切なものはどれか。](https://www.fe-siken.com/bunya.php?m=9&s=2&no=23)
+
+[SQL文においてFOREIGN KEYとREFERENCESを用いて指定する制約はどれか。](https://www.fe-siken.com/bunya.php?m=9&s=2&no=4)
+
+[関係データベースで管理している"従業員"表から、氏名の列だけを取り出す操作を何というか。](https://www.itpassportsiken.com/bunya.php?m=21&s=3&no=1)
+
 
