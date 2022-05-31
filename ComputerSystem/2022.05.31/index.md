@@ -86,4 +86,18 @@
 
 [関係データベースで管理している"従業員"表から、氏名の列だけを取り出す操作を何というか。](https://www.itpassportsiken.com/bunya.php?m=21&s=3&no=1)
 
+["部署"表，"都道府県"表及び"社員"表を結合して、A表を作成した。結合した"社員"表はどれか。ここで、下線は主キーを示し、破線は外部キーを示す。](https://www.itpassportsiken.com/bunya.php?m=21&s=3&no=23)
+
+[表Rに対する次のSQL文の操作はどの関係演算か。](https://www.fe-siken.com/bunya.php?m=9&s=3&no=24)
+
+[関係データベースの操作のうち，射影(projection)の説明として、適切なものはどれか。](https://www.fe-siken.com/bunya.php?m=9&s=3&no=14)
+
+[デッドロックの説明として、適切なものはどれか。](https://www.itpassportsiken.com/bunya.php?m=21&s=4&no=15)
+
+[複数の利用者が同一データベースに同時にアクセスする処理のうち、データの整合性を保つための対策が不要な処理はどれか。](https://www.itpassportsiken.com/bunya.php?m=21&s=4&no=17)
+
+[DBMSにおけるデッドロックの説明として、適切なものはどれか。](https://www.fe-siken.com/bunya.php?m=9&s=4&no=26)
+
+[DBMSにおいて，複数のトランザクション処理プログラムが同一データベースを同時に更新する場合、論理的な矛盾を生じさせないために用いる技法はどれか。](https://www.fe-siken.com/bunya.php?m=9&s=4&no=12)
+
 
