@@ -118,4 +118,28 @@
 
 [関係データベースにおける主キーに関する記述のうち、適切なものはどれか。](https://www.itpassportsiken.com/bunya.php?m=21&s=2&no=15)
 
+[伝送速度が20Mbps(ビット／秒)，伝送効率が80%である通信回線において、1Gバイトのデータを伝送するのに掛かる時間は何秒か。ここで、1Gバイト＝10³Mバイトとする。](https://www.itpassportsiken.com/bunya.php?m=22&s=1&no=10)
+
+[10Mバイトのデータを100,000ビット／秒の回線を使って転送するとき、転送時間は何秒か。ここで、回線の伝送効率を50%とし、1Mバイト＝10⁶バイトとする。](https://www.fe-siken.com/bunya.php?m=10&s=1&no=5)
+
+[OSI基本参照モデルの第3層に位置し、通信の経路選択機能や中継機能を果たす層はどれか。](https://www.fe-siken.com/bunya.php?m=10&s=2&no=50)
+
+[複数のLAN同士を、ネットワーク層で相互に接続するのに使用する装置はどれか。](https://www.fe-siken.com/bunya.php?m=10&s=2&no=30)
+
+[LAN間接続装置に関する記述のうち、適切なものはどれか。](https://www.fe-siken.com/bunya.php?m=10&s=2&no=39)
+
+[TCP/IPのポート番号によって識別されるものはどれか。](https://www.itpassportsiken.com/bunya.php?m=22&s=2&no=21)
+
+[コンピュータの内部時計を、基準になる時刻情報をもつサーバとネットワークを介して同期させるときに用いられるプロトコルはどれか。](https://www.itpassportsiken.com/bunya.php?m=22&s=2&no=6)
+
+[TCP/IPネットワークで使用されるNTP(Network Time Protocol)の役割として、適切なものはどれか。](https://www.itpassportsiken.com/bunya.php?m=22&s=2&no=19)
+
+[TCP及びUDPのプロトコル処理において、通信相手のアプリケーションを識別するために使用されるものはどれか。](https://www.fe-siken.com/bunya.php?m=10&s=3&no=35)
+
+[ルータの機能として、適切なものはどれか。](https://www.fe-siken.com/bunya.php?m=10&s=2&no=37)
+
+[TCP/IP環境において、タイムサーバの時刻を基に複数のコンピュータの時刻を同期させるプロトコルはどれか。](https://www.fe-siken.com/bunya.php?m=10&s=3&no=40)
+
+[5個のデータ列を次の手順を繰り返して昇順に整列するとき，整列が完了するまでの手順の繰返し実行回数は幾つか。〔整列前のデータの並び順〕　5，1，4，3，2](https://www.itpassportsiken.com/bunya.php?m=14&s=2&no=18)
+
 
