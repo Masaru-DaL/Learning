@@ -142,4 +142,22 @@
 
 [5個のデータ列を次の手順を繰り返して昇順に整列するとき，整列が完了するまでの手順の繰返し実行回数は幾つか。〔整列前のデータの並び順〕　5，1，4，3，2](https://www.itpassportsiken.com/bunya.php?m=14&s=2&no=18)
 
+[IoTエリアネットワークの通信などに利用されるBLEは、Bluetooth4.0で追加された仕様である。BLEに関する記述のうち、適切なものはどれか。](https://www.itpassportsiken.com/bunya.php?m=22&s=1&no=3)
+
+[LPWAの特徴として、適切なものはどれか。](https://www.itpassportsiken.com/bunya.php?m=22&s=1&no=8)
+
+[携帯電話網で使用される通信規格の名称であり、次の三つの特徴をもつものはどれか。](https://www.fe-siken.com/bunya.php?m=10&s=1&no=4)
+
+[建物の中など、限定された範囲内を対象に構築する通信ネットワークはどれか。](https://www.itpassportsiken.com/kakomon/27_haru/q50.html)
+
+[水田の水位を計測することによって、水田の水門を自動的に開閉するIoTシステムがある。図中のa、bに入れる字句の適切な組合せはどれか。](https://www.itpassportsiken.com/bunya.php?m=22&s=1&no=4)
+
+[WANに関する記述として，最も適切なものはどれか。](https://www.itpassportsiken.com/kakomon/25_aki/q71.html)
+
+[アクチュエータの説明として、適切なものはどれか。](https://www.fe-siken.com/bunya.php?m=6&s=1&no=8)
+
+[アクチュエータの機能として、適切なものはどれか。](https://www.fe-siken.com/bunya.php?m=6&s=1&no=11)
+
+[流れ図で示す処理を終了したとき、xの値はどれか。][(](https://www.itpassportsiken.com/bunya.php?m=14&s=2&no=2))
+
 
