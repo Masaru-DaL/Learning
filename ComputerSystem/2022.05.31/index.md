@@ -10,7 +10,7 @@
 
 [IoTの事例として、最も適切なものはどれか。](https://www.itpassportsiken.com/bunya.php?m=5&s=4&no=5)
 
-[変数AとBに格納されているデータを入れ替えたい。データを一時的に格納するための変数をTMPとすると、データが正しく入れ替わる手順はどれか。ここで "x←y"は、yのデータでxの内容を置き換えることを表す。]([)](https://www.itpassportsiken.com/bunya.php?m=14&s=2&no=10)
+[変数AとBに格納されているデータを入れ替えたい。データを一時的に格納するための変数をTMPとすると、データが正しく入れ替わる手順はどれか。ここで "x←y"は、yのデータでxの内容を置き換えることを表す。](https://www.itpassportsiken.com/bunya.php?m=14&s=2&no=10)
 
 [システム開発で用いる設計技法のうち、決定表を説明したものはどれか。](https://www.fe-siken.com/kakomon/26_aki/q46.html)
 
@@ -28,7 +28,7 @@
 
 [IoTデバイス，IoTゲートウェイ及びIoTサーバで構成された，温度・湿度管理システムがある。IoTデバイスとその近傍に設置されたIoTゲートウェイとの間を接続するのに使用する，低消費電力の無線通信の仕様として，適切なものはどれか。](https://www.itpassportsiken.com/bunya.php?m=22&s=1&no=5)
 
-[IoT(Internet of Things)を説明したものはどれか。][(](https://www.fe-siken.com/bunya.php?m=21&s=5&no=4))
+[IoT(Internet of Things)を説明したものはどれか。](https://www.fe-siken.com/bunya.php?m=21&s=5&no=4))
 
 [9けたの数字に対して，次のルールでチェックディジットを最後尾に付けることにした。チェックディジットを付加した10けたの数字として，正しいものはどれか。](https://www.itpassportsiken.com/bunya.php?m=14&s=2&no=12)
 
@@ -44,9 +44,9 @@
 
 [CPUのクロックに関する説明のうち，適切なものはどれか。](https://www.itpassportsiken.com/bunya.php?m=15&s=1&no=2)
 
-[クロック周波数2GHzのプロセッサにおいて一つの命令が5クロックで実行できるとき，1命令の実行に必要な時間は何ナノ秒か。]
+[クロック周波数2GHzのプロセッサにおいて一つの命令が5クロックで実行できるとき，1命令の実行に必要な時間は何ナノ秒か。](https://www.itpassportsiken.com/kakomon/22_aki/q57.html)
 
-[キーボード入力を補助する機能の一つであり，入力中の文字から過去の入力履歴を参照して，候補となる文字列の一覧を表示することで，文字入力の手間を軽減するものはどれか。][(](https://www.itpassportsiken.com/bunya.php?m=19&s=1&no=1))
+[キーボード入力を補助する機能の一つであり，入力中の文字から過去の入力履歴を参照して，候補となる文字列の一覧を表示することで，文字入力の手間を軽減するものはどれか。](https://www.itpassportsiken.com/bunya.php?m=19&s=1&no=1)
 
 [300×600ドットで構成され，1画素の情報を記録するのに24ビットを使用する画像データがある。これを150×300ドットで構成され，1画素の情報を記録するのに8ビットを使用する画像データに変換した。必要な記憶容量は何倍になるか。](https://www.itpassportsiken.com/bunya.php?m=20&s=2&no=3)
 
@@ -158,6 +158,4 @@
 
 [アクチュエータの機能として、適切なものはどれか。](https://www.fe-siken.com/bunya.php?m=6&s=1&no=11)
 
-[流れ図で示す処理を終了したとき、xの値はどれか。][(](https://www.itpassportsiken.com/bunya.php?m=14&s=2&no=2))
-
-
+[流れ図で示す処理を終了したとき、xの値はどれか。](https://www.itpassportsiken.com/bunya.php?m=14&s=2&no=2)
