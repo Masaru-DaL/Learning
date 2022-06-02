@@ -50,3 +50,47 @@
   - if, else, elif
     - elifはいくつでも書くことが可能
   - インデントを下げる
+
+- ブール型
+  - true or false
+  - 比較演算子
+    - ==
+      - 等しい
+    - !=
+      - 等しくない
+  - 論理演算子
+    - and or not
+
+- ループ文
+  - while
+    - 条件に当てはまっているまで繰り返す
+  - for
+- range
+  - (1, 10)
+    - 1つ目から10の1個手前まで
+  - (1, 10, 3)
+    - 1つ目から10の1個手前まで3回繰り返す
+- break, continue, pass
+  - break
+    - そこに来ると終了
+  - continue
+    - 1つスキップさせる
+  - pass
+    - 何もせず終了
+
+- append
+  - 追加
+- pop
+  - 削除
+- index
+  - 要素が何番目か
+- remove
+  - 削除
+  - list_a.remove("c")
+- sort
+- reverse
+  - 逆ソート
+- del
+  - del list_a[2]
+  - インデックス番号を指定する
+- 

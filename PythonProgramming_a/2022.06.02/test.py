@@ -1,8 +1,11 @@
-ch = input("整数を入力してください：")
-print(ch + "が入力されました")
 
-num = int(ch)
-if num >= 5:
-  print("入力値は5以上です")
-else:
-  print("入力値は５未満です")
+list_a = ["a", "b", "c"]
+
+print(len(list_a))
+# リストの要素の個数
+print(list_a[1])
+# 何番目の要素を表示するか
+print(list_a[-1])
+# -1は一番後ろ
+print(list_a[1:2])
+# スライスの場合は2つ目は1個手前まで(b)
