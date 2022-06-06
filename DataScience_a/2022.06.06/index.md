@@ -40,4 +40,5 @@ log₁₀MN = log₁₀M + log₁₀N
 = log₁₀⁻⁵
 = -5
 
-
+# no pain, no gain!!
+自己犠牲なくして成功無し！！
