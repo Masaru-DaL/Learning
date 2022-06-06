@@ -14,9 +14,14 @@ log₂256 = ?
 
 ## 対数の積
 (対数の積) ⇔ (対数の和)
-log a MN = log a M + log a N
+log a MN = log a M + log a N ...(1)
 
-- 証明
+# 証明
+## 対数
 p(aの何乗) = log a M(M＝aのp乗), q(aの何乗) = log a N(N=aのq乗) とおく。
   ⇕
-M = aP　
+## 指数
+※⒫ -> p乗, ⒬ -> q乗
+M = a⒫, N = a⒬
+MN = a⒫*a⒬ (例: 2² * 2³ = (2*2)*(2*2*2) = 2⁵
+MN = a⒫⁺⒬
