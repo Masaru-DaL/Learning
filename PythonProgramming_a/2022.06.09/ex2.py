@@ -14,11 +14,13 @@ pie_buy = int(ch)
 
 # ケーキの個数かパイの個数が、在庫数より多く入力された場合、
 # 「在庫が足りません」と出力する。
-
+if cake_buy > CAKE_STOCK or pie_buy > PIE_STOCK:
+  print("在庫が足りません")
 
 # そうでない場合、ケーキとパイの合計金額を出力する。
 # 「合計で000円になります」
-
-
-
-
+else:
+  cake_sum = cake_buy * CAKE_PRICE
+  pie_sum = pie_buy * PIE_PRICE
+  price_sum = cake_sum + pie_sum
+  print("合計で" + str(price_sum) + "円になります")

@@ -7,7 +7,7 @@ ch = input("1から100までの数字を入力して下さい：")
 num = int(ch)
 
 
-if num > 100:
+if 1 > num < 100:
     print("1から100までの数字ではありません。")
 
 elif num % 3 == 0:
