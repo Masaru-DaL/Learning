@@ -17,7 +17,7 @@ result = sq_plus(num1, num2)
 # Q55
 if 1000 <= result < 10000:
     print("結果は" + str(result) + "です。４ケタです")
-    print("結果は", result, "です。４ケタです")
+    print("結果は", result, "です。４ケタです", sep='')
 else:
     print("結果は", result, "です。４ケタではありません")
 
