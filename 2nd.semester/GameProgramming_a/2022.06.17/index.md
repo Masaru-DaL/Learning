@@ -105,3 +105,15 @@ print(now)
 
 - 数値の後ろに年月日時分秒
   - print(f"現在：{now:%Y年%m月%d日 %H時%M分%S秒}")
+
+
+# ランダムモジュール
+1. 疑似乱数を生成
+import random # モジュールのインポートを忘れずに
+
+print(random.randint(1, 100))
+(1～100までの数値をランダムで出力)
+
+2. choice 指定シーケンス(リストなど)から、1つランダムで値を取得する
+list_a = ['a', 'b', 'c', 'd']
+print(random.choice(list_a))
