@@ -7,6 +7,4 @@
 num1 = int(input("整数を入力してください："))
 num2 = int(input("整数をもうひとつ入力してください："))
 
-
-
-
+print('{:.2f}'.format(num1 / num2))
