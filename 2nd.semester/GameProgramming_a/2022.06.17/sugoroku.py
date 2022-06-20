@@ -35,7 +35,6 @@ while True:
   # 勝利判定を追加
   if player_pos == GRID_COUNT and cpu_pos == GRID_COUNT:
     print("同時にゴール！引き分けです！")
-    break
   elif player_pos == GRID_COUNT:
     print("おめでとう！プレイヤーの勝ちです！")
     break
