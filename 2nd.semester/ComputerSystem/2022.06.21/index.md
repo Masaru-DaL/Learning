@@ -146,3 +146,11 @@ Entity-Relationship Diagram
 - リレーションシップ(Relationship: 関係) -> ひし形
   - エンティティ同士の関連を示す
 業務活動やデータ間の関連をE-Rモデルにより表した図で、**エンティティ**と**リレーションシップ**によって現実世界をモデル化したもの
+
+![picture 1](../../../images/4ae9796a8eb20daae644c548dbc85d3d79d5f0ff7c76440512cb807eebcc2a71.png)
+
+### 決定表
+![picture 4](../../../images/72f3ef319ab19c1af53d5859ed2979df30094d3907193542038aa1524486fb4f.png)
+
+### 状態遷移図
+![picture 3](../../../images/4ef83d6d8fb48b25c22a3c649e61fc9635b13b17f5038a15cb68b7411fc4f0ab.png)
