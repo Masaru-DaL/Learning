@@ -22,3 +22,5 @@
 
 
 [UMLのクラス図において，集約の関係にあるクラスはどれか。](https://www.fe-siken.com/bunya.php?m=12&s=3&no=24)
+
+

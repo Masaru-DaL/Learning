@@ -238,7 +238,7 @@ Entity-Relationship Diagram
 
 **～は～の1種である。と成立するかを考える。**
 
-![picture 1](../../images/5d629e37ea84b2f3d9c7f25db9989cde0c8615553b5003d14336e282c417fcce.png)
+![picture 6](../../images/f13e31bfb98f4f35f3dab8c02118d0f7e86efdafba4853def4d643a7280859a8.png)
 
 
 ### part-of関係(分解-集約)
@@ -254,8 +254,12 @@ Entity-Relationship Diagram
 
 **あるクラスは他のクラスの一部である。と成立するかを考える**
 
+![picture 5](../../images/161a50729c773cff9132de6cfe77050f40b6d8e79edef0e92fc5639d969f4f39.png)
+
 
 ### 関連と依存関係
-
-B 2, 4
-A
+- 関連
+  - あるクラスと別のクラスに何らかのつながりがある関係
+- 依存関係
+  - あるクラスから一時的に別のクラスを使用する関係
+![picture 4](../../images/ff4251d3d1370351abd9e05aa49d899e4e54ad4dfa3a9d2ea3b9fe1ebdf130b1.png)
