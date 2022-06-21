@@ -92,10 +92,16 @@
   - ユースケース
     - できること(どんな風に)
 
+![picture 8](../../../images/4219dd3c1240f5638fadb3b2ec837bae6afd5f14244c8564aca32a995fa1eeef.png)
+
+
 ##### シーケンス図
 - オブジェクト間のやり取りを時系列にそってあらわす
   - オブジェクトとは
     - 処理対象となるもの
+
+![picture 7](../../../images/f1a37cf346db359cc378b26df88cff0cf192748f71c10ef096eb07f7b0c199af.png)
+
 
 #### 構造図
 ##### クラス図
@@ -115,6 +121,9 @@
         - **点線**矢印
       - 汎化
         - **白抜き**矢印
+
+![picture 9](../../../images/af9e9b7ac0eb339108514c17100bd5e8dc3c2cb89a541b8071c01e254d804d16.png)
+
 ###### 多重度表記
 - *
   - 0以上
@@ -126,6 +135,9 @@
   - 0または1
 - 0..2
   - 0～2
+
+![picture 10](../../../images/5abbdb523dd954d28cf592a5144be19f7d21037e1cd565ec4f23fce6b654e111.png)
+
 
 ##### オブジェクト図
 - インスタンス同士のつながりを実現する図
@@ -139,6 +151,9 @@
 - 業務内容を、**業務を構成する機能とデータの流れに着目してモデル化**したもの
 ※時間経過の概念を盛り込めないため、その現象がいつ発生するのかわからないといった短所もある
 
+![picture 6](../../../images/e2f0e8ad63f7f40dccfd0aeabbdf1455f60a30092300a76a5d12343805ac9942.png)
+
+
 ### E-R図
 Entity-Relationship Diagram
 - エンティティ(Entity: 物体) -> 四角(長方形)
@@ -147,6 +162,9 @@ Entity-Relationship Diagram
   - エンティティ同士の関連を示す
 業務活動やデータ間の関連をE-Rモデルにより表した図で、**エンティティ**と**リレーションシップ**によって現実世界をモデル化したもの
 
+![picture 5](../../../images/427c4b004d1ab9a5286612c621fe8b21b64e90f1c813b6be51008d4da239933d.png)
+
+
 ![picture 1](../../../images/4ae9796a8eb20daae644c548dbc85d3d79d5f0ff7c76440512cb807eebcc2a71.png)
 
 ### 決定表
@@ -154,3 +172,6 @@ Entity-Relationship Diagram
 
 ### 状態遷移図
 ![picture 3](../../../images/4ef83d6d8fb48b25c22a3c649e61fc9635b13b17f5038a15cb68b7411fc4f0ab.png)
+
+- 状態遷移表
+![picture 11](../../../images/100382a1fe478a75b360238a1b726cac282b5b78a31e3268d5ba964bdb50e335.png)
