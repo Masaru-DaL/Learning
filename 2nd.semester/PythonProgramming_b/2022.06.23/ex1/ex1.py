@@ -4,7 +4,7 @@ import os
 # 空のファイルを作る関数
 # ※中身はまだ理解する必要はありません
 def make_file(path):
-    
+
     if os.path.isfile(path):
         print("エラー！！ すでにファイルが存在します！")
         return
@@ -30,5 +30,6 @@ def make_file(path):
 # test9フォルダにtext.txtを作って下さい。
 
 # make_file 関数で、ファイルを作成する
-make_file("test.txt")
 
+
+make_file("C:/Users/220093/Documents/YSE/2nd.semester/PythonProgramming_b/2022.06.23/test7/test.txt")
