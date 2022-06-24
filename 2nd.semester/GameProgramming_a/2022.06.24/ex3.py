@@ -16,8 +16,11 @@ import tkinter
 root = tkinter.Tk()
 root.title("キャンパス案内")
 
+WIDTH_SIZE = 600
+HEIGHT_SIZE = 600
+
 my_canvas = tkinter.Canvas(
-  root, width=780, height=750,
+  root, width=WIDTH_SIZE, height=HEIGHT_SIZE,
   bg = "blue"
 )
 my_canvas.pack()
@@ -36,14 +39,14 @@ image4 = tkinter.PhotoImage(
 )
 
 my_canvas.create_image(
-  2,2,
+  400, 400,
   image = image1,
   anchor = "nw"
 )
 my_canvas.create_image(
-  2, 500,
+  400, 400,
   image = image2,
-  anchor = "nw"
+  anchor = "se"
 )
 my_canvas.create_image(
   520,2,
