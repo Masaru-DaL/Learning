@@ -1,7 +1,10 @@
 import tkinter          # tkinterモジュールのインポート
 
+click_count = 0         # クリックされた回数
 def click_button():
-  my_button["text"] = "押してしまいましたね..."
+  global click_count
+  click_count += 1
+  my_button["text"] = f"{click_count}万円寄付されます"
 
 
 # ウィンドウオブジェクトの作成～サイズの指定
