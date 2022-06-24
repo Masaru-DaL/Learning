@@ -16,12 +16,45 @@ import tkinter
 root = tkinter.Tk()
 root.title("キャンパス案内")
 
+my_canvas = tkinter.Canvas(
+  root, width=780, height=750,
+  bg = "blue"
+)
+my_canvas.pack()
 
+image1 = tkinter.PhotoImage(
+  file = "image/yse1.png"
+)
+image2 = tkinter.PhotoImage(
+  file = "image/yse2.png"
+)
+image3 = tkinter.PhotoImage(
+  file = "image/yse3.png"
+)
+image4 = tkinter.PhotoImage(
+  file = "image/yse4.png"
+)
 
-
-
-
+my_canvas.create_image(
+  2,2,
+  image = image1,
+  anchor = "nw"
+)
+my_canvas.create_image(
+  2, 500,
+  image = image2,
+  anchor = "nw"
+)
+my_canvas.create_image(
+  520,2,
+  image = image3,
+  anchor = "nw"
+)
+my_canvas.create_image(
+  500,550,
+  image = image4,
+  anchor = "nw"
+)
 
 
 root.mainloop()
-
