@@ -3,19 +3,21 @@
 #　Monsterクラスの内容はmonster.pyに書いてあります。
 #
 # 下記のコメントに沿って、プログラムを完成させて下さい。
-# プログラムが必要な箇所には 
+# プログラムが必要な箇所には
 # pass # ここにプログラムを追加
 # と書いてあります
 
 # Monsterクラスとランダムモジュールをインポートする
-pass # ここにプログラムを追加
+from monster import Monster # ここにプログラムを追加
 import random
 
 # Monsterのインスタンスを以下の３つ作成します
 # name：ドラゴン、HP：30、power：4
 # name：スケルトン、HP：20、power：3
 # name：スライム、HP：15、power：2
-pass # ここにプログラムを追加
+dragon = Monster("ドラゴン", 30, 4) # ここにプログラムを追加
+skelton = Monster("スケルトン", 20, 3) # ここにプログラムを追加
+slime = Monster("スライム", 15, 2) # ここにプログラムを追加
 
 # 変数としてプレイヤーHPを用意し、初期値を60にする
 player_hp = 60
@@ -31,7 +33,13 @@ while True:
     # １：ドラゴン、２：スケルトン、３：スライムで、入力してもらう（数字以外のエラー処理は省略）
     no = int(input("１：ドラゴン、２：スケルトン、３：スライム："))
     # 選ばれた敵のインスタンスに対して、damege関数を、atkを引数にして実行する
-    pass # ここにプログラムを追加
+    # ここにプログラムを追加
+    if no == 1:
+        dragon.damaged(atk)
+    elif no == 2:
+        skelton.damaged(atk)
+    else:
+        slime.damaged(atk)
 
 
     # このターンにプレイヤーが受けるダメージの変数を用意し、０を代入する
@@ -39,9 +47,11 @@ while True:
     # それぞれの敵のインスタンスに対して、attack関数を実行する
     # それぞれ戻り値を、このターンプレイヤーが受けるダメージに加算する
     # 合計のダメージが分かるようにする
-    pass # ここにプログラムを追加
+    p_damage = p_damage + dragon.attack() # ここにプログラムを追加
+    p_damage = p_damage + skelton.attack() # ここにプログラムを追加
+    p_damage = p_damage + slime.attack() # ここにプログラムを追加
 
-    
+
     # このターンプレイヤーが受けるダメージが０の場合、
     # 敵はすべてやっつけているので、プレイヤーの勝利のメッセージを出して、
     # 繰り返しを終了する
@@ -58,12 +68,3 @@ while True:
         break
     # プレイヤーのヒットポイントが残っている場合、受けたダメージと残りのHPを出力する
     print(f"{p_damage}点のダメージを受けた！（残りHP{player_hp}）")
-
-
-
-
-
-
-
-
-
