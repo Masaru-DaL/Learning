@@ -11,3 +11,9 @@
 #     引数に出現数を設定して、モンスターを登場させる
 
 
+from monster import Monster
+
+hiyoko = Monster()
+hiyoko.set_name("ひよこ")
+hiyoko.set_level(10)
+hiyoko.appear(3)
