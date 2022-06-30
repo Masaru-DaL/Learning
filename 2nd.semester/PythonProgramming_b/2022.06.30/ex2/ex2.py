@@ -53,6 +53,7 @@ while True:
     # ゲームオーバーのメッセージを出力して、whileを抜ける
     if result_1 or result_2 == True:
         print("ゲームオーバー") # ここにプログラムを追加
+        break
 
 
     # 生存数カウンタを増やして出力
