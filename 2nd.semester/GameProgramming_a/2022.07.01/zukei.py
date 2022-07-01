@@ -7,23 +7,23 @@ canvas = tkinter.Canvas(root, width=500, height=500)
 canvas.pack()
 
 # 直線の書き方
-#canvas.create_line(100, 100, 300, 300, fill="blue", width=5)
+canvas.create_line(100, 100, 300, 300, fill="blue", width=5)
 
 
 # 直線の書き方２
-# canvas.create_line(100, 100, 200, 100, 100, 300, 400, 400, 
-#                    fill="blue", width=5, smooth=True)
+canvas.create_line(100, 100, 200, 100, 100, 300, 400, 400,
+                    fill="blue", width=5, smooth=True)
 
 # 長方形の書き方
-#canvas.create_rectangle(100, 100, 300, 300, 
+#canvas.create_rectangle(100, 100, 300, 300,
 #                        fill="blue", outline="cyan", width=5)
 
 # 円・楕円の書き方
-#canvas.create_oval(200, 200, 450, 300, 
+#canvas.create_oval(200, 200, 450, 300,
 #                   fill="pink", outline="red", width=5)
 
 # 扇形の書き方
-# canvas.create_arc(200, 200, 400, 400, 
+# canvas.create_arc(200, 200, 400, 400,
 #                   fill="yellow", outline="orange", width=5,
 #                   start=30, extent=300)
 
