@@ -6,7 +6,10 @@ root.geometry("400x200")
 
 # ボタン用の関数
 def btn():
-    pass
+    # my_entry2.insert(5, "ボタンが押されました")
+    # my_entry2.delete(1, 3)
+    # my_entry2.delete(0, tkinter.END)
+    my_button["text"] = my_entry2.get() # テキストボックスに入力した文字がボタン上に表示される
 
 # 後で使うボタン
 my_button = tkinter.Button(

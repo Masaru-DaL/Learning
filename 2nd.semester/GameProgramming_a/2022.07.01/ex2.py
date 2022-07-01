@@ -1,9 +1,9 @@
 # 演習２
-# 
+#
 # １）現在、ウィンドウにはボタンと１行のテキスト入力欄があります。
 #     このボタンの上の部分に複数行のテキスト入力欄を１つ
 #     配置してください。
-# 
+#
 # ２）入力文字数算出ボタンが押されたら、
 #     複数行テキスト入力欄の文字数を数えて、
 #     「入力文字数は５です」のように
@@ -11,6 +11,7 @@
 #     出力の際、複数行テキスト入力欄の文字数から１減らして出力して下さい
 #     ※複数行テキストの場合、最後に余計な１文字（記号）が付くようです
 import tkinter
+from traceback import TracebackException
 
 root = tkinter.Tk()
 root.title("演習２")
@@ -19,7 +20,11 @@ root.geometry("400x400")
 # ボタン用の関数
 def btn1():
     # 入力文字数算出ボタン
-    pass
+    len_text = my_text.get("1.0", tkinter.END)
+    entry1.delete(0, tkinter.END)
+
+    msg = f"入力文字数は{len(len_text) - 1}です。"
+    entry1.insert(0, msg)
 
 # 入力文字数算出ボタン
 # ※フォント３つ目の引数（あるいはキーワード引数の「weight」）に
@@ -34,7 +39,8 @@ entry1 = tkinter.Entry(bg="skyblue",
 entry1.place(x=10, y=250)
 
 # 複数行テキスト入力欄の作成と配置
-
+my_text = tkinter.Text(width=50, height=10)
+my_text.place(x=10, y=10)
 
 # ウィンドウの表示
 root.mainloop()
