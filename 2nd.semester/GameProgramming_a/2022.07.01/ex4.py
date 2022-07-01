@@ -1,5 +1,5 @@
 # 演習４
-# 
+#
 # １）ウィンドウにボタンがあります。
 #     このボタンが押されたら、askyesno（はい/いいえメッセージボックス）を
 #     WIN_MSG1のメッセージで表示して下さい。
@@ -13,6 +13,7 @@
 #     どちらのメッセージボックスでも「いいえ」が押された場合は処理をせず、
 #     メッセージボックスのみ閉じて下さい。
 import tkinter
+import tkinter.messagebox as messagebox
 
 WIN_MSG1 = "アプリを終了してもよろしいですか？"
 WIN_MSG2 = "本当にアプリを終了してもよろしいですか？"
@@ -27,7 +28,12 @@ def win_close():
 
 # ボタン用の関数
 def btn1():
-    pass
+    ret = messagebox.askyesno("いいんですか？", WIN_MSG1)
+    if ret:
+        ret2 = messagebox.askyesno("本当にいいんですか？", WIN_MSG2)
+        if ret2:
+            win_close()
+
 
 
 # ボタン
