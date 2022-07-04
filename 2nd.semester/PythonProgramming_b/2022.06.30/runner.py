@@ -12,6 +12,6 @@ class Runner:
   # 結果を出力する関数
   def output_time(self):
     if self.time == 0:
-      print(f"{self.name}さんのタイムは記録されていません")
+      print(f"{self.name}ちゃんのタイムは記録されていません")
     else:
-      print(f"{self.name}さんのタイムは{self.time}です")
+      print(f"{self.name}ちゃんのタイムは{self.time}です")

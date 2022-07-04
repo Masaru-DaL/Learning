@@ -1,12 +1,12 @@
 # 演習３
 # クラス「Student」を作成します。
-# 
+#
 # このクラスには以下の関数を用意して下さい。
-# 
+#
 # ・コンストラクタ(self, name, score)
 #   引数に「name」「score」をもらい、
 #   それをそれぞれself.name、self.scoreに設定する
-# 
+#
 # ・check_new_score(self, score)
 #   引数に「score」をもらう
 #   引数の score と self.score を比較して、
@@ -14,3 +14,17 @@
 #   それ以外の場合は「xxさんの点数は上がりませんでした」と出力する
 #   その後で、self.score を引数の score の値にする
 
+class Student:
+
+  def __init__(self, name, score):
+    self.name = name
+    self.score = score
+
+  def check_new_score(self, score):
+
+    if score >= self.score:
+      print(f"{self.name}さんの点数が上がりました！")
+    else:
+      print(f"{self.name}さんの点数は上がりませんでした")
+
+    self.score = score

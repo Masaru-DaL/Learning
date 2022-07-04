@@ -1,4 +1,4 @@
-# 演習２
+# 演習3
 # まず、student.pyにStudentクラスを作成して下さい。
 #　Studentクラスの内容はstudent.pyに書いてあります。
 #
@@ -14,12 +14,11 @@
 # 上記まで出来たら、その後も３）や４）を繰り返して、
 # 動作が想定通りか確認して下さい
 
+from student import Student
+
+student1 = Student("うかちゃん", 68)
+student2 = Student("はるちゃん", 89)
 
 
-
-
-
-
-
-
-
+student1.check_new_score(50)
+student2.check_new_score(100)
