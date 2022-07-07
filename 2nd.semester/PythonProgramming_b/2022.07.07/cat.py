@@ -15,4 +15,5 @@ class Cat:
         print(f"好きな物は{fav}です。")
 
     # 名前を取得する関数
-
+    def get_name(self):
+        return self.name

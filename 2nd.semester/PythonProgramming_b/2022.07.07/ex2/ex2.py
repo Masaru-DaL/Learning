@@ -16,14 +16,14 @@
 # ・総売上を出力する際に、総販売個数も出力
 
 # Productクラスをインポートする
-
+from product import Product
 # 商品の登録
-
+cake = Product("ケーキ", 500)
+dango = Product("だんご", 180)
+senbei = Product("せんべい", 50)
 # 商品の販売
-
+cake.sell()
+dango.sell()
+senbei.sell()
 # 総売上の出力
-
-
-
-
-
+print(f"総売り上げ個数は{Product.total_num}個で、総売り上げ金額は{Product.total_sell}円です")
