@@ -58,7 +58,7 @@ root.bind("<KeyRelease>", key_up)       # キーリリースと関数をバイ�
 
 # メイン処理
 def main_proc():
-  global my_x, my_y, nokori_count
+  global my_x, my_y, nokori_count, key
   # 左シフトキーが押されたら、やり直すかのメッセージを出す
   if key == "Shift_L":
     ret = messagebox.askokcancel("やり直し", "ゲームを最初からやり直しますか？")
@@ -67,6 +67,15 @@ def main_proc():
       canvas.delete("BLOCK")
       my_x, my_y = my_pos
       nokori_count = 0
+      for y in range(7):
+        for x in range(10):
+          if maze_map[y][x] == 1:
+            put_block(x, y, "skyblue")
+          if maze_map[y][x] == 2:
+            maze_map[y][x] = 0
+          if maze_map[y][x] == 0:
+            nokori_count += 1
+
 
 
   # キーが押されているときに、その方向の行き先にブロックがなければ自キャラの位置を移動させる

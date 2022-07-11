@@ -14,8 +14,8 @@ def key_up(e):
     key = ""
 
 c_pos = [400, 300]  # キャラクターの初期位置
-MOVE = 20           # １回ごとにキャラが動く距離
-INTERVAL = 100      # chara_move が呼ばれる間隔
+MOVE = 10           # １回ごとにキャラが動く距離
+INTERVAL = 10      # chara_move が呼ばれる間隔
 
 def chara_move():
     # 押されたキーの方向に、キャラの位置を移動
@@ -45,7 +45,7 @@ canvas.create_image(0, 0, image=bg_img, anchor="nw")
 # キャラ画像ファイルを読み込み
 cat_img = tkinter.PhotoImage(file="../image/baloon.png")
 # キャラ画像を表示（タグを設定）
-canvas.create_image(c_pos[0], c_pos[1], image=cat_img, 
+canvas.create_image(c_pos[0], c_pos[1], image=cat_img,
                     tag="CAT")
 
 # キーが押された時、離された時の処理をバインド
