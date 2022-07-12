@@ -104,3 +104,99 @@
   - PMBOKガイドでは
     - プロジェクトの**活動範囲**と、**達成すべき成果物の仕様**をまとめて**スコープ**と呼ぶ
 プロジェクトスコープマネジメントは、スコープを定義し、プロジェクト遂行に必要な作業を**過不足なく洗い出していく**活動で、定義したスコープは**プロジェクトスコープ記述書**に記載する。
+
+#### 分割して作業を洗い出すWBS
+Work Breakdown Structure
+プロジェクトの遂行に必要になる**すべての作業項目を、大まかな分類から細かな分類へと階層的に順次分割していくことで明らかにする手法**
+
+- ワークパッケージ
+  - WBSを用いて作業を分解したときに最下層となる作業管理の最小単位のこと
+
+- アクティビティ
+  - ワークパッケージに含まれる作業項目のこと
+
+![picture 6](../../../images/f375f8e0b588b4a2739828c396195c3d6773bac8d2e3a1a25b212fe395e873a0.png)
+
+***
+# VBA
+'**********************************
+' Main：並べ替え処理
+' https://www.itpassportsiken.com/bunya.php?m=14&s=2&no=18
+'**********************************
+Sub 基本交換()
+    Dim left As Integer
+    Dim right As Integer
+
+    left = Range("C6").Value
+    right = Range("D6").Value
+
+    Range("C6").Activate
+
+    ' Offset(y, x) -を指定することも出来る。
+    ActiveCell.Offset(0, 0).Select
+
+    If left > right Then
+        '結果が真の時に行うスコープ
+        Call 入れ替え(left, right)
+
+        If Range("D6").Value > Range("E6").Value Then
+        '結果が真の時に行うスコープ
+            Call 入れ替え2(Range("D6").Value, Range("E6").Value)
+
+            If Range("E6").Value > Range("F6").Value Then
+        '結果が真の時に行うスコープ
+                Call 入れ替え3(Range("E6").Value, Range("F6").Value)
+
+                If Range("F6").Value > Range("G6").Value Then
+        '結果が真の時に行うスコープ
+                    Call 入れ替え4(Range("F6").Value, Range("G6").Value)
+
+                End If
+
+            End If
+        End If
+    End If
+End Sub
+
+'**********************************
+' サブ：基本交換法
+' https://www.itpassportsiken.com/bunya.php?m=14&s=2&no=13
+'**********************************
+Sub 入れ替え(a As Integer, b As Integer)
+    Dim test As Integer
+
+    test = a
+    Range("C6").Value = b
+    Range("D6").Value = test
+
+End Sub
+
+Sub 入れ替え2(a As Integer, b As Integer)
+
+    Dim test As Integer
+
+    test = a
+    Range("D6").Value = b
+    Range("E6").Value = test
+
+End Sub
+
+Sub 入れ替え3(a As Integer, b As Integer)
+
+    Dim test As Integer
+
+    test = a
+    Range("E6").Value = b
+    Range("F6").Value = test
+
+End Sub
+
+Sub 入れ替え4(a As Integer, b As Integer)
+
+    Dim test As Integer
+
+    test = a
+    Range("F6").Value = b
+    Range("G6").Value = test
+
+End Sub
