@@ -1,5 +1,5 @@
 # 演習２
-# 
+#
 # 英語での月が1月から順番に入っているリストがあります。
 # enumerateを利用して、
 # 「1月は英語でJanuaryです」
@@ -8,3 +8,5 @@ EN_MONTHS = ["January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"]
 
 
+for i, month in enumerate(EN_MONTHS):
+  print(f"{i+1}月は英語で{month}です")

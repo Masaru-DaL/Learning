@@ -1,5 +1,5 @@
 # 演習１
-# 
+#
 # ランダムに１つの「アウト！」かたくさんお「セーフ」から選び、
 # 選ぶたびにその要素がなくなっていくリストがあります。
 #
@@ -18,10 +18,11 @@ random.shuffle(data_list)
 yameru = False
 count = 0
 while yameru == False:
-    
+
     ch  = input("まだ続けますか？ n で終了：")
     if ch == 'n':
         yameru = True
+        print(f"あなたは、{count}回の生き残りに成功しました！")
     else:
         idx = random.randint(0, len(data_list) - 1)
         result = data_list.pop(idx)
