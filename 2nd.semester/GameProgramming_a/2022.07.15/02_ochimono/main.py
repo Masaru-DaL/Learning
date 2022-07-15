@@ -19,10 +19,71 @@ neko_images = [
 
 # ねこフィールドの作成
 neko_field = []
+# チェックフィールドの作成
+check_field = []
 for y in range(10):
     neko_field.append([0,0,0,0,0,0,0,0])
+    check_field.append([0,0,0,0,0,0,0,0])
+
+# 並びチェック関数
+def check_neko():
+    # 盤面の情報を全て、チェックフィールドにコピー
+    for y in range(10):
+        for x in range(8):
+            check_field[y][x] = neko_field[y][x]
+
+    # 横の並びのチェック(内側の6列のみ)
+    for y in range(10):
+        for x in range(1, 7):
+            check_pos = check_field[y][x]
+            # その場所にねこがいる場合で、左右とも同じねこの場合
+            if check_pos > 0 and check_field[y][x-1] == check_pos and check_field[y][x+1] == check_pos:
+                # 3マスとも肉球に変える
+                neko_field[y][x] = 7
+                neko_field[y][x-1] = 7
+                neko_field[y][x+1] = 7
+
+    # 縦の並びをチェック（一番下と一番上以外）
+    for y in range(1, 9):
+        for x in range(8):
+            # その場所のねこを取得
+            check_pos = check_field[y][x]
+            # マスにねこがいる場合で
+            # 上下ともに同じねこの場合
+            if check_pos > 0 \
+               and check_field[y-1][x] == check_pos \
+               and check_field[y+1][x] == check_pos:
+                # ３マスとも肉球に変える
+                neko_field[y][x] = 7
+                neko_field[y-1][x] = 7
+                neko_field[y+1][x] = 7
+
+    # 斜めの並びをチェック（一番外枠以外）
+    for y in range(1, 9):
+        for x in range(1, 7):
+            # その場所のねこを取得
+            check_pos = check_field[y][x]
+            # マスにねこがいる場合
+            if check_pos > 0:
+                # 左上と右下がともに同じねこの場合
+                if check_field[y-1][x-1] == check_pos \
+                   and check_field[y+1][x+1] == check_pos:
+                    # ３マスとも肉球に変える
+                    neko_field[y][x] = 7
+                    neko_field[y-1][x-1] = 7
+                    neko_field[y+1][x+1] = 7
+                # 右上と左下がともに同じねこの場合
+                if check_field[y-1][x+1] == check_pos \
+                   and check_field[y+1][x-1] == check_pos:
+                    # ３マスとも肉球に変える
+                    neko_field[y][x] = 7
+                    neko_field[y-1][x+1] = 7
+                    neko_field[y+1][x-1] = 7
+
+
 
 def draw_neko():
+    cvs.delete("NEKO")
     # 盤面全部に対して繰り返す
     for y in range(10):
         for x in range(8):
@@ -34,9 +95,12 @@ def draw_neko():
                                  image = neko_images[image_number],
                                  anchor = "nw", tag = "NEKO")
 
+
 # ねこ落下関数
 def fall_neko():
+    is_fall = False             # ねこ落下ありフラグ
     # 2次元リストの繰り返しをするが、縦方向は下から順に処理をする
+    # 上からチェックするようにしてしまうと一気に下に落ちてしまう
     for y in range(8, -1, -1):
         for x in range(8):
             # その位置が空でない、かつ1つ下が空の場合
@@ -45,8 +109,9 @@ def fall_neko():
                 neko_field[y+1][x] = neko_field[y][x]
                 # この位置のねこを空にする
                 neko_field[y][x] = 0
+                is_fall = True
 
-
+    return is_fall              # ねこ落下ありフラグを戻り値にする
 cvs = tkinter.Canvas(root, width=912, height=768)   # キャンバスの作成
 cvs.pack()                                          # キャンバスの配置
 
@@ -68,43 +133,70 @@ def mouse_press(e):
 root.bind("<Motion>", mouse_move)
 root.bind("<ButtonPress>", mouse_press)
 
+step = 0
 
 # ゲームメイン処理
 def game_main():
 
-    global mouse_x, mouse_y, mouse_click
+    global mouse_x, mouse_y, mouse_click, step
 
-    # ねこ落下関数を実行
-    fall_neko()
+    # タイトル表示
+    if step == 0:
+        step = 1
 
-    # ねこチェック関数を実行
-    check_neko()
-
-    # ※数値は、画像に合わせて計算済みの値となっています
-    if 24 <= mouse_x < 24+72*8 and 24 <= mouse_y < 24+72*10:
-        # カーソル位置を計算
-        cursor_x = int((mouse_x-24)/72)
-        cursor_y = int((mouse_y-24)/72)
-
+    # スタート待ち
+    elif step == 1:
         if mouse_click == True:
-            # クリックしたカーソル位置にねこの画像をランダムで配置(仮処理)
-            neko_field[cursor_y][cursor_x] = random.randint(1, 6)
+            # ねこフィールドをクリア
+            for y in range(10):
+                for x in range(8):
+                    neko_field[y][x] = 0
             mouse_click = False
+            step = 2
 
-    else:
-        # 盤面外の場合、カーソル位置をマイナスにしておく
-        cursor_x = -1
+    # ねこ落下処理
+    elif step == 2:
+        if fall_neko() == False:
+            step = 3
+        draw_neko()
 
-    cvs.delete("CURSOR")
-    # カーソルが盤面内なら
-    if cursor_x != -1:
-        cvs.create_image(cursor_x*72+24, cursor_y*72+24,
-                         image = cursor, anchor = "nw",
-                         tag = "CURSOR")
+    elif step == 3:
+        check_neko()
+        draw_neko()
+        step = 4
 
-    cvs.delete("NEKO")
-    # ねこ描画関数を実行
-    draw_neko()
+    elif step == 4:
+        step = 5
+        mouse_click = False
+
+    elif step == 5:
+        # ※数値は、画像に合わせて計算済みの値となっています
+        if 24 <= mouse_x < 24+72*8 and 24 <= mouse_y < 24+72*10:
+            # カーソル位置を計算
+            cursor_x = int((mouse_x-24)/72)
+            cursor_y = int((mouse_y-24)/72)
+
+            if mouse_click == True:
+                # クリックしたカーソル位置にねこの画像をランダムで配置(仮処理)
+                neko_field[cursor_y][cursor_x] = random.randint(1, 6)
+                mouse_click = False
+                step = 2
+
+        else:
+            # 盤面外の場合、カーソル位置をマイナスにしておく
+            cursor_x = -1
+
+        cvs.delete("CURSOR")
+        # カーソルが盤面内なら
+        if cursor_x != -1:
+            cvs.create_image(cursor_x*72+24, cursor_y*72+24,
+                            image = cursor, anchor = "nw",
+                            tag = "CURSOR")
+        draw_neko()
+
+    # ゲームオーバー判定
+    elif step == 6:
+        pass
 
     root.after(100, game_main)                      # ゲームメイン処理を繰り返す
 
