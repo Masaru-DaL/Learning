@@ -161,3 +161,7 @@ LOC(Lines Of Code)法とも呼ばれる。
 
 ### 散布図
 ![picture 7](../../../images/b76d473f41789afe49275ece34e1df0ff97f1988a500ac79ed098fb7deb5b67b.png)
+
+
+# 各知識エリアの作業一覧
+![picture 8](../../../images/14dbe0ef807affd141ba796b913095d1e72c81a4d92820ac07159702f033159f.png)
