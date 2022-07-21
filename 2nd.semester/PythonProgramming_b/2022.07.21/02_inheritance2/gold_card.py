@@ -1,4 +1,4 @@
-from creditcard import CreditCard
+from credit_card import CreditCard
 
 # ゴールドカードクラス
 class GoldCard(CreditCard):
@@ -10,3 +10,9 @@ class GoldCard(CreditCard):
         self.discount = discount
         self.mag = (100 - self.discount) / 100
 
+    # 購入
+    def buy(self, item, price):
+        price = int(price * self.mag)
+
+        # スーパークラスを呼び出す
+        super().buy(item, price)
