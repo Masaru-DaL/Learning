@@ -123,6 +123,13 @@ def sweep_neko():
                 sweep_num += 1                  # 消したねこの数を1増やす
     return sweep_num                            # 消したねこの数を戻り値にする
 
+# ねこを最上段に追加する関数
+def add_neko():
+    # 最上段のマス分繰り返し
+    for x in range(8):
+        # そのマスにねこ(空白の場合有り)を追加
+        neko_field[0][x] = random.randint(0, 6)
+
 
 # ゲームオーバーのチェックをする関数
 # ※この関数は、ねこを消し切った後で呼ぶ必要がある(ねこを消して、もう消えるものがない後に判定する)
@@ -162,14 +169,29 @@ root.bind("<ButtonPress>", mouse_press)
 step = 0                                            # ゲームの処理を分ける変数
 score = 0                                           # 点数
 chain = 0                                           # 連鎖数
+next_neko = 0
+game_over_timer = 0
 
 # ゲームメイン処理
 def game_main():
 
     global mouse_x, mouse_y, mouse_click, step, score, chain
+    global next_neko, game_over_timer
 
     # タイトル表示
     if step == 0:
+        # タイトルの表示
+        title_font = ("Arial", 102, "bold")
+        cvs.create_text(312, 240, text = "ねこねこ",
+                        fill = "violet",
+                        font = title_font,
+                        tag = "TITLE")
+        # メッセージの表示
+        message_font = ("Arial", 50, "bold")
+        cvs.create_text(312, 560, text = "Click to Start!!",
+                        fill = "orange",
+                        font = message_font,
+                        tag = "TITLE")
         step = 1
 
     # スタート待ち
@@ -182,6 +204,11 @@ def game_main():
             mouse_click = False
             score = 0                               # 初期化
             chain = 1                               # 初期化
+            next_neko = 0                           # 初期化
+            game_over_timer = 0
+            cvs.delete("TITLE")
+            add_neko()                              # 最上段にねこを配置
+            draw_neko()                             # ねこを描画
             step = 2
 
     # ねこ落下処理
@@ -195,6 +222,7 @@ def game_main():
         draw_neko()
         step = 4
 
+    # ねこ消去処理
     elif step == 4:
         sweep_num = sweep_neko()                    # ねこ消去関数を実行
         score += sweep_num * chain * 10             # スコアに「消した猫の数*連鎖数*10」を加算
@@ -204,14 +232,14 @@ def game_main():
             step = 2                                # 落下処理へ
         else:
             if check_game_over() == False:
+                next_neko = random.randint(1, 6)    # 次のねこを準備
                 step = 5                            # クリック待ちへ
             else:
                 step = 6                            # ゲームオーバーへ
             mouse_click = False
 
-        step = 5
-        mouse_click = False
 
+    # マウス入力待ち
     elif step == 5:
         # ※数値は、画像に合わせて計算済みの値となっています
         if 24 <= mouse_x < 24+72*8 and 24 <= mouse_y < 24+72*10:
@@ -220,8 +248,10 @@ def game_main():
             cursor_y = int((mouse_y-24)/72)
 
             if mouse_click == True:
-                # クリックしたカーソル位置にねこの画像をランダムで配置(仮処理)
-                neko_field[cursor_y][cursor_x] = random.randint(1, 6)
+                add_neko()              # 最上段にねこを追加
+                # クリックしたカーソル位置に「次のねこ」を配置
+                neko_field[cursor_y][cursor_x] = next_neko
+                next_neko = 0               # 次のねこをクリア
                 mouse_click = False
                 chain = 1                   # 連鎖数の初期化
                 step = 2                    # ねこ落下処理へ
@@ -240,7 +270,17 @@ def game_main():
 
     # ゲームオーバー判定
     elif step == 6:
-        pass
+        # ゲームオーバー用タイマーが0の場合
+        if game_over_timer == 0:
+            game_over_font = ("Arial", 60, "bold")
+            cvs.create_text(312, 348, text = "GAME OVER...",
+                            fill = "red",
+                            tag = "GAME OVER")
+        game_over_timer += 1
+
+        if game_over_timer == 50:
+            cvs.delete("GAME OVER")     # 文字の消去
+            step = 0                    # タイトル画面へ
 
     cvs.delete("INFO")
 
@@ -248,6 +288,11 @@ def game_main():
     score_font = ("Arial", 32, "bold")
     cvs.create_text(160, 60, text=f"SCORE {score}",
                     font = score_font, tag = "INFO")
+
+    # 次のねこが設定されている場合、表示する
+    if next_neko > 0:
+        cvs.create_image(752, 128, image = neko_images[next_neko],
+                         tag = "INFO")
 
     root.after(100, game_main)                      # ゲームメイン処理を繰り返す
 
