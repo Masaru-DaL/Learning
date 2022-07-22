@@ -128,7 +128,7 @@ def add_neko():
     # 最上段のマス分繰り返し
     for x in range(8):
         # そのマスにねこ(空白の場合有り)を追加
-        neko_field[0][x] = random.randint(0, 6)
+        neko_field[0][x] = random.randint(0, 2 + difficulty)
 
 
 # ゲームオーバーのチェックをする関数
@@ -168,6 +168,8 @@ root.bind("<ButtonPress>", mouse_press)
 
 step = 0                                            # ゲームの処理を分ける変数
 score = 0                                           # 点数
+high_score = 0
+difficulty = 0                                      # 難易度
 chain = 0                                           # 連鎖数
 next_neko = 0
 game_over_timer = 0
@@ -176,7 +178,7 @@ game_over_timer = 0
 def game_main():
 
     global mouse_x, mouse_y, mouse_click, step, score, chain
-    global next_neko, game_over_timer
+    global next_neko, game_over_timer, high_score, difficulty
 
     # タイトル表示
     if step == 0:
@@ -186,10 +188,29 @@ def game_main():
                         fill = "violet",
                         font = title_font,
                         tag = "TITLE")
-        # メッセージの表示
-        message_font = ("Arial", 50, "bold")
-        cvs.create_text(312, 560, text = "Click to Start!!",
-                        fill = "orange",
+        # 難易度
+        message_font = ("Arial", 40, "bold")
+        cvs.create_rectangle(168, 384, 456, 456,
+                             fill = "sky blue",
+                             width = 0, tag = "TITLE")
+        cvs.create_text(312, 420, text = "Easy",
+                        fill = "white",
+                        font = message_font,
+                        tag = "TITLE")
+
+        cvs.create_rectangle(168, 528, 456, 600,
+                             fill = "light green",
+                             width = 0, tag = "TITLE")
+        cvs.create_text(312, 564, text = "Normal",
+                        fill = "white",
+                        font = message_font,
+                        tag = "TITLE")
+
+        cvs.create_rectangle(168, 672, 456, 744,
+                             fill = "orange",
+                             width = 0, tag = "TITLE")
+        cvs.create_text(312, 708, text = "Hard",
+                        fill = "white",
                         font = message_font,
                         tag = "TITLE")
         step = 1
@@ -197,19 +218,29 @@ def game_main():
     # スタート待ち
     elif step == 1:
         if mouse_click == True:
-            # ねこフィールドをクリア
-            for y in range(10):
-                for x in range(8):
-                    neko_field[y][x] = 0
-            mouse_click = False
-            score = 0                               # 初期化
-            chain = 1                               # 初期化
-            next_neko = 0                           # 初期化
-            game_over_timer = 0
-            cvs.delete("TITLE")
-            add_neko()                              # 最上段にねこを配置
-            draw_neko()                             # ねこを描画
-            step = 2
+
+            # クリックされた場所によって難易度を設定する
+            if 168 < mouse_x < 456 and 384 < mouse_y < 456:
+                difficulty = 2
+            if 168 < mouse_x < 456 and 528 < mouse_y < 600:
+                difficulty = 3
+            if 168 < mouse_x < 456 and 672 < mouse_y < 744:
+                difficulty = 4
+
+            if difficulty > 0:
+                # ねこフィールドをクリア
+                for y in range(10):
+                    for x in range(8):
+                        neko_field[y][x] = 0
+                mouse_click = False
+                score = 0                               # 初期化
+                chain = 1                               # 初期化
+                next_neko = 0                           # 初期化
+                game_over_timer = 0
+                cvs.delete("TITLE")
+                add_neko()                              # 最上段にねこを配置
+                draw_neko()                             # ねこを描画
+                step = 2
 
     # ねこ落下処理
     elif step == 2:
@@ -224,15 +255,18 @@ def game_main():
 
     # ねこ消去処理
     elif step == 4:
-        sweep_num = sweep_neko()                    # ねこ消去関数を実行
-        score += sweep_num * chain * 10             # スコアに「消した猫の数*連鎖数*10」を加算
+        sweep_num = sweep_neko()                                # ねこ消去関数を実行
+        score += sweep_num * chain * difficulty * 5             # スコアに「消した猫の数*難易度*5」を加算
+        # スコアがハイスコアを超えたら、ハイスコアにする
+        if score > high_score:
+            high_score = score
         # 1つでも消している場合
         if sweep_num > 0:
             chain += 1                              # 連鎖数を1つ増やして
             step = 2                                # 落下処理へ
         else:
             if check_game_over() == False:
-                next_neko = random.randint(1, 6)    # 次のねこを準備
+                next_neko = random.randint(1, 2 + difficulty)    # 次のねこを準備(難易度によって種類数が変わる)
                 step = 5                            # クリック待ちへ
             else:
                 step = 6                            # ゲームオーバーへ
@@ -287,6 +321,8 @@ def game_main():
     # スコアを描画
     score_font = ("Arial", 32, "bold")
     cvs.create_text(160, 60, text=f"SCORE {score}",
+                    font = score_font, tag = "INFO")
+    cvs.create_text(450, 60, text=f"HI-SCO {high_score}",
                     font = score_font, tag = "INFO")
 
     # 次のねこが設定されている場合、表示する

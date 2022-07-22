@@ -10,22 +10,22 @@ def main():
     screen = pygame.display.set_mode((640, 360))
     # フレームレート指定のためのオブジェクトの作成
     clock = pygame.time.Clock()
-    
+
     # 背景画像の読み込み
     bg_image = pygame.image.load("../image/bg.png")
     # キャラクター画像の読み込みと、リストへの追加
     chara_images = []
     chara_images.append(pygame.image.load("../image/chara0.png"))
     chara_images.append(pygame.image.load("../image/chara1.png"))
-    
+
     # タイマー（カウンタ）
     timer = 0
-    
+
     # メインループ：Pygame ではこのループ内の処理が繰り返される
     while True:
         # タイマーを１増やす
         timer += 1
-        
+
         # ウィンドウの×ボタン等で終了するための処理
         # 大体こう書くと思って下さい
         for event in pygame.event.get():
@@ -35,7 +35,7 @@ def main():
 
         # タイマーを160で割った値を、背景画像のx方向の位置とする
         x = timer % 160
-        
+
         # 同じ画像を５つコピー
         for i in range(5):
             # ５つの画像それぞれを、x座標を160ずつずらして表示
@@ -47,12 +47,12 @@ def main():
 
         # 画面の更新処理
         pygame.display.update()
-        
+
         # フレームレートの指定
         # 下記の書き方だと、１秒間に５回処理が行われる
         # ※この記述を入れないと、コンピュータの処理を専有してしまい、
         # コンピュータが他の処理を余りできなくなってしまいます
-        clock.tick(5)
+        clock.tick(10)
 
 # このプログラム自体が起動された場合のみ実施
 # import された場合は動作しない
