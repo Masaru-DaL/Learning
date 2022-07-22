@@ -11,20 +11,19 @@ def main():
     # フレームレート指定のためのオブジェクトの作成
     clock = pygame.time.Clock()
 
-    # 背景画像の読み込み
-    bg_image = pygame.image.load("../image/bg.png")
-    # キャラクター画像の読み込みと、リストへの追加
-    chara_images = []
-    chara_images.append(pygame.image.load("../image/chara0.png"))
-    chara_images.append(pygame.image.load("../image/chara1.png"))
+    C_WHITE = (255, 255, 255)
+    C_RED = (255, 0, 0)
 
-    # タイマー（カウンタ）
+    font = pygame.font.Font(None, 60)
+
     timer = 0
+
 
     # メインループ：Pygame ではこのループ内の処理が繰り返される
     while True:
         # タイマーを１増やす
         timer += 1
+
 
         # ウィンドウの×ボタン等で終了するための処理
         # 大体こう書くと思って下さい
@@ -33,22 +32,27 @@ def main():
                 pygame.quit()       # Pygameの終了
                 sys.exit()          # プログラム自体の終了
 
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_F1:
-                screen = pygame.display.set_mode((640, 320), pygame.FULLSCREEN)
-                
+        screen.fill((0, 0, 0))
 
-        # タイマーを160で割った値を、背景画像のx方向の位置とする
-        x = timer % 160
+        key = pygame.key.get_pressed()
+        if key[pygame.K_UP]:
+            t1 = font.render("Up", True, C_RED, C_WHITE)
+            screen.blit(t1, [150, 50])
 
-        # 同じ画像を５つコピー
-        for i in range(5):
-            # ５つの画像それぞれを、x座標を160ずつずらして表示
-            screen.blit(bg_image, [i*160-x, 0])
-        # ２種類のキャラクター画像を、timerごとに交互に表示
-        # 画像の表示位置は、基本で左上が基準となります
-        # （tkinterで anchor="nw"を指定した場合と同じ）
-        screen.blit(chara_images[timer%2], [224, 160])
+        key = pygame.key.get_pressed()
+        if key[pygame.K_DOWN]:
+            t1 = font.render("Down", True, C_RED, C_WHITE)
+            screen.blit(t1, [150, 150])
+
+        key = pygame.key.get_pressed()
+        if key[pygame.K_RIGHT]:
+            t1 = font.render("Right", True, C_RED, C_WHITE)
+            screen.blit(t1, [250, 100])
+
+        key = pygame.key.get_pressed()
+        if key[pygame.K_LEFT]:
+            t1 = font.render("Left", True, C_RED, C_WHITE)
+            screen.blit(t1, [50, 100])
 
         # 画面の更新処理
         pygame.display.update()
