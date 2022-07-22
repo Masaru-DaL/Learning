@@ -112,6 +112,32 @@ def fall_neko():
                 is_fall = True
 
     return is_fall              # ねこ落下ありフラグを戻り値にする
+
+# ねこ消去関数
+def sweep_neko():
+    sweep_num = 0                   # 消したねこの数
+    for y in range(10):
+        for x in range(8):
+            if neko_field[y][x] == 7:           # その場所が肉球の場合
+                neko_field[y][x] = 0            # 空に変える
+                sweep_num += 1                  # 消したねこの数を1増やす
+    return sweep_num                            # 消したねこの数を戻り値にする
+
+
+# ゲームオーバーのチェックをする関数
+# ※この関数は、ねこを消し切った後で呼ぶ必要がある(ねこを消して、もう消えるものがない後に判定する)
+def check_game_over():
+    # 一番上の段だけチェックする
+    for x in range(8):
+        if neko_field[0][x] > 0:                # その場所にねこがいる場合
+            return True                         # True(ゲームオーバー)を返す
+    return False                                # そうでない場合はFalseを返す
+
+
+
+
+
+
 cvs = tkinter.Canvas(root, width=912, height=768)   # キャンバスの作成
 cvs.pack()                                          # キャンバスの配置
 
@@ -133,12 +159,14 @@ def mouse_press(e):
 root.bind("<Motion>", mouse_move)
 root.bind("<ButtonPress>", mouse_press)
 
-step = 0
+step = 0                                            # ゲームの処理を分ける変数
+score = 0                                           # 点数
+chain = 0                                           # 連鎖数
 
 # ゲームメイン処理
 def game_main():
 
-    global mouse_x, mouse_y, mouse_click, step
+    global mouse_x, mouse_y, mouse_click, step, score, chain
 
     # タイトル表示
     if step == 0:
@@ -152,6 +180,8 @@ def game_main():
                 for x in range(8):
                     neko_field[y][x] = 0
             mouse_click = False
+            score = 0                               # 初期化
+            chain = 1                               # 初期化
             step = 2
 
     # ねこ落下処理
@@ -166,6 +196,19 @@ def game_main():
         step = 4
 
     elif step == 4:
+        sweep_num = sweep_neko()                    # ねこ消去関数を実行
+        score += sweep_num * chain * 10             # スコアに「消した猫の数*連鎖数*10」を加算
+        # 1つでも消している場合
+        if sweep_num > 0:
+            chain += 1                              # 連鎖数を1つ増やして
+            step = 2                                # 落下処理へ
+        else:
+            if check_game_over() == False:
+                step = 5                            # クリック待ちへ
+            else:
+                step = 6                            # ゲームオーバーへ
+            mouse_click = False
+
         step = 5
         mouse_click = False
 
@@ -180,7 +223,8 @@ def game_main():
                 # クリックしたカーソル位置にねこの画像をランダムで配置(仮処理)
                 neko_field[cursor_y][cursor_x] = random.randint(1, 6)
                 mouse_click = False
-                step = 2
+                chain = 1                   # 連鎖数の初期化
+                step = 2                    # ねこ落下処理へ
 
         else:
             # 盤面外の場合、カーソル位置をマイナスにしておく
@@ -197,6 +241,13 @@ def game_main():
     # ゲームオーバー判定
     elif step == 6:
         pass
+
+    cvs.delete("INFO")
+
+    # スコアを描画
+    score_font = ("Arial", 32, "bold")
+    cvs.create_text(160, 60, text=f"SCORE {score}",
+                    font = score_font, tag = "INFO")
 
     root.after(100, game_main)                      # ゲームメイン処理を繰り返す
 
