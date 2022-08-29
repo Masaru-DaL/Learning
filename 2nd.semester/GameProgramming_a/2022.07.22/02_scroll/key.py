@@ -43,7 +43,7 @@ def main():
         if key[pygame.K_DOWN]:
             t1 = font.render("Down", True, C_RED, C_WHITE)
             screen.blit(t1, [150, 150])
-
+                
         key = pygame.key.get_pressed()
         if key[pygame.K_RIGHT]:
             t1 = font.render("Right", True, C_RED, C_WHITE)
