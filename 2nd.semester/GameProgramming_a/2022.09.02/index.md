@@ -281,6 +281,6 @@ self.rect.height = self.hole_size
 ```python:
 self.calc_hole_size()
 # 40. 穴のサイズを計算後の値にする
-self.rect.top -= Hole.NARROW_SIZE
+self.rect.top -= Hole.hole_angle
 self.rect.height = self.hole_size
 ```

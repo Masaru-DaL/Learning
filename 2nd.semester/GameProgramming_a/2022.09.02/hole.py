@@ -65,7 +65,7 @@ class Hole:
       # 41. 穴のサイズを算出する
       self.calc_hole_size()
       # 41. 穴の上端をずらして、穴のサイズを計算後の値にする
-      self.rect.top -= Hole.NARROW_SIZE
+      self.rect.top -= Hole.hole_angle
       self.rect.height = self.hole_size
     # 穴を角度だけ移動する(move_ip(x, y))
     self.rect.move_ip(0, Hole.hole_angle)
