@@ -218,6 +218,7 @@ for hole in holes:
 ### hole.py
 32. 画面の横幅
 ```python:
+# (後でコメントアウト↓)
 from cave import W_HEIGHT
 
 W_HEIGHT = 0

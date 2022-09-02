@@ -3,8 +3,8 @@ import pygame
 from pygame.locals import QUIT, Rect, KEYDOWN, K_SPACE
 # 34.
 from random import randint
-# 32.
-from cave import W_HEIGHT
+# # 32.
+# from cave import W_HEIGHT
 
 # 19.
 class Hole:
