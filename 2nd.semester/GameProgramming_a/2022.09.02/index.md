@@ -288,6 +288,9 @@ self.rect.height = self.hole_size
 
 42. レベルを1増やす
 ```python:
+# 42. レベル
+level = 1
+
 Hole.level += 1
 ```
 
