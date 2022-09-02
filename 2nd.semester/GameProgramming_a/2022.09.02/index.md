@@ -102,3 +102,17 @@ if not is_gameover:
     # 8. 自機の位置を設定([1] -> y座標)
     my_ship_pos[1] += my_ship_speed
 ```
+
+16. 壁にぶつかったか判定する(my_ship_pos[1] + 60は自機の高さ分を調整する)
+```python:
+# 「穴の上端より自機が上に行った場合」　または、
+# 「穴の下端より自機の下端が下に行った場合」　にぶつかったとする
+if holes[0].top > my_ship_pos[1] or holes[0].bottom < my_ship_pos[1] + 60:
+    is_gameover = True
+```
+
+17. ゲームオーバーの場合は爆発画像を上から描画する(爆発画像の方が大きいので調整)
+```python:
+if is_gameover:
+    surface.blit(clash_image, (my_ship_pos[0]-15, my_ship_pos[1]-30))
+```
