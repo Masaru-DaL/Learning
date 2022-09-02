@@ -249,3 +249,20 @@ if check_rect.top <= 0:
 elif check_rect.bottom >= Hole.W_HEIGHT:
     Hole.hole_angle = randint(1, Hole.ANGLE_MAX) * -1
 ```
+
+37. 一段階ごとに穴が小さくなるサイズ
+```python:
+NARROW_SIZE = 10
+```
+
+38. 最小の穴のサイズ
+```python:
+MIN_HOLE_SIZE = 100
+```
+
+39. 穴のサイズの算出
+```python:
+def calc_hole_size(self):
+    # 穴のサイズを計算
+    self.hole_size = self.rect.height
+```

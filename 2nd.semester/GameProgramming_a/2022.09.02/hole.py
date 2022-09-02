@@ -17,6 +17,12 @@ class Hole:
   # 35. 壁の角度の最大値
   ANGLE_MAX = 6
 
+  # 37. 一段階ごとに穴が小さくなるサイズ
+  NARROW_SIZE = 10
+
+  # 38. 最小の穴のサイズ
+  MIN_HOLE_SIZE = 100
+
   # 25. 穴のずれ角度
   hole_angle = 1
 
@@ -28,6 +34,11 @@ class Hole:
   def set_hole(self, top, height):
     self.rect.top = top
     self.rect.height = height
+
+  # 39. 穴のサイズの算出
+  def calc_hole_size(self):
+    # 穴のサイズを計算
+    self.hole_size = self.rect.height
 
   # 27. 穴を角度分移動
   def move_angle(self):
