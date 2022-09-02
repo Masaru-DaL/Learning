@@ -177,3 +177,16 @@ def set_hole(self, top, height):
     self.rect.top = top
     self.rect.height = height
 ```
+
+27. 穴を角度分移動
+```python:
+def move_angle(self):
+    # 穴を角度だけ移動する(move_ip(x, y))
+    self.rect.move_ip(0, Hole.hole_angle)
+```
+
+28. 穴を左へ移動
+```python:
+def left_move(self):
+    self.rect.move_ip(Hole.WALL_WIDTH * -1, 0)
+```
