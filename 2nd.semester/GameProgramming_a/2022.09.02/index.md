@@ -76,3 +76,29 @@ surface.fill((0, 255, 0))
 for hole in holes:
     pygame.draw.rect(surface, (0, 0, 0), hole)
 ```
+
+14. ゲームオーバーフラグ
+```
+python:is_gameover = False
+```
+
+15. ゲームプレイ中のみ以下の処理を行う
+```python:
+if not is_gameover:
+```
+
+7, 8を15内にインデントする。
+```python:
+# 15. ゲームプレイ中のみ以下の処理を行う
+if not is_gameover:
+    # 7. 上下方向の自機の速度計算
+    if is_space_down:
+        # 自機を上に加速
+        my_ship_speed -= MY_SHIP_ACCELERATION
+    else:
+        # 自機を下に加速
+        my_ship_speed += MY_SHIP_ACCELERATION
+
+    # 8. 自機の位置を設定([1] -> y座標)
+    my_ship_pos[1] += my_ship_speed
+```

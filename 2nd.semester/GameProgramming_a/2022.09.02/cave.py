@@ -30,6 +30,8 @@ my_ship_pos = [START_SHIP_X, START_SHIP_Y]
 def main():
     # 4. 自機の上下方向の速度
     my_ship_speed = 0
+    # 14. ゲームオーバーフラグ
+    is_gameover = False
 
     # 自機画像の読込
     ship_image = pygame.image.load("image/ship.png")
@@ -58,16 +60,18 @@ def main():
                 if event.key == K_SPACE:
                     is_space_down = True
 
-        # 7. 上下方向の自機の速度計算
-        if is_space_down:
-            # 自機を上に加速
-            my_ship_speed -= MY_SHIP_ACCELERATION
-        else:
-            # 自機を下に加速
-            my_ship_speed += MY_SHIP_ACCELERATION
+        # 15. ゲームプレイ中のみ以下の処理を行う
+        if not is_gameover:
+            # 7. 上下方向の自機の速度計算
+            if is_space_down:
+                # 自機を上に加速
+                my_ship_speed -= MY_SHIP_ACCELERATION
+            else:
+                # 自機を下に加速
+                my_ship_speed += MY_SHIP_ACCELERATION
 
-        # 8. 自機の位置を設定([1] -> y座標)
-        my_ship_pos[1] += my_ship_speed
+            # 8. 自機の位置を設定([1] -> y座標)
+            my_ship_pos[1] += my_ship_speed
 
         # 12. 壁の描画
         surface.fill((0, 255, 0))
