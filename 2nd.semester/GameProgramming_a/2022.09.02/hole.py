@@ -58,6 +58,9 @@ class Hole:
       self.calc_hole_size()
       # 40. 穴のサイズを計算後の値にする
       self.rect.height = self.hole_size
+      # 42. レベルを1増やす
+      Hole.level += 1
+
     # 移動後の位置が、下の端に達していたら新しい角度(上向き)を設定する
     elif check_rect.bottom >= Hole.W_HEIGHT:
       Hole.hole_angle = randint(1, Hole.ANGLE_MAX) * -1
@@ -67,6 +70,9 @@ class Hole:
       # 41. 穴の上端をずらして、穴のサイズを計算後の値にする
       self.rect.top -= Hole.hole_angle
       self.rect.height = self.hole_size
+      # 42. レベルを1増やす
+      Hole.level += 1
+
     # 穴を角度だけ移動する(move_ip(x, y))
     self.rect.move_ip(0, Hole.hole_angle)
 

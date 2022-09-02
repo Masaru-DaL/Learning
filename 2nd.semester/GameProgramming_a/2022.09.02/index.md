@@ -230,6 +230,7 @@ W_HEIGHT = 0
 Hole.W_HEIGHT = W_HEIGHT
 ```
 
+#### hole.py
 34. randomのインポート
 from random import randint
 
@@ -283,4 +284,27 @@ self.calc_hole_size()
 # 40. 穴のサイズを計算後の値にする
 self.rect.top -= Hole.hole_angle
 self.rect.height = self.hole_size
+```
+
+42. レベルを1増やす
+```python:
+Hole.level += 1
+```
+
+if, elifの両方に実装
+
+#### cave.py
+43. スコア
+```python:
+score = 0
+```
+
+44. フォントを指定
+```python:
+game_font = pygame.font.SysFont("Arial", 32)
+```
+
+45. レベルとスコアの表示
+```python:
+level_info = game_font.render(f"Level: {Hole.level:3}", True,(0, 0, 255))
 ```

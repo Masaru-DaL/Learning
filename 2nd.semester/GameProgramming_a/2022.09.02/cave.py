@@ -38,6 +38,11 @@ def main():
     my_ship_speed = 0
     # 14. ゲームオーバーフラグ
     is_gameover = False
+    # 43. スコア
+    score = 0
+
+    # 44. フォントを指定
+    game_font = pygame.font.SysFont("Arial", 32)
 
     # 自機画像の読込
     ship_image = pygame.image.load("image/ship.png")
@@ -119,6 +124,9 @@ def main():
 
         # 9. 自機の描画
         surface.blit(ship_image, my_ship_pos)
+
+        # 45. レベルとスコアの表示
+        level_info = game_font.render(f"Level: {Hole.level:3}", True,(0, 0, 255))
 
         # 17. ゲームオーバーの場合は爆発画像を上から描画する(爆発画像の方が大きいので調整)
         if is_gameover:
