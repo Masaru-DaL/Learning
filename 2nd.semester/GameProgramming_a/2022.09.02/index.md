@@ -190,3 +190,27 @@ def move_angle(self):
 def left_move(self):
     self.rect.move_ip(Hole.WALL_WIDTH * -1, 0)
 ```
+
+### cave.py
+29. 新しい穴を生成する
+```python:
+# 位置は一番右の穴の、1つ右にする
+right_rect = holes[-1].rect
+new_hole = Hole(right_rect.x + Hole.WALL_WIDTH)
+# 新しい穴の位置とサイズを、一番右の穴と同じにする
+new_hole.set_hole(right_rect.top, right_rect.height)
+# 新しい穴を、角度分ずらす
+new_hole.move_angle()
+```
+
+30. 先頭の穴を削除して、新しい穴を追加する
+```python:
+del holes[0]
+    holes.append(new_hole)
+```
+
+31. 全ての穴を左に1つ分ずらす
+```python:
+for hole in holes:
+    hole.left_move()
+```
