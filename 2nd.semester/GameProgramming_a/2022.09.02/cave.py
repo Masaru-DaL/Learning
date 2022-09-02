@@ -7,6 +7,10 @@ from hole import Hole
 # ウインドウサイズ
 W_WIDTH = 800
 W_HEIGHT = 600
+
+# 33. Holeクラスのクラス変数に、ウィンドウの縦幅を設定
+Hole.W_HEIGHT = W_HEIGHT
+
 # 1. ゲーム開始時の自機の位置
 START_SHIP_X = 0
 START_SHIP_Y = 250

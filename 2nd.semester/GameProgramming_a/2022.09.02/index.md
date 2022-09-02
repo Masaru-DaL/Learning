@@ -214,3 +214,37 @@ del holes[0]
 for hole in holes:
     hole.left_move()
 ```
+
+### hole.py
+32. 画面の横幅
+```python:
+from cave import W_HEIGHT
+
+W_HEIGHT = 0
+```
+
+### cave.py
+33. Holeクラスのクラス変数に、ウィンドウの縦幅を設定
+```python:
+Hole.W_HEIGHT = W_HEIGHT
+```
+
+34. randomのインポート
+from random import randint
+
+35. 壁の角度の最大値
+```python:
+ANGLE_MAX = 6
+```
+
+36. 穴をコピーして、一度動かしてみる
+```python:
+check_rect = self.rect.copy()
+check_rect.move_ip(0, Hole.hole_angle)
+# 移動後の位置が、上の端に達していたら新しい角度(下向き)を設定する
+if check_rect.top <= 0:
+    Hole.hole_angle = randint(1, Hole.ANGLE_MAX)
+# 移動後の位置が、下の端に達していたら新しい角度(上向き)を設定する
+elif check_rect.bottom >= Hole.W_HEIGHT:
+    Hole.hole_angle = randint(1, Hole.ANGLE_MAX) * -1
+```
