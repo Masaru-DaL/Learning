@@ -70,3 +70,9 @@ holes = []
 ```python:
 surface.fill((0, 255, 0))
 ```
+
+13. 壁の穴の描画
+```python:
+for hole in holes:
+    pygame.draw.rect(surface, (0, 0, 0), hole)
+```

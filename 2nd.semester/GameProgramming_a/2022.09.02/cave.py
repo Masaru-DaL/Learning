@@ -71,6 +71,10 @@ def main():
 
         # 12. 壁の描画
         surface.fill((0, 255, 0))
+        # 13. 壁の穴の描画
+        for hole in holes:
+            pygame.draw.rect(surface, (0, 0, 0), hole)
+
 
         # 9. 自機の描画
         surface.blit(ship_image, my_ship_pos)
