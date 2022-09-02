@@ -45,7 +45,7 @@ def main():
     game_font = pygame.font.SysFont("Arial", 32)
 
     # 自機画像の読込
-    ship_image = pygame.image.load("image/ship.png")
+    ship_image = pygame.image.load("image/pDowF1OEGr9O5bU1662095119_1662095126.png")
     clash_image = pygame.image.load("image/clash.png")
 
     # 11. 壁の穴のリストを作成する
@@ -137,6 +137,13 @@ def main():
         # 46. ゲームオーバーでない場合、スコアを加算
         else:
             score += 1
+
+            # 改造場所(score500, score1000で自機画像を変更)
+            if score == 1000:
+                ship_image = pygame.image.load("image/vAYBFAHFQ76fLid1662095556_1662095557.png")
+            elif score == 500:
+                ship_image = pygame.image.load("image/ship.png")
+
 
         # 画面の更新
         pygame.display.update()
