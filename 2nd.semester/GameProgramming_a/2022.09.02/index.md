@@ -47,9 +47,26 @@ else:
 my_ship_pos[1] += my_ship_speed
 ```
 
-9.  自機の描画
+9. 自機の描画
 ```python:
 surface.blit(ship_image, my_ship_pos)
 ```
 
+10. 壁の横幅
+```python:
+WALL_WIDTH = 10
+```
 
+11. 壁の穴のリストを作成する
+```python:
+holes = []
+    # 壁(穴)の数は、画面横幅÷壁の横幅
+    for x in range(W_WIDTH // WALL_WIDTH):
+        # Rect -> 四角形
+        holes.append(Rect(x * WALL_WIDTH, 20, WALL_WIDTH, 560))
+```
+
+12. 壁の描画
+```python:
+surface.fill((0, 255, 0))
+```

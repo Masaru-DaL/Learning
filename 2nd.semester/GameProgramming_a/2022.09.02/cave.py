@@ -10,6 +10,8 @@ START_SHIP_X = 0
 START_SHIP_Y = 250
 # 2. 自機の上下方向の加速度
 MY_SHIP_ACCELERATION = 2
+# 10. 壁の横幅
+WALL_WIDTH = 10
 
 pygame.init()   # pygameの初期化処理
 
@@ -32,6 +34,13 @@ def main():
     # 自機画像の読込
     ship_image = pygame.image.load("image/ship.png")
     clash_image = pygame.image.load("image/clash.png")
+
+    # 11. 壁の穴のリストを作成する
+    holes = []
+    # 壁(穴)の数は、画面横幅÷壁の横幅
+    for x in range(W_WIDTH // WALL_WIDTH):
+        # Rect -> 四角形
+        holes.append(Rect(x * WALL_WIDTH, 20, WALL_WIDTH, 560))
 
     # ゲームのループ処理
     while True:
@@ -60,8 +69,8 @@ def main():
         # 8. 自機の位置を設定([1] -> y座標)
         my_ship_pos[1] += my_ship_speed
 
-        # 背景の描画
-        surface.fill((0, 0, 0))
+        # 12. 壁の描画
+        surface.fill((0, 255, 0))
 
         # 9. 自機の描画
         surface.blit(ship_image, my_ship_pos)
