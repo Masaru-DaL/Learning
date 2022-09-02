@@ -265,4 +265,22 @@ MIN_HOLE_SIZE = 100
 def calc_hole_size(self):
     # 穴のサイズを計算
     self.hole_size = self.rect.height
+    # 最小値を設定し、無限に小さくなるのを防ぐ
+    if self.hole_size < Hole.MIN_HOLE_SIZE:
+        self.hole_size = Hole.MIN_HOLE_SIZE
+```
+
+40. 穴のサイズを算出する
+```python:
+self.calc_hole_size()
+# 40. 穴のサイズを計算後の値にする
+self.rect.height = self.hole_size
+```
+
+41. 穴のサイズを算出する
+```python:
+self.calc_hole_size()
+# 40. 穴のサイズを計算後の値にする
+self.rect.top -= Hole.NARROW_SIZE
+self.rect.height = self.hole_size
 ```

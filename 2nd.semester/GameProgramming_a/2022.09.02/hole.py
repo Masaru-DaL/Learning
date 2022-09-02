@@ -39,6 +39,11 @@ class Hole:
   def calc_hole_size(self):
     # 穴のサイズを計算
     self.hole_size = self.rect.height
+    # 穴のサイズを小さくする
+    self.hole_size -= Hole.NARROW_SIZE
+    # 最小値を設定し、無限に小さくなるのを防ぐ
+    if self.hole_size < Hole.MIN_HOLE_SIZE:
+      self.hole_size = Hole.MIN_HOLE_SIZE
 
   # 27. 穴を角度分移動
   def move_angle(self):
@@ -48,10 +53,20 @@ class Hole:
     # 移動後の位置が、上の端に達していたら新しい角度(下向き)を設定する
     if check_rect.top <= 0:
       Hole.hole_angle = randint(1, Hole.ANGLE_MAX)
+
+      # 40. 穴のサイズを算出する
+      self.calc_hole_size()
+      # 40. 穴のサイズを計算後の値にする
+      self.rect.height = self.hole_size
     # 移動後の位置が、下の端に達していたら新しい角度(上向き)を設定する
     elif check_rect.bottom >= Hole.W_HEIGHT:
       Hole.hole_angle = randint(1, Hole.ANGLE_MAX) * -1
 
+      # 41. 穴のサイズを算出する
+      self.calc_hole_size()
+      # 41. 穴の上端をずらして、穴のサイズを計算後の値にする
+      self.rect.top -= Hole.NARROW_SIZE
+      self.rect.height = self.hole_size
     # 穴を角度だけ移動する(move_ip(x, y))
     self.rect.move_ip(0, Hole.hole_angle)
 
