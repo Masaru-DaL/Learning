@@ -6,7 +6,9 @@ START_SHIP_Y = 250
 ```
 
 2. 自機の上下方向の加速度
-`MY_SHIP_ACCELERATION = 2`
+```python:
+MY_SHIP_ACCELERATION = 2
+```
 
 3. 自機の位置
 ```python:
@@ -14,10 +16,14 @@ my_ship_pos = [START_SHIP_X, START_SHIP_Y]
 ```
 
 4. 自機の上下方向の速度
-`my_ship_speed = 0`
+```python:
+my_ship_speed = 0
+```
 
 5. スペースキー押下フラグ
-`is_space_down = False`
+```python:
+is_space_down = False
+```
 
 6. スペースキー押下で、フラグをTrueにする
 ```python:
@@ -36,7 +42,14 @@ else:
     my_ship_speed += MY_SHIP_ACCELERATION
 ```
 
-8. 自機の位置を設定([1] -> y座標)`my_ship_pos[1] += my_ship_speed`
+8. 自機の位置を設定([1] -> y座標)
+```python:
+my_ship_pos[1] += my_ship_speed
+```
 
-9. 自機の描画
-`surface.blit(ship_image, my_ship_pos)`
+9.  自機の描画
+```python:
+surface.blit(ship_image, my_ship_pos)
+```
+
+
