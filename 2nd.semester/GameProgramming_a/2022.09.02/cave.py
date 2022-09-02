@@ -1,6 +1,8 @@
 import sys
 import pygame
 from pygame.locals import QUIT, Rect, KEYDOWN, K_SPACE
+# 21. Holeクラスのインポート
+from hole import Hole
 
 # ウインドウサイズ
 W_WIDTH = 800
@@ -10,8 +12,8 @@ START_SHIP_X = 0
 START_SHIP_Y = 250
 # 2. 自機の上下方向の加速度
 MY_SHIP_ACCELERATION = 2
-# 10. 壁の横幅
-WALL_WIDTH = 10
+# # 10. 壁の横幅
+# WALL_WIDTH = 10
 
 pygame.init()   # pygameの初期化処理
 
@@ -40,9 +42,12 @@ def main():
     # 11. 壁の穴のリストを作成する
     holes = []
     # 壁(穴)の数は、画面横幅÷壁の横幅
-    for x in range(W_WIDTH // WALL_WIDTH):
-        # Rect -> 四角形
-        holes.append(Rect(x * WALL_WIDTH, 20, WALL_WIDTH, 560))
+    for x in range(W_WIDTH // Hole.WALL_WIDTH):
+        # # Rect -> 四角形
+        # holes.append(Rect(x * WALL_WIDTH, 20, WALL_WIDTH, 560))
+
+        # 22. Holeクラスのインスタンスを作成する
+        holes.append(Hole(x * Hole.WALL_WIDTH))
 
     # ゲームのループ処理
     while True:
@@ -75,14 +80,20 @@ def main():
             # 16. 壁にぶつかったか判定する(my_ship_pos[1] + 60は自機の高さ分を調整する)
             # 「穴の上端より自機が上に行った場合」　または、
             # 「穴の下端より自機の下端が下に行った場合」　にぶつかったとする
-            if holes[0].top > my_ship_pos[1] or holes[0].bottom < my_ship_pos[1] + 60:
+            # if holes[0].top > my_ship_pos[1] or holes[0].bottom < my_ship_pos[1] + 60:
+
+            # 23. Holeクラスの四角形を使用する
+            if holes[0].rect.top > my_ship_pos[1] or holes[0].rect.bottom < my_ship_pos[1] + 60:
                 is_gameover = True
 
         # 12. 壁の描画
         surface.fill((0, 255, 0))
         # 13. 壁の穴の描画
         for hole in holes:
-            pygame.draw.rect(surface, (0, 0, 0), hole)
+            # pygame.draw.rect(surface, (0, 0, 0), hole)
+
+            # 24. クラスからrectを取得して描画
+            pygame.draw.rect(surface, (0, 0, 0), hole.rect)
 
         # 9. 自機の描画
         surface.blit(ship_image, my_ship_pos)

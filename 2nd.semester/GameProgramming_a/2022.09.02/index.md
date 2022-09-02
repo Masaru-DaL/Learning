@@ -1,4 +1,5 @@
 # 飛行機ゲームの作成手順
+## cave.pyの作成
 1. ゲーム開始時の自機の位置
 ```python:
 START_SHIP_X = 0
@@ -115,4 +116,64 @@ if holes[0].top > my_ship_pos[1] or holes[0].bottom < my_ship_pos[1] + 60:
 ```python:
 if is_gameover:
     surface.blit(clash_image, (my_ship_pos[0]-15, my_ship_pos[1]-30))
+```
+
+## hole.pyの作成
+18. cave.pyと同じ階層に`hole.py`を作成する
+`cave.py`からモジュールをコピペする
+```python:
+import pygame
+from pygame.locals import QUIT, Rect, KEYDOWN, K_SPACE
+```
+
+19. Holeクラスを作成する
+`cave.py`から壁の横幅を持ってくる。
+```python:
+class Hole:
+    # 10. 壁の横幅
+    WALL_WIDTH = 10
+```
+
+20. コンストラクタ
+```python:
+def __init__(self, x):
+    self.rect = Rect(x, 20, Hole.WALL_WIDTH, 560)
+```
+
+## cave.pyの作成
+21. Holeクラスのインポート
+```python:
+from hole import Hole
+```
+
+HoleクラスにWALL_WIDTHを定義したのでcave.pyの方は削除しておく。
+
+22. Holeクラスのインスタンスを作成する
+```python:
+for x in range(W_WIDTH // Hole.WALL_WIDTH):
+    holes.append(Hole(x * Hole.WALL_WIDTH))
+```
+
+23. Holeクラスの四角形を使用する
+```python:
+if holes[0].rect.top > my_ship_pos[1] or holes[0].rect.bottom < my_ship_pos[1] + 60:
+```
+
+24. クラスからrectを取得して描画
+```python:
+pygame.draw.rect(surface, (0, 0, 0), hole.rect)
+```
+
+## 当たり判定(壁)を移動させる処理
+### hole.py
+25. 穴のずれ角度
+```python:
+hole_angle = 1
+```
+
+26. 穴の設定
+```python:
+def set_hole(self, top, height):
+    self.rect.top = top
+    self.rect.height = height
 ```
