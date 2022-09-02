@@ -127,10 +127,16 @@ def main():
 
         # 45. レベルとスコアの表示
         level_info = game_font.render(f"Level: {Hole.level:3}", True,(0, 0, 255))
+        score_info = game_font.render(f"Score: {score:6}", True,(0, 0, 255))
+        surface.blit(level_info, (480, 20))
+        surface.blit(score_info, (620, 20))
 
         # 17. ゲームオーバーの場合は爆発画像を上から描画する(爆発画像の方が大きいので調整)
         if is_gameover:
             surface.blit(clash_image, (my_ship_pos[0]-15, my_ship_pos[1]-30))
+        # 46. ゲームオーバーでない場合、スコアを加算
+        else:
+            score += 1
 
         # 画面の更新
         pygame.display.update()

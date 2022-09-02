@@ -307,4 +307,14 @@ game_font = pygame.font.SysFont("Arial", 32)
 45. レベルとスコアの表示
 ```python:
 level_info = game_font.render(f"Level: {Hole.level:3}", True,(0, 0, 255))
+score_info = game_font.render(f"Score: {score:6}", True,(0, 0, 255))
+surface.blit(level_info, (480, 20))
+surface.blit(score_info, (620, 20))
+```
+{:3, :6}は桁数
+
+46. ゲームオーバーでない場合、スコアを加算
+```python:
+else:
+    score += 1
 ```
