@@ -28,7 +28,7 @@ msg_font = pygame.font.SysFont("Arial", 100)
 # 22. 引数にfoodsの追加
 def paint(snake, foods, display_message, display_message_pos):
     # 2. 画面を黒で塗りつぶす処理
-    surface.fill((0, 0, 0))
+    surface.fill((152,251,152))
 
     # 15. ヘビの描画処理
     snake.draw(surface, BLOCK_WIDTH, BLOCK_HEIGHT)
@@ -48,6 +48,11 @@ def paint(snake, foods, display_message, display_message_pos):
         pygame.draw.line(surface, LINE_COLOR,
                         (0, index * BLOCK_HEIGHT),
                         (WINDOW_WIDTH, index * BLOCK_HEIGHT))
+
+    if display_message != "":
+        msg = msg_font.render(display_message, True, MSG_COLOR)
+        surface.blit(msg, display_message_pos)
+
 
     # 5. 画面を更新する
     pygame.display.update()
