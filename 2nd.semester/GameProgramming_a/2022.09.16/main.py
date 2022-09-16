@@ -44,14 +44,45 @@ def count_bombs(field, x_pos, y_pos):
     count = 0 # 爆弾の数の初期化
     # 現在の位置から見て周囲9タイルが爆弾かどうかを相対パスで調べる。
     # 自身のタイルも含むが、爆弾ではないはずなのでそのまま数える(爆弾ではない前提)
+    # offset -> 相対という意味で変数名に付ける
     for y_offset in range(-1, 2):
         for x_offset in range(-1, 2):
-            
+            # 相対位置から、タイルの位置を算出
+            x = x_pos + x_offset
+            y = y_pos + y_offset
+            # タイルが画面内の場合(未満とすることで1個手前(はみ出さない位置)を意味する)
+            if 0 <= x < TILE_COUNT_X and 0 <= y < TILE_COUNT_Y:
+                # タイルが爆弾の場合、爆弾の数を1加算
+                if field[y][x] == TILE_STATUS_BOMB:
+                    count += 1
+    # 数えた爆弾の数を戻り値にする
+    return count
+
 
 # -------------- タイルのオープン処理 --------------
 def open_tile(field, x_pos, y_pos):
+    global open_count
     # 街灯の箇所をオープン済みにする処理
     field[y_pos][x_pos] = TILE_STATUS_OPENED
+    # オープン済みタイル数を1増やす
+    open_count += 1
+    # 現在の位置の周囲の爆弾数を数える
+    count = count_bombs(field, x_pos, y_pos)
+    # 周囲の爆弾数が1より大きいなら、関数を終了する
+    if count > 0:
+        return
+
+    # 現在の位置から周囲9マスを相対パスでオープンする
+    for y_offset in range(-1, 2):
+        for x_offset in range(-1, 2):
+            # 相対位置から、タイルの位置を算出
+            x = x_pos + x_offset
+            y = y_pos + y_offset
+            # タイルが画面内の場合(未満とすることで1個手前(はみ出さない位置)を意味する)
+            if 0 <= x < TILE_COUNT_X and 0 <= y < TILE_COUNT_Y:
+                # その位置のタイルをオープン済みにする
+                field[y][x] = TILE_STATUS_OPENED
+
 
 # -------------- メイン処理 --------------
 def main():
@@ -129,8 +160,8 @@ def main():
                         pygame.draw.ellipse(surface, COLOR_BOMB, rect)
                 # タイルが「オープン済み」の場合
                 elif tile_status == TILE_STATUS_OPENED:
-                    # 周囲の爆弾数を８に(仮処理)
-                    count = 8
+                    # 周囲の爆弾数をカウントする
+                    count = count_bombs(field, xpos, ypos)
                     # 周囲の爆弾数が1以上の場合
                     if count > 0:
                         # 数字を描画する
