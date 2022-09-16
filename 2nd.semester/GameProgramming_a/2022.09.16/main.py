@@ -41,7 +41,12 @@ clock = pygame.time.Clock()
 
 # -------------- 周囲の爆弾の数を数える --------------
 def count_bombs(field, x_pos, y_pos):
-    pass
+    count = 0 # 爆弾の数の初期化
+    # 現在の位置から見て周囲9タイルが爆弾かどうかを相対パスで調べる。
+    # 自身のタイルも含むが、爆弾ではないはずなのでそのまま数える(爆弾ではない前提)
+    for y_offset in range(-1, 2):
+        for x_offset in range(-1, 2):
+            
 
 # -------------- タイルのオープン処理 --------------
 def open_tile(field, x_pos, y_pos):
