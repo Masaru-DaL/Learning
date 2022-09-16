@@ -62,6 +62,12 @@ def count_bombs(field, x_pos, y_pos):
 # -------------- タイルのオープン処理 --------------
 def open_tile(field, x_pos, y_pos):
     global open_count
+    # 既にチェック済みのタイルの場合、関数を終了する
+    if checked_tiles[y_pos][x_pos] == True:
+        return
+    # この位置のタイルをチェック済みにする
+    checked_tiles[y_pos][x_pos] = True
+
     # 街灯の箇所をオープン済みにする処理
     field[y_pos][x_pos] = TILE_STATUS_OPENED
     # オープン済みタイル数を1増やす
@@ -81,7 +87,11 @@ def open_tile(field, x_pos, y_pos):
             # タイルが画面内の場合(未満とすることで1個手前(はみ出さない位置)を意味する)
             if 0 <= x < TILE_COUNT_X and 0 <= y < TILE_COUNT_Y:
                 # その位置のタイルをオープン済みにする
-                field[y][x] = TILE_STATUS_OPENED
+                # field[y][x] = TILE_STATUS_OPENED
+
+                # その位置のタイルのオープン処理をする(関数の再帰呼び出し)
+                open_tile(field, x, y)
+
 
 
 # -------------- メイン処理 --------------
@@ -185,6 +195,13 @@ def main():
             pygame.draw.line(surface, COLOR_LINE,
                             # TILE_COUNT_X * TILE_WIDTH -> 20*50(定数値)
                             (0, index), (TILE_COUNT_X * TILE_WIDTH, index))
+
+        # 全てオープンしている場合、クリアのメッセージを表示
+        if open_count == TILE_COUNT_X * TILE_COUNT_Y - SET_BOMB_COUNT:
+            msg_rect = msg_gameover.get_rect()
+            msg_rect.center = (TILE_COUNT_X * TILE_WIDTH / 2, TILE_COUNT_Y * TILE_HEIGHT / 2)
+            surface.blit(msg_clear, msg_rect.topleft)
+
 
         # ゲームオーバーの場合
         if is_gameover:
