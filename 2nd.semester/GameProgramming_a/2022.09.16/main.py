@@ -62,6 +62,8 @@ def main():
     msg_gameover = large_font.render(MSG_GAMEOVER, True, COLOR_MSG_GAMEOVER)
     # ゲームオーバーフラグの初期値をFalseにする
     is_gameover = False
+    # フィールドの情報リスト(2重リスト)をすべて「空」で作成する
+    field = [[TILE_STATUS_EMPTY for x in range(TILE_COUNT_X)] for y in range(TILE_COUNT_Y)]
 
     ###### 爆弾設置処理 ######
 
@@ -78,10 +80,39 @@ def main():
         ### 描画 ###
         surface.fill(COLOR_BG)
 
-        # メッセージ領域の四角形を取得し、その中央の位置を設定する
-        msg_rect = msg_gameover.get_rect()
-        msg_rect.center = (TILE_COUNT_X * TILE_WIDTH / 2, TILE_COUNT_Y * TILE_HEIGHT / 2)
-        surface.blit(msg_gameover, msg_rect.topleft)
+        for ypos in range(TILE_COUNT_Y):
+            for xpos in range(TILE_COUNT_X):
+                # その位置のタイルの情報を取得
+                tile_status = field[ypos][xpos]
+                # タイル描画用の四角形情報(四角形の左上のx座標、四角形の左上のy座標、縦幅、横幅)
+                rect = (xpos * TILE_WIDTH, ypos * TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT)
+                # タイルが「空」か「爆弾」の場合
+                if tile_status == TILE_STATUS_EMPTY or tile_status == TILE_STATUS_BOMB:
+                    # タイルを描画する(画面、色、位置)
+                    pygame.draw.rect(surface, COLOR_TILE, rect)
+                    # ゲームオーバーで、タイルが「爆弾」の場合
+                    if is_gameover and tile_status == TILE_STATUS_BOMB:
+                        # 爆弾を描画
+                        pygame.draw.ellipse(surface, COLOR_BOMB, rect)
+
+        # 線の描画: 縦線
+        for index in range(0, TILE_COUNT_X * TILE_WIDTH, TILE_WIDTH):
+            pygame.draw.line(surface, COLOR_LINE,
+                            # TILE_COUNT_Y * TILE_HEIGHT -> 15*50(定数値)
+                            (index, 0), (index, TILE_COUNT_Y * TILE_HEIGHT))
+
+        # 線の描画: 横線
+        for index in range(0, TILE_COUNT_Y * TILE_HEIGHT, TILE_HEIGHT):
+            pygame.draw.line(surface, COLOR_LINE,
+                            # TILE_COUNT_X * TILE_WIDTH -> 20*50(定数値)
+                            (0, index), (TILE_COUNT_X * TILE_WIDTH, index))
+
+        # ゲームオーバーの場合
+        if is_gameover:
+            # メッセージ領域の四角形を取得し、その中央の位置を設定する
+            msg_rect = msg_gameover.get_rect()
+            msg_rect.center = (TILE_COUNT_X * TILE_WIDTH / 2, TILE_COUNT_Y * TILE_HEIGHT / 2)
+            surface.blit(msg_gameover, msg_rect.topleft)
 
         # 画面の更新
         pygame.display.update()
