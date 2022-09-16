@@ -45,7 +45,8 @@ def count_bombs(field, x_pos, y_pos):
 
 # -------------- タイルのオープン処理 --------------
 def open_tile(field, x_pos, y_pos):
-    pass
+    # 街灯の箇所をオープン済みにする処理
+    field[y_pos][x_pos] = TILE_STATUS_OPENED
 
 # -------------- メイン処理 --------------
 def main():
@@ -66,6 +67,20 @@ def main():
     field = [[TILE_STATUS_EMPTY for x in range(TILE_COUNT_X)] for y in range(TILE_COUNT_Y)]
 
     ###### 爆弾設置処理 ######
+    count = 0 # 設置した爆弾数の初期化
+    while True:
+        # 設置位置をランダムで取得(-1の処理はrangeと違って最後の数も取るため)
+        xpos = randint(0, TILE_COUNT_X - 1)
+        ypos = randint(0, TILE_COUNT_Y - 1)
+        # 設置位置が「空」だったら
+        # この処理を行わないと、爆弾のある位置に爆弾を置いてしまうということが起きてしまう=設置位置が爆弾じゃない、としても多分大丈夫
+        if field[ypos][xpos] == TILE_STATUS_EMPTY:
+            # 爆弾を設置して、設置済み爆弾数を1増やす
+            field[ypos][xpos] = TILE_STATUS_BOMB
+            count += 1
+        # 設置爆弾数が定数の「設置する爆弾の数」になったら処理を終了する
+        if count == SET_BOMB_COUNT:
+            break
 
     ###### メイン繰り返し処理 ######
     while True:
@@ -76,6 +91,19 @@ def main():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
+            # マウス左クリック処理
+            if event.type == MOUSEBUTTONDOWN and event.button == 1:
+                # クリック位置に応じて、タイルの位置を取得
+                xpos = event.pos[0] // TILE_WIDTH
+                ypos = event.pos[1] // TILE_HEIGHT
+                # クリックされた位置が「爆弾」だったらゲームオーバー処理
+                if field[ypos][xpos] == TILE_STATUS_BOMB:
+                    is_gameover = True
+                # クリックされた位置が「爆弾以外」だったらタイルオープン処理
+                # else -> オープン済みだったらもう一度オープンする(支障無し)
+                else:
+                    open_tile(field, xpos, ypos)
+
 
         ### 描画 ###
         surface.fill(COLOR_BG)
@@ -94,6 +122,21 @@ def main():
                     if is_gameover and tile_status == TILE_STATUS_BOMB:
                         # 爆弾を描画
                         pygame.draw.ellipse(surface, COLOR_BOMB, rect)
+                # タイルが「オープン済み」の場合
+                elif tile_status == TILE_STATUS_OPENED:
+                    # 周囲の爆弾数を８に(仮処理)
+                    count = 8
+                    # 周囲の爆弾数が1以上の場合
+                    if count > 0:
+                        # 数字を描画する
+                        num_image = small_font.render(DISP_NUMBERS[count], True, COLOR_NUM)
+                        # 起点が左上で指定するが、若干ずれるため、真ん中に数字を描画するために微調整が必要
+                        # フォントによっても表示される位置が違う
+                        surface.blit(num_image, (xpos * TILE_WIDTH + 5, ypos * TILE_HEIGHT + 4))
+
+
+
+
 
         # 線の描画: 縦線
         for index in range(0, TILE_COUNT_X * TILE_WIDTH, TILE_WIDTH):
