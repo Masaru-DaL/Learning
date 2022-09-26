@@ -15,6 +15,7 @@ cnt = 1
 with open("./folder2/ex4.txt", "r") as rf:
     for line in rf:
         line = line.split(" ")
+        print(line)
 
         num = 0
         for i in line:
