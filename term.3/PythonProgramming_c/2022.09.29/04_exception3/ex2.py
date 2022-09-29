@@ -12,6 +12,9 @@
 #     関数外の処理で、この例外について例外処理をし、
 #     「プログラムの上限を超えたため、終了します。」と出力して
 #     プログラムを終了してください。
+class OverMaxError(Exception):
+    pass
+
 
 # ２）このプログラムでは、他にも例外が発生することがあります。
 #     それを個別の例外として処理してください。
@@ -23,22 +26,24 @@ def add_num(total, num):
     MAX_NUM = 99999999
     # 加算する
     total += num
-    
+    if total > MAX_NUM:
+        raise OverMaxError
+
     # 戻り値にする
     return total
 
+try:
+    total = 0
+    while True:
 
-total = 0
-while True:
-    
-    ch = input("数字を入力してください（やめるときは０）：")
-    num = int(ch)
-    if num == 0:
-        print("終了します。")
-        break
-    
-    total = add_num(total, num)
-    
-    print(f"現在の合計値は{total}です。")
-    print(f"-------------")
+        ch = input("数字を入力してください（やめるときは０）：")
+        num = int(ch)
+        if num == 0:
+            print("終了します。")
+            break
 
+        total = add_num(total, num)
+        print(f"現在の合計値は{total}です。")
+        print(f"-------------")
+
+except OverMaxError as e:
