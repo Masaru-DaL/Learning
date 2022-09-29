@@ -16,9 +16,9 @@
 # ファイル名を入力してもらう
 make_file = input("ファイル名を作成してください：")
 # ファイルパスを作成する
-file_pass = "/output/" + make_file + ".txt"
+file_pass = "./output/" + make_file + ".txt"
 
 # 書き込むためにファイルを開く（x）
-with open("./output/makefile.txt", "w") as mf:
+with open(file_pass, "w") as mf:
     # 書込み
     mf.write("ファイルを作成しました。")
