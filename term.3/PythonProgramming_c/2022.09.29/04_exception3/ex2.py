@@ -32,18 +32,24 @@ def add_num(total, num):
     # 戻り値にする
     return total
 
-try:
-    total = 0
-    while True:
 
-        ch = input("数字を入力してください（やめるときは０）：")
+total = 0
+while True:
+
+    ch = input("数字を入力してください（やめるときは０）：")
+    try:
         num = int(ch)
-        if num == 0:
-            print("終了します。")
-            break
+    except ValueError as e:
+        print("ValueError: 数字を入力してください")
+        continue
+    if num == 0:
+        print("終了します。")
+        break
 
+    try:
         total = add_num(total, num)
-        print(f"現在の合計値は{total}です。")
-        print(f"-------------")
-
-except OverMaxError as e:
+    except OverMaxError as e:
+        print("OverMaxError, プログラムを終了します。")
+        break
+    print(f"現在の合計値は{total}です。")
+    print(f"-------------")
