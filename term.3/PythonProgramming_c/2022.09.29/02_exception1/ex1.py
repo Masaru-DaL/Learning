@@ -1,16 +1,38 @@
 # 演習１
 # 1～12のキーと月の英語名が格納された辞書型「ENGLISH_MONTHS」があります。
-ENGLISH_MONTHS = {"1": "January", "2": "February", "3": "March", "4": "April",
-                    "5": "May", "6": "June", "7": "July", "8": "August",
-                    "9": "September", "10": "October", "11": "November", "12": "December"}
+ENGLISH_MONTHS = {
+    "1": "January",
+    "2": "February",
+    "3": "March",
+    "4": "April",
+    "5": "May",
+    "6": "June",
+    "7": "July",
+    "8": "August",
+    "9": "September",
+    "10": "October",
+    "11": "November",
+    "12": "December",
+}
 
 # 1～12が入力されたらその月の英語名を
 # 「"Ｘ月は英語でYYYYYYです。" と出力するプログラムを作ります。
 #
 # １）入力と出力はずっと繰り返します。「0」が入力されたら終了します。
-for i, month in ENGLISH_MONTHS.items():
-    print(i)
-    print(month)
+try:
+    while True:
+        num = input("1~12を間の数字を入力してください：")
+        if num == 0:
+            break
+        print(num + "月は英語で" + ENGLISH_MONTHS[num] + "です")
+except KeyError as e:
+    print(f"入力された文字{e}に対応する月が見つかりませんでした。")  # eには入力された情報が入ってくる
+else:
+    print("0が入力されたので終了します。")
+finally:
+    print("プログラム終了")
+
+
 # ２）辞書型では該当するキーが無いと「KeyError」が発生します。
 #     例外処理を入れて「入力された文字eに対応する月が見つかりませんでした。」
 #     と出力してプログラムを終了してください。
