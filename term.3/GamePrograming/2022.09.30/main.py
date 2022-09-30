@@ -21,8 +21,6 @@ def check_reflection():
     # ===== ブロックとの反射チェック =====
 
     # ===== パドルとの反射チェック =====
-
-    # ===== 壁との反射チェック =====
     # パドルとボールが接触しているかを判定(colliderect: 四角の面同士の判定を行う関数)
     if paddle.rect.colliderect(ball.rect):
         # 接触した場合、パドルのどの位置と接触したかによってボールの進行方向を決定する
@@ -32,6 +30,18 @@ def check_reflection():
         # スタート時のボールの速度をゆっくりから通常に変更する
         if ball.speed == SPEED_START:
             ball.speed = SPEED_NORMAL
+
+    # ===== 壁との反射チェック =====
+    # ボールが横の壁と接触した場合
+    if ball.rect.centerx < 0 or ball.rect.centerx > WINDOW_SIZE[0]:
+        # ボールを左右方向に反転させる
+        ball.dir = 180 - ball.dir
+
+    # ボールが上の壁と接触した場合
+    if ball.rect.centery < 0:
+        # ボールを上下方向に反転させる
+        ball.dir = -ball.dir
+        ball.speed = SPEED_UPPER
 
 
 # Pygameの初期処理
@@ -66,6 +76,13 @@ def main():
         (128, 0, 128),
         (0, 0, 250),
     ]
+
+    # ブロックの色リストの数だけ繰り返す
+    for ypos, color in enumerate(block_colors, start=0):
+        # 横は5つ並べる
+        for ypos in range(0, 5):
+            # x方向、y方向にちょうど良い感覚を開けて配置
+            block_list.append(Block(color, xpos * 100 + 60, ypos * 50 + 40))
 
     # メイン処理ループ
     while True:
