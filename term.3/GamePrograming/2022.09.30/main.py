@@ -77,12 +77,16 @@ def main():
                 elif event.key == K_RIGHT:
                     paddle.move(1)
 
-        # 各種描画処理
-        surface.fill((0, 0, 0))  # 背景を黒に
-        paddle.draw(surface)  # パドルの描画
+        # ボールの移動処理
+        if ball.rect.centery <= WINDOW_SIZE[1]:
+            ball.move()
+        # ボールが画面下に行ったらゲームオーバー
+        if ball.rect.centery > WINDOW_SIZE[1]:
+            is_gameover = True
 
         # 各種描画処理
         surface.fill((0, 0, 0))  # 背景を黒に
+        paddle.draw(surface)  # パドルの描画
 
         # クリア時のメッセージ表示
         if is_clear:
