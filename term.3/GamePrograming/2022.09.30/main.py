@@ -71,7 +71,15 @@ def main():
                 sys.exit()
             # キー押下処理
             elif event.type == KEYDOWN:
-                pass
+                # 左右キーの場合、パドルを移動する(引数で方向を指定)
+                if event.key == K_LEFT:
+                    paddle.move(-1)
+                elif event.key == K_RIGHT:
+                    paddle.move(1)
+
+        # 各種描画処理
+        surface.fill((0, 0, 0))  # 背景を黒に
+        paddle.draw(surface)  # パドルの描画
 
         # 各種描画処理
         surface.fill((0, 0, 0))  # 背景を黒に

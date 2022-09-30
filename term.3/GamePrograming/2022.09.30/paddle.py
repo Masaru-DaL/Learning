@@ -24,7 +24,8 @@ class Paddle:
 
     # 移動処理
     def move(self, dir):
-        pass
+        # 方向によって、クラス変数の移動距離分、パドルを移動する
+        self.rect.centerx += Paddle.PADDLE_MOVE_X * dir
 
     # 描画処理
     def draw(self, surface):
