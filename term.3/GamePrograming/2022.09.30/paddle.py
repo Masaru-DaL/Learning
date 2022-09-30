@@ -5,11 +5,11 @@ from pygame.locals import Rect
 class Paddle:
 
     PADDLE_COLOR = (242, 180, 0)
-    PADDLE_RECT_X = 10  # 後に300 に変える
+    PADDLE_RECT_X = 50  # 後に300 に変える
     PADDLE_RECT_Y = 700
-    PADDLE_RECT_WIDTH = 580  # 後に100 に変える
+    PADDLE_RECT_WIDTH = 100  # 後に100 に変える
     PADDLE_RECT_HEIGHT = 30
-    PADDLE_MOVE_X = 10
+    PADDLE_MOVE_X = 5
 
     # コンストラクタ
     def __init__(self):

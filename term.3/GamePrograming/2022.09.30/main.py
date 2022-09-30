@@ -119,6 +119,8 @@ def main():
         # ボールが画面下に行ったらゲームオーバー
         if ball.rect.centery > WINDOW_SIZE[1]:
             is_gameover = True
+        elif ball.rect.centery > WINDOW_SIZE[1]:
+            is_gameover = True
 
         # 各種描画処理
         surface.fill((0, 0, 0))  # 背景を黒に
