@@ -23,6 +23,10 @@ def check_reflection():
     # ===== パドルとの反射チェック =====
 
     # ===== 壁との反射チェック =====
+    # パドルとボールが接触しているかを判定(colliderect: 四角の面同士の判定を行う関数)
+    if paddle.rect.colliderect(ball.rect):
+        # 接触した場合、パドルのどの位置と接触したかによってボールの進行方向を決定する
+        ball.dir = 90 + (paddle.rect.centerx - ball.rect.centerx)
 
 
 # Pygameの初期処理

@@ -32,6 +32,7 @@ class Ball:
     def move(self):
         # 角度に応じて、三角関数で算出した値にスピードを掛ける
         self.rect.centerx += math.cos(math.radians(self.dir)) * self.speed
+        self.rect.centery -= math.sin(math.radians(self.dir)) * self.speed
 
     # 描画処理
     def draw(self, surface):
