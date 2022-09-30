@@ -87,6 +87,7 @@ def main():
         # 各種描画処理
         surface.fill((0, 0, 0))  # 背景を黒に
         paddle.draw(surface)  # パドルの描画
+        ball.draw(surface)  # ボールの描画
 
         # クリア時のメッセージ表示
         if is_clear:
