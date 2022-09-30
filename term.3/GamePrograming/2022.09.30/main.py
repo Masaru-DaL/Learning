@@ -26,7 +26,12 @@ def check_reflection():
     # パドルとボールが接触しているかを判定(colliderect: 四角の面同士の判定を行う関数)
     if paddle.rect.colliderect(ball.rect):
         # 接触した場合、パドルのどの位置と接触したかによってボールの進行方向を決定する
-        ball.dir = 90 + (paddle.rect.centerx - ball.rect.centerx)
+        ball.dir = (
+            90 + (paddle.rect.centerx - ball.rect.centerx) / paddle.rect.width * 80
+        )
+        # スタート時のボールの速度をゆっくりから通常に変更する
+        if ball.speed == SPEED_START:
+            ball.speed = SPEED_NORMAL
 
 
 # Pygameの初期処理
