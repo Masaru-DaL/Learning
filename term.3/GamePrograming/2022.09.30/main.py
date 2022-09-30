@@ -16,9 +16,19 @@ SPEED_UPPER = 15
 
 # ボール反射チェック処理
 def check_reflection():
+
     global block_list
 
     # ===== ブロックとの反射チェック =====
+    # 反射チェック前のブロックリストの数
+    prevlen = len(block_list)
+    # それぞれのブロックとボールが接触しているかを判定
+    # 「接触していない」ブロックで新しくリストを作る
+    block_list = [x for x in block_list if not x.rect.colliderect(ball.rect)]
+    # 反射チェック前と後で、ブロックリストの数が変わっている場合
+    if len(block_list) != prevlen:
+        # ボールの進行方向を「上下方向に反転」させる
+        ball.dir *= -1
 
     # ===== パドルとの反射チェック =====
     # パドルとボールが接触しているかを判定(colliderect: 四角の面同士の判定を行う関数)
@@ -80,7 +90,7 @@ def main():
     # ブロックの色リストの数だけ繰り返す
     for ypos, color in enumerate(block_colors, start=0):
         # 横は5つ並べる
-        for ypos in range(0, 5):
+        for xpos in range(0, 5):
             # x方向、y方向にちょうど良い感覚を開けて配置
             block_list.append(Block(color, xpos * 100 + 60, ypos * 50 + 40))
 
@@ -114,6 +124,8 @@ def main():
         surface.fill((0, 0, 0))  # 背景を黒に
         paddle.draw(surface)  # パドルの描画
         ball.draw(surface)  # ボールの描画
+        for block in block_list:
+            block.draw(surface)  # ブロックの描画
 
         # クリア時のメッセージ表示
         if is_clear:
