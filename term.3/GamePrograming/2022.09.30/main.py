@@ -43,7 +43,8 @@ def check_reflection():
 
     # ===== 壁との反射チェック =====
     # ボールが横の壁と接触した場合
-    if ball.rect.centerx < 0 or ball.rect.centerx > WINDOW_SIZE[0]:
+    # if ball.rect.centerx < 0 or ball.rect.centerx > WINDOW_SIZE[0]:
+    if ball.rect.centerx < 0 and ball.rect.centerx > WINDOW_SIZE[0]:
         # ボールを左右方向に反転させる
         ball.dir = 180 - ball.dir
 
