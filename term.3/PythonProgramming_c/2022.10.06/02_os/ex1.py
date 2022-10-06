@@ -7,5 +7,15 @@
 #
 # 可能なら例外処理を入れて、フォルダ作成でエラーとなった場合も
 # 繰り返せるようにしてください。
+import os
 
+while True:
+    folder_name = input("フォルダ名を入力してください：")
 
+    if folder_name == "":
+        break
+
+    os.mkdir("./exoutput/" + folder_name)
+
+folder_list_name = os.listdir("./exoutput")
+print(folder_list_name)
