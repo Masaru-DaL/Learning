@@ -5,5 +5,4 @@ shutil.copyfile("os5.py", "./output/os5_copy.py")
 
 # 指定フォルダに、同名でファイルをコピーする
 # ※フォルダがない場合はファイルが作られる
-## shutil.copy("<ファイル名>", "ファイルパス")
 shutil.copy("os5.py", "./output/")
