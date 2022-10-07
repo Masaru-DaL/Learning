@@ -48,6 +48,12 @@ def key_event_handler(keymap, ship):
         ship.theta += 5
     if K_RIGHT in keymap:
         ship.theta -= 5
+    # 上キーが押されている場合、自機の加速度を+0.2する(最大5)
+    if K_UP in keymap:
+        ship.accel = min(5, ship.accel + 0.2)
+    # 下キーが押されている場合、自機の加速度を-0.1する(最小マイナス5)
+    if K_DOWN in keymap:
+        ship.accel = max(-5, ship.accel - 0.1)
 
 
 # ============ メイン処理 ============

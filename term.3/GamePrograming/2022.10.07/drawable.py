@@ -27,6 +27,9 @@ class Drawable:
         # 描画対象を「移動する量」だけ移動する
         # その後、画面サイズで割ったあまりにすることで、画面端に行った場合に反対側から出現する
         xpos = (rect[0] + self.step[0]) % Drawable.game_window_size[0]
+        ypos = (rect[1] + self.step[1]) % Drawable.game_window_size[1]
+        # 移動対象の中心位置を、計算後の値で再設定
+        self.rect.center = (xpos, ypos)
 
 
 # ============ 隕石クラス ============
@@ -43,7 +46,14 @@ class Rock(Drawable):
 
     # １ループ当たりの処理
     def tick(self):
-        pass
+        # 自機を動かす
+        self.speed += self.accel  # 加速度分だけ、速度を増やす
+        self.speed *= 0.94  # 速度をやや減らす
+        self.accel *= 0.94  # 加速度をやや減らす
+        # 自機の向きと速度から、単位当たりの移動距離を算出
+        # y軸(sin)は、下がプラスなので符号を逆転させる
+        self.step[0] = cos(radians(self.theta)) * self.speed
+        self.step[1] = sin(radians(self.theta)) * self.speed * -1
 
 
 # ============ 自機クラス ============
