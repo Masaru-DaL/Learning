@@ -83,6 +83,9 @@ class Ship(Drawable):
         rect.center = self.rect.center
         # 回転させた画像と、上記で設定した四角をもとに、画像を表示する
         Ship.game_surface.blit(rotated, rect)
+        # 爆発時は、爆発画像も描画する
+        if self.is_explode:
+            Ship.game_surface.blit(self.bang, rect)
 
     # １ループ当たりの処理
     def tick(self):

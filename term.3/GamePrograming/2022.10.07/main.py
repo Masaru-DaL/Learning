@@ -88,8 +88,9 @@ def main():
         pos = randint(0, WINDOW_WIDTH), randint(0, WINDOW_HEIGHT)
         # 隕石クラスのインスタンスを作成
         rock = Rock(1, pos, START_ROCK_SIZE, START_ROCK_SPEED)
-        # 隕石をリストに追加
-        rocks.append(rock)
+        # 初期位置で自機とぶつかっている隕石はリストに追加しない
+        if not rock.rect.colliderect(ship.rect):
+            rocks.append(rock)
 
     # メインループ
     while True:
