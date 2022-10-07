@@ -106,6 +106,10 @@ def main():
                 # 隕石クラスの1ループ当たりの処理を実施
                 rock.tick()
 
+                if rock.rect.colliderect(ship.rect):
+                    is_gameover = True
+                    ship.is_explode = True
+
             fire = False  # このメインループでショットを撃ったかのフラグ
             # ショットの数だけループする
             for shot in shots:
