@@ -8,7 +8,7 @@ from drawable import Drawable, Rock, Shot, Ship
 WINDOW_WIDTH = 800  # 画面の幅
 WINDOW_HEIGHT = 800  # 画面の高さ
 # ウィンドウサイズ
-WINDOW_SIZE = (WINDOW_WIDTH, WINDOW_HEIGHT)
+WINDOW_SIZE = (WINDOW_WIDTH, WINDOW_WIDTH)
 ROCK_COUNT = 4  # 画面上の初期の岩の数
 START_ROCK_SIZE = 64  # 初期の岩のサイズ
 START_ROCK_SPEED = 2  # 初期の岩の速さ
@@ -24,9 +24,8 @@ surface = pygame.display.set_mode(WINDOW_SIZE)
 clock = pygame.time.Clock()
 pygame.display.set_caption("*** アステロイド ***")
 
-# Drawableクラスのクラス変数に、画面の情報を表示する
+# Drawableクラスのクラス変数に、ゲームの画面情報を設定する
 Drawable.set_window_info(surface, WINDOW_SIZE)
-
 
 # ============ キーイベント処理 ============
 def key_event_handler(keymap, ship):
@@ -36,22 +35,23 @@ def key_event_handler(keymap, ship):
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
+        # キーダウン処理
         elif event.type == KEYDOWN:
             if not event.key in keymap:
                 keymap.append(event.key)
-
+        # キーアップ処理
         elif event.type == KEYUP:
             keymap.remove(event.key)
 
-    # 左右キーで自機を回転させる
+    # 左右キーが押されている場合、自機を回転させる
     if K_LEFT in keymap:
         ship.theta += 5
     if K_RIGHT in keymap:
         ship.theta -= 5
-    # 上キーが押されている場合、自機の加速度を+0.2する(最大5)
+    # Ｄ－１４）上キーが押されている場合、自機の加速度を+0.2する（最大５）
     if K_UP in keymap:
         ship.accel = min(5, ship.accel + 0.2)
-    # 下キーが押されている場合、自機の加速度を-0.1する(最小マイナス5)
+    # Ｄ－１５）下キーが押されている場合、自機の加速度を-0.1する（最小マイナス５）
     if K_DOWN in keymap:
         ship.accel = max(-5, ship.accel - 0.1)
 
@@ -72,13 +72,15 @@ def main():
     back_x, back_y = 0, 0  # 描画用に背景をずらす量
     # 背景画像を読み込み(1600x1600)
     back_image = pygame.image.load("image/bg.png")
+    # 背景画像を縦横2倍のサイズに拡大
+    back_image = pygame.transform.scale2x(back_image)
 
     # 自機クラスのインスタンスを作成
     ship = Ship()
 
     # 隕石クラスのインスタンスを、初期の隕石数だけ作成
     while len(rocks) < ROCK_COUNT:
-        # 隕石の位置を画面上のランダムで作成
+        # 隕石位置を画面上のランダム位置で作成
         pos = randint(0, WINDOW_WIDTH), randint(0, WINDOW_HEIGHT)
         # 隕石クラスのインスタンスを作成
         rock = Rock(1, pos, START_ROCK_SIZE, START_ROCK_SPEED)
@@ -92,16 +94,24 @@ def main():
 
         # ゲームオーバーでない場合
         if not is_gameover:
-            pass
+            # Ｄ－１６最後）自機クラスの１ループ単位処理を実施
+            ship.tick()
 
         # 描画処理
         surface.fill((0, 0, 0))
 
-        # 自機の描画
-        ship.draw()
+        # 背景を描画
+        # 自機の移動距離の半分だけ、背景画像の位置をずらす
+        # 画面のサイズのバイ(1600)で割ることで、端に行った場合に反対側から出てｋるうようにする
+        # 画像自体は、画面サイズの縦横4倍(3200x3200)で描画する
+        back_x = (back_x + ship.step[0] / 4) % (WINDOW_WIDTH * 2)
+        back_y = (back_y + ship.step[1] / 4) % (WINDOW_HEIGHT * 2)
+        surface.blit(
+            back_image, (-back_x, -back_y), (0, 0, WINDOW_WIDTH * 4, WINDOW_HEIGHT * 4)
+        )
 
-        # 隕石の描画
-        for rock in rocks:
+        ship.draw()  # 自機の描画
+        for rock in rocks:  # 隕石の描画
             rock.draw()
 
         # メッセージの描画

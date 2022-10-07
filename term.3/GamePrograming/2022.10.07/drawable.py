@@ -22,13 +22,13 @@ class Drawable:
 
     # 移動処理
     def move(self):
-        # 移動対象の中心を取得
+        # Ｄ－１）移動対象の中心を取得
         rect = self.rect.center
-        # 描画対象を「移動する量」だけ移動する
-        # その後、画面サイズで割ったあまりにすることで、画面端に行った場合に反対側から出現する
+        # Ｄ－２）描画対象を「移動する量」だけ移動する
+        # Ｄ－３）その後、画面サイズで割ることで、画面端に行った場合に反対側から出現する
         xpos = (rect[0] + self.step[0]) % Drawable.game_window_size[0]
         ypos = (rect[1] + self.step[1]) % Drawable.game_window_size[1]
-        # 移動対象の中心位置を、計算後の値で再設定
+        # Ｄ－４）移動対象の中心を、計算後の値で再設定
         self.rect.center = (xpos, ypos)
 
 
@@ -38,6 +38,10 @@ class Rock(Drawable):
         super().__init__(Rect(0, 0, size, size))
         self.image = pygame.image.load("image/rock.png")
         self.rect.center = pos  # 隕石の中央位置を設定する
+        self.level = level  # 隕石のレベル
+        self.theta = randint(0, 360)  # 隕石の表示角度(初期値のみ移動角度)
+        self.size = size  # 隕石のサイズ
+        self.speed = speed  # 隕石のスピード
 
     # 描画処理
     def draw(self):
@@ -46,14 +50,7 @@ class Rock(Drawable):
 
     # １ループ当たりの処理
     def tick(self):
-        # 自機を動かす
-        self.speed += self.accel  # 加速度分だけ、速度を増やす
-        self.speed *= 0.94  # 速度をやや減らす
-        self.accel *= 0.94  # 加速度をやや減らす
-        # 自機の向きと速度から、単位当たりの移動距離を算出
-        # y軸(sin)は、下がプラスなので符号を逆転させる
-        self.step[0] = cos(radians(self.theta)) * self.speed
-        self.step[1] = sin(radians(self.theta)) * self.speed * -1
+        pass
 
 
 # ============ 自機クラス ============
@@ -62,21 +59,32 @@ class Ship(Drawable):
         super().__init__(Rect(355, 370, 90, 60))
         self.image = pygame.image.load("image/ship.png")
         self.bang = pygame.image.load("image/bang.png")
-        self.theta = 0  # Ｃ－１）自機の向き
+        self.theta = 0  # 自機の向き
+        self.speed = 0  # Ｄ－５）自機の速度
+        self.accel = 0  # Ｄ－６）自機の加速度
 
     # 描画処理
     def draw(self):
-        # Ｃ－２）自機の角度に合わせて画像を回転させる
+        # 自機の角度に合わせて画像を回転させる
         rotated = pygame.transform.rotate(self.image, self.theta)
-        # Ｃ－３）回転させた画像から四角を得て、その中心を自機の中心に合わせる
+        # 回転させた画像から四角を得て、その中心を自機の中心に合わせる
         rect = rotated.get_rect()
         rect.center = self.rect.center
-        # Ｃ－４mainへ）回転させた画像と、上記で設定した四角をもとに、画像を表示する
+        # 回転させた画像と、上記で設定した四角をもとに、画像を表示する
         Ship.game_surface.blit(rotated, rect)
 
     # １ループ当たりの処理
     def tick(self):
-        pass
+        # Ｄ－７）自機を動かす
+        self.speed += self.accel  # Ｄ－８）加速度分だけ、速度を加算
+        self.speed *= 0.94  # Ｄ－９）速度をやや減らす
+        self.accel *= 0.94  # Ｄ－１０）加速度をやや減らす
+        # Ｄ－１１）自機の向きと速度から、単位当たりの移動距離を算出
+        # Ｄ－１２）ｙ軸（sin）は、下が＋なので符号を逆転させる
+        self.step[0] = cos(radians(self.theta)) * self.speed
+        self.step[1] = sin(radians(self.theta)) * -self.speed
+        # Ｄ－１３:mainへ）移動処理
+        self.move()
 
 
 # ============ ショットクラス ============
