@@ -77,6 +77,9 @@ def main():
 
     # 自機クラスのインスタンスを作成
     ship = Ship()
+    # ショットクラスのインスタンスをショットの最大数まで作成
+    while len(shots) < MAX_SHOT:
+        shots.append(Shot(SHOT_SPEED, SHOT_MAX_DISTANCE))
 
     # 隕石クラスのインスタンスを、初期の隕石数だけ作成
     while len(rocks) < ROCK_COUNT:
@@ -100,6 +103,28 @@ def main():
             for rock in rocks:
                 # 隕石クラスの1ループ当たりの処理を実施
                 rock.tick()
+
+            fire = False  # このメインループでショットを撃ったかのフラグ
+            # ショットの数だけループする
+            for shot in shots:
+                # ショットが最大移動距離未満の場合
+                if shot.distance < shot.max_distance:
+                    # ショットクラスの1ループ単位処理を実施
+                    shot.tick()
+                # ショットが最大移動距離(非表示)で
+                # まだショットを撃っていなくて、スペースキーが押されている場合
+                elif not fire and K_SPACE in keymap:
+                    # ショットの発射処理
+                    # 移動距離を0にする
+                    shot.distance = 0
+                    # 位置を自機の中心にする
+                    shot.rect.center = ship.center
+                    # ショットの単位当たりの移動する量を設定する
+                    shot_x = shot.speed * cos(radians(ship.theta))
+                    shot_y = shot.speed * sin(radians(ship.theta)) * -1
+                    shot.step = (shot_x, shot_y)
+                    # ショットを撃ったので、フラグをTrueにする
+                    fire = True
 
         # 描画処理
         surface.fill((0, 0, 0))

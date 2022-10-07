@@ -104,3 +104,19 @@ class Shot(Drawable):
     def __init__(self, speed, max_distance):
         # 四角を作成して、親クラスのコンストラクタを実行
         super().__init__(Rect(0, 0))
+        self.distance = max_distance  # ショットの移動距離(初期値を最大値とする)
+        self.max_distance = max_distance  # ショットの最大移動距離
+        self.speed = speed  # ショットの速度
+
+    # 描画処理
+    def draw(self):
+        # ショットの移動距離が最大値に達していない場合
+        if self.distance < self.max_distance:
+            # ショットを描画
+            pygame.draw.rect(Shot.game_surface, (255, 255, 0), self.rect)
+
+    # 1ループ当たりの処理
+    def tick(self):
+        # ショットの移動距離を1増やして、移動処理を行う
+        self.distance += 1
+        self.move()
