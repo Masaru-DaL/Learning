@@ -1,21 +1,20 @@
 import sys
 import pygame
-from pygame.locals import QUIT, KEYDOWN, KEYUP, \
-    K_SPACE, K_LEFT, K_RIGHT, K_UP, K_DOWN
+from pygame.locals import QUIT, KEYDOWN, KEYUP, K_SPACE, K_LEFT, K_RIGHT, K_UP, K_DOWN
 from random import randint
 from math import radians, sin, cos
 from drawable import Drawable, Rock, Shot, Ship
 
-WINDOW_WIDTH = 800      # 画面の幅
-WINDOW_HEIGHT = 800     # 画面の高さ
+WINDOW_WIDTH = 800  # 画面の幅
+WINDOW_HEIGHT = 800  # 画面の高さ
 # ウィンドウサイズ
-WINDOW_SIZE = (WINDOW_WIDTH, WINDOW_WIDTH)
-ROCK_COUNT = 4          # 画面上の初期の岩の数
-START_ROCK_SIZE = 64    # 初期の岩のサイズ
-START_ROCK_SPEED = 2    # 初期の岩の速さ
-MAX_ROCK_LEVEL = 3      # 岩レベルの最大（３段階まで破壊される）
-MAX_SHOT = 7            # 画面上に出る自機のショットの最大数
-SHOT_SPEED = 10         # 自機のショットの速さ
+WINDOW_SIZE = (WINDOW_WIDTH, WINDOW_HEIGHT)
+ROCK_COUNT = 4  # 画面上の初期の岩の数
+START_ROCK_SIZE = 64  # 初期の岩のサイズ
+START_ROCK_SPEED = 2  # 初期の岩の速さ
+MAX_ROCK_LEVEL = 3  # 岩レベルの最大（３段階まで破壊される）
+MAX_SHOT = 7  # 画面上に出る自機のショットの最大数
+SHOT_SPEED = 10  # 自機のショットの速さ
 SHOT_MAX_DISTANCE = 40  # 自機のショットの最大到達距離
 
 # Pygame 初期化処理
@@ -34,33 +33,31 @@ def key_event_handler(keymap, ship):
             pygame.quit()
             sys.exit()
 
+
 # ============ メイン処理 ============
 def main():
     # メッセージ表示用のフォント等
     sysfont = pygame.font.SysFont(None, 72)
     scorefont = pygame.font.SysFont(None, 36)
-    msg_clear = sysfont.render("CLEAR!!",
-                                   True, (0, 255, 225))
-    msg_over = sysfont.render("GAME OVER!!",
-                                  True, (0, 255, 225))
+    msg_clear = sysfont.render("CLEAR!!", True, (0, 255, 225))
+    msg_over = sysfont.render("GAME OVER!!", True, (0, 255, 225))
 
-    keymap = []                 # 押下キーのリスト
-    shots = []                  # ショットのリスト
-    rocks = []                  # 隕石のリスト
-    is_gameover = False         # ゲームオーバーフラグ
-    score = 0                   # スコア
-    back_x, back_y = 0, 0       # 描画用に背景をずらす量
+    keymap = []  # 押下キーのリスト
+    shots = []  # ショットのリスト
+    rocks = []  # 隕石のリスト
+    is_gameover = False  # ゲームオーバーフラグ
+    score = 0  # スコア
+    back_x, back_y = 0, 0  # 描画用に背景をずらす量
     # 背景画像を読み込み(1600x1600)
     back_image = pygame.image.load("image/bg.png")
 
     # 自機クラスのインスタンスを作成
     ship = Ship()
-    
+
     # メインループ
     while True:
         # キーイベント処理の関数を実行
         key_event_handler(keymap, ship)
-        
 
         # ゲームオーバーでない場合
         if not is_gameover:
@@ -73,11 +70,11 @@ def main():
         if is_gameover:
             if len(rocks) == 0:
                 msg_rect = msg_clear.get_rect()
-                msg_rect.center = (WINDOW_WIDTH//2, WINDOW_HEIGHT//2)
+                msg_rect.center = (WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2)
                 surface.blit(msg_clear, msg_rect.topleft)
             else:
                 msg_rect = msg_over.get_rect()
-                msg_rect.center = (WINDOW_WIDTH//2, WINDOW_HEIGHT//2)
+                msg_rect.center = (WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2)
                 surface.blit(msg_over, msg_rect.topleft)
 
         # 画面更新処理
@@ -85,6 +82,7 @@ def main():
         # 一定時間で処理を行う
         clock.tick(20)
 
+
 # メイン処理を呼び出す
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
