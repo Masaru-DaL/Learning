@@ -24,6 +24,10 @@ surface = pygame.display.set_mode(WINDOW_SIZE)
 clock = pygame.time.Clock()
 pygame.display.set_caption("*** アステロイド ***")
 
+# Drawableクラスのクラス変数に、画面の情報を表示する
+Drawable.set_window_info(surface, WINDOW_SIZE)
+
+
 # ============ キーイベント処理 ============
 def key_event_handler(keymap, ship):
     # イベント処理ループ
@@ -32,6 +36,18 @@ def key_event_handler(keymap, ship):
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
+        elif event.type == KEYDOWN:
+            if not event.key in keymap:
+                keymap.append(event.key)
+
+        elif event.type == KEYUP:
+            keymap.remove(event.key)
+
+    # 左右キーで自機を回転させる
+    if K_LEFT in keymap:
+        ship.theta += 5
+    if K_RIGHT in keymap:
+        ship.theta -= 5
 
 
 # ============ メイン処理 ============
@@ -54,6 +70,15 @@ def main():
     # 自機クラスのインスタンスを作成
     ship = Ship()
 
+    # 隕石クラスのインスタンスを、初期の隕石数だけ作成
+    while len(rocks) < ROCK_COUNT:
+        # 隕石の位置を画面上のランダムで作成
+        pos = randint(0, WINDOW_WIDTH), randint(0, WINDOW_HEIGHT)
+        # 隕石クラスのインスタンスを作成
+        rock = Rock(1, pos, START_ROCK_SIZE, START_ROCK_SPEED)
+        # 隕石をリストに追加
+        rocks.append(rock)
+
     # メインループ
     while True:
         # キーイベント処理の関数を実行
@@ -65,6 +90,10 @@ def main():
 
         # 描画処理
         surface.fill((0, 0, 0))
+
+        # 隕石の描画
+        for rock in rocks:
+            rock.draw()
 
         # メッセージの描画
         if is_gameover:

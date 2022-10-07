@@ -34,8 +34,12 @@ class Rock(Drawable):
 
     # 描画処理
     def draw(self):
-        # 隕石を描画
-        Rock.game_surface.blit(self.image, self.rect)
+        # 自機の角度に合わせて、画像を回転させる
+        rotated = pygame.transform.rotate(self.image, self.theta)
+        rect = rotated.get_rect()
+        rect.center = self.rect.center
+        # 回転させた画像と、上記で設定した四角をもとに、画像を表示する
+        Ship.game_surface.blit(rotated, rect)
 
     # １ループ当たりの処理
     def tick(self):
