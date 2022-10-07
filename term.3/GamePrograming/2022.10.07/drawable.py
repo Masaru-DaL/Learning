@@ -100,4 +100,7 @@ class Ship(Drawable):
 # ============ ショットクラス ============
 class Shot(Drawable):
 
-    pass
+    # コンストラクタ
+    def __init__(self, speed, max_distance):
+        # 四角を作成して、親クラスのコンストラクタを実行
+        super().__init__(Rect(0, 0))
