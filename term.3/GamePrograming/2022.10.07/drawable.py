@@ -103,7 +103,7 @@ class Shot(Drawable):
     # コンストラクタ
     def __init__(self, speed, max_distance):
         # 四角を作成して、親クラスのコンストラクタを実行
-        super().__init__(Rect(0, 0))
+        super().__init__(Rect(0, 0, 6, 6))
         self.distance = max_distance  # ショットの移動距離(初期値を最大値とする)
         self.max_distance = max_distance  # ショットの最大移動距離
         self.speed = speed  # ショットの速度

@@ -1,4 +1,5 @@
 import sys
+from turtle import hideturtle
 import pygame
 from pygame.locals import QUIT, KEYDOWN, KEYUP, K_SPACE, K_LEFT, K_RIGHT, K_UP, K_DOWN
 from random import randint
@@ -111,6 +112,29 @@ def main():
                 if shot.distance < shot.max_distance:
                     # ショットクラスの1ループ単位処理を実施
                     shot.tick()
+
+                    # ショット隕石の衝突チェック
+                    hit_rock = None  # ショットがヒットした場合
+                    # 隕石の数だけ繰り返す
+                    for rock in rocks:
+                        # ショットと隕石が衝突した場合、
+                        # その隕石を「ショットがヒットした隕石」に設定する
+                        if rock.rect.colliderect(shot.rect):
+                            hit_rock = rock
+
+                    # 「ショットがヒットした隕石」が合った場合
+                    if hit_rock != None:
+                        # スコアに隕石のサイズ*10を加算
+                        score += hit_rock.size * 10
+                        # ショットの移動距離を最大にする(非表示にする)
+                        shot.distance = shot.max_distance
+                        # 「ショットがヒットした隕石」を隕石リストから除く
+                        rocks.remove(hit_rock)
+
+                        # 隕石リストが0になった場合も、ゲームオーバーフラグをTrueにする
+                        if len(rocks) == 0:
+                            is_gameover = True
+
                 # ショットが最大移動距離(非表示)で
                 # まだショットを撃っていなくて、スペースキーが押されている場合
                 elif not fire and K_SPACE in keymap:
@@ -118,7 +142,7 @@ def main():
                     # 移動距離を0にする
                     shot.distance = 0
                     # 位置を自機の中心にする
-                    shot.rect.center = ship.center
+                    shot.rect.center = ship.rect.center
                     # ショットの単位当たりの移動する量を設定する
                     shot_x = shot.speed * cos(radians(ship.theta))
                     shot_y = shot.speed * sin(radians(ship.theta)) * -1
@@ -142,6 +166,9 @@ def main():
         ship.draw()  # 自機の描画
         for rock in rocks:  # 隕石の描画
             rock.draw()
+
+        for shot in shots:  # ショットの描画
+            shot.draw()
 
         # メッセージの描画
         if is_gameover:
