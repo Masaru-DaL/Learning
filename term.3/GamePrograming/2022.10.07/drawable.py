@@ -72,6 +72,7 @@ class Ship(Drawable):
         self.theta = 0  # 自機の向き
         self.speed = 0  # Ｄ－５）自機の速度
         self.accel = 0  # Ｄ－６）自機の加速度
+        self.is_explode = False  # 爆発フラグ
 
     # 描画処理
     def draw(self):

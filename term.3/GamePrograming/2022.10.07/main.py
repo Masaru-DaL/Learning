@@ -131,9 +131,31 @@ def main():
                         # 「ショットがヒットした隕石」を隕石リストから除く
                         rocks.remove(hit_rock)
 
+                        # 「ショットがヒットした隕石」が最大レベル未満の場合
+                        if hit_rock.level < MAX_ROCK_LEVEL:
+                            # レベルを+1, 位置は同じ位置、
+                            # サイズは半分、速さは倍で、隕石を2つに増やす
+                            rocks.append(
+                                Rock(
+                                    hit_rock.level + 1,
+                                    hit_rock.rect.center,
+                                    hit_rock.size / 2,
+                                    hit_rock.speed * 2,
+                                )
+                            )
+
+                            rocks.append(
+                                Rock(
+                                    hit_rock.level + 1,
+                                    hit_rock.rect.center,
+                                    hit_rock.size / 2,
+                                    hit_rock.speed * 2,
+                                )
+                            )
+
                         # 隕石リストが0になった場合も、ゲームオーバーフラグをTrueにする
                         if len(rocks) == 0:
-                            is_gameover = True
+                            is_gameover = _TestRunner
 
                 # ショットが最大移動距離(非表示)で
                 # まだショットを撃っていなくて、スペースキーが押されている場合
@@ -169,6 +191,11 @@ def main():
 
         for shot in shots:  # ショットの描画
             shot.draw()
+
+        # スコアの描画
+        score_str = str(score).zfill(6)
+        score_image = scorefont.render(score_str, True, (0, 255, 0))
+        surface.blit(score_image, (700, 10))
 
         # メッセージの描画
         if is_gameover:
