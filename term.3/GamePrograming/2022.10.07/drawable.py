@@ -22,7 +22,11 @@ class Drawable:
 
     # 移動処理
     def move(self):
-        pass
+        # 移動対象の中心を取得
+        rect = self.rect.center
+        # 描画対象を「移動する量」だけ移動する
+        # その後、画面サイズで割ったあまりにすることで、画面端に行った場合に反対側から出現する
+        xpos = (rect[0] + self.step[0]) % Drawable.game_window_size[0]
 
 
 # ============ 隕石クラス ============
@@ -30,16 +34,12 @@ class Rock(Drawable):
     def __init__(self, level, pos, size, speed):
         super().__init__(Rect(0, 0, size, size))
         self.image = pygame.image.load("image/rock.png")
-        self.rect.center = pos  # 隕石の中央の位置を設定する
+        self.rect.center = pos  # 隕石の中央位置を設定する
 
     # 描画処理
     def draw(self):
-        # 自機の角度に合わせて、画像を回転させる
-        rotated = pygame.transform.rotate(self.image, self.theta)
-        rect = rotated.get_rect()
-        rect.center = self.rect.center
-        # 回転させた画像と、上記で設定した四角をもとに、画像を表示する
-        Ship.game_surface.blit(rotated, rect)
+        # 隕石を描画
+        Rock.game_surface.blit(self.image, self.rect)
 
     # １ループ当たりの処理
     def tick(self):
@@ -52,10 +52,17 @@ class Ship(Drawable):
         super().__init__(Rect(355, 370, 90, 60))
         self.image = pygame.image.load("image/ship.png")
         self.bang = pygame.image.load("image/bang.png")
+        self.theta = 0  # Ｃ－１）自機の向き
 
     # 描画処理
     def draw(self):
-        pass
+        # Ｃ－２）自機の角度に合わせて画像を回転させる
+        rotated = pygame.transform.rotate(self.image, self.theta)
+        # Ｃ－３）回転させた画像から四角を得て、その中心を自機の中心に合わせる
+        rect = rotated.get_rect()
+        rect.center = self.rect.center
+        # Ｃ－４mainへ）回転させた画像と、上記で設定した四角をもとに、画像を表示する
+        Ship.game_surface.blit(rotated, rect)
 
     # １ループ当たりの処理
     def tick(self):

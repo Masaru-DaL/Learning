@@ -91,6 +91,9 @@ def main():
         # 描画処理
         surface.fill((0, 0, 0))
 
+        # 自機の描画
+        ship.draw()
+
         # 隕石の描画
         for rock in rocks:
             rock.draw()
