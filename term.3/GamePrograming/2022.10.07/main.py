@@ -96,6 +96,10 @@ def main():
         if not is_gameover:
             # Ｄ－１６最後）自機クラスの１ループ単位処理を実施
             ship.tick()
+            # 隕石の数だけループ
+            for rock in rocks:
+                # 隕石クラスの1ループ当たりの処理を実施
+                rock.tick()
 
         # 描画処理
         surface.fill((0, 0, 0))

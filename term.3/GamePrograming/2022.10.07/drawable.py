@@ -42,15 +42,25 @@ class Rock(Drawable):
         self.theta = randint(0, 360)  # 隕石の表示角度(初期値のみ移動角度)
         self.size = size  # 隕石のサイズ
         self.speed = speed  # 隕石のスピード
+        # 初期の移動角度と速度から、単位当たりの移動距離を算出
+        self.step[0] = cos(radians(self.theta)) * self.speed
+        self.step[1] = sin(radians(self.theta)) * self.speed * -1
 
     # 描画処理
     def draw(self):
-        # 隕石を描画
-        Rock.game_surface.blit(self.image, self.rect)
+        # 画像を、表示角度で回転、サイズで縮小して作成
+        rotated = pygame.transform.rotozoom(self.image, self.theta, self.size / 64)
+        # 回転、縮小後の画像の四角を取得
+        rect = rotated.get_rect()
+        # 四角の中心を、元の画像の中心を設定
+        rect.center = self.rect.center
+        # 回転、縮小した隕石を描画
+        Rock.game_surface.blit(rotated, rect)
 
     # １ループ当たりの処理
     def tick(self):
-        pass
+        self.theta += 3
+        self.move()
 
 
 # ============ 自機クラス ============
