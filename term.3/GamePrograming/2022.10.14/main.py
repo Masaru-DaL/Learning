@@ -55,6 +55,10 @@ def main():
             # Ｃ－１１）エイリアンリストに追加
             aliens.append(alien)
 
+    # エイリアンのビームのインスタンスをリストに追加
+    for _ in range(4):
+        beams.append(Beam())
+
     # ======= メイン処理 =======
     while True:
         ship_move_x = 0  # 自機の移動距離
@@ -132,6 +136,35 @@ def main():
                 # Ｃ－１６）設定した移動距離に応じて、エイリアンを移動する
                 for alien in aliens:
                     alien.move(move_x, move_y)
+
+                if area.bottom > 550:
+                    is_gameover = True
+
+            # 敵ビームを移動
+            for beam in beams:
+                # 敵ビームが画面上にある場合
+                if beam.on_draw:
+                    # 下方向に移動する
+                    beam.move(0, 10)
+                    # 画面の一番下に到達した場合
+                    if beam.rect.top > 600:
+                        # 次の発射タイミングを、ループカウント+αにする
+                        beam.fire_timing = loop_count + randint(20, 200)
+                        # 敵ビームの描画フラグをFalse
+                        beam.on_draw = False
+                # 敵ビームが画面上にない場合で、発射タイミング以降となった場合
+                elif beam.fire_timing <= loop_count:
+                    # 現在のエイリアン軍団から、ランダムで一体選ぶ
+                    t_alien = alien[randint(0, len(aliens) - 1)]
+                    # 敵ビームの位置を、そのエイリアンの位置に合わせる
+                    beam.rect.center = t_alien.rect.center
+                    # 敵ビームの描画フラグをTrueにする
+                    beam.on_draw = True
+
+                # 自機の四角が、敵のビームの中心と重なった場合
+                if ship.rect.collidepoint(beam.rect.center):
+                    # ゲームオーバーフラグをTrueにする
+                    is_gameover = True
 
             # ショットが発射されている場合
             if shot.on_draw:
