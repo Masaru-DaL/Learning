@@ -155,7 +155,7 @@ def main():
                 # 敵ビームが画面上にない場合で、発射タイミング以降となった場合
                 elif beam.fire_timing <= loop_count:
                     # 現在のエイリアン軍団から、ランダムで一体選ぶ
-                    t_alien = alien[randint(0, len(aliens) - 1)]
+                    t_alien = aliens[randint(0, len(aliens) - 1)]
                     # 敵ビームの位置を、そのエイリアンの位置に合わせる
                     beam.rect.center = t_alien.rect.center
                     # 敵ビームの描画フラグをTrueにする
@@ -194,6 +194,8 @@ def main():
         # Ｃ－１７最後）エイリアン軍団の描画
         for alien in aliens:
             alien.draw()
+        for beam in beams:  # エイリアンからのビームの描画
+            beam.draw()
 
         # スコアの描画
         score_str = str(score).zfill(5)
