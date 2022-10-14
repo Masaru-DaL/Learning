@@ -111,6 +111,10 @@ def main():
                     # そのエイリアンを四角に含むように、「エリア」を拡張する
                     area.union_ip(alien.rect)
 
+                # 左移動フラグに応じて、移動方向(左右の移動距離)を決める
+                move_x = -5 if is_left_move else 5
+                move_y = 0
+
                 # Ｃ－１６）設定した移動距離に応じて、エイリアンを移動する
                 for alien in aliens:
                     alien.move(move_x, move_y)
