@@ -100,7 +100,15 @@ def main():
             # Ｃ－１４）ループカウンタが、移動するタイミングの場合
             if loop_count % move_interval == 0:
                 # Ｃ－１５）エイリアンの移動距離は仮に０としておく
-                move_x, move_y = 0, 0
+                # move_x, move_y = 0, 0
+                # エイリアンの範囲取得処理
+                # エイリアンの1体を囲むような四角形を「エリア」としてコピーして取得
+                area = aliens[0].rect.copy()
+                # 全てのエイリアンに対して処理を行う
+                for alien in aliens:
+                    # そのエイリアンを四角に含むように、「エリア」を拡張する
+                    area.union_ip(alien.rect)
+
                 # Ｃ－１６）設定した移動距離に応じて、エイリアンを移動する
                 for alien in aliens:
                     alien.move(move_x, move_y)
