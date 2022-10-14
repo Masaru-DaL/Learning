@@ -29,6 +29,8 @@ def main():
 
     keymap = []  # キーマップ
     is_gameover = False  # ゲームオーバーフラグ
+    is_left_move = True  # 左移動フラグ
+    is_down_move = False  # 下移動フラグ
     move_interval = 20  # Ｃ－１）エイリアンの移動間隔
     loop_count = 0  # Ｃ－２）ループカウンタ
     score = 0  # スコア
