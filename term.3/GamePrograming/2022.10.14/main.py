@@ -105,9 +105,31 @@ def main():
                 for alien in aliens:
                     alien.move(move_x, move_y)
 
+            # ショットが発射されている場合
+            if shot.on_draw:
+                # 自機ショットとエイリアンの衝突判定
+                temp_aliens = []
+                # エイリアンの数だけ繰り返す
+                for alien in aliens:
+                    # エイリアンの四角が自機ショットの中心と重なった場合
+                    if alien.rect.collidepoint(shot.rect.center):
+                        # 自機ショットを画面から消す
+                        shot.on_draw = False
+                        # スコアにエイリアンのスコアを加算する
+                        score += alien.score
+                    else:
+                        # 撃たれてないエイリアンを、一時領域(temp_aliens)に追加する
+                        temp_aliens.append(alien)
+                # 一時領域のエイリアンリストを、新しいエイリアンリストにする
+                aliens = temp_aliens
+                # エイリアンリストが空になったら、クリア(ゲームオーバーにする)
+                if len(aliens) == 0:
+                    is_gameover = True
+
         # ======= 描画処理 =======
         surface.fill((0, 0, 0))
         ship.draw()  # 自機の描画
+        shot.draw()
         # Ｃ－１７最後）エイリアン軍団の描画
         for alien in aliens:
             alien.draw()
