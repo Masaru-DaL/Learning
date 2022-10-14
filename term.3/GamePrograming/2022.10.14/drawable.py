@@ -17,18 +17,19 @@ class Drawable:
     # コンストラクタ
     def __init__(self, rect, offset0, offset1):
         strip = pygame.image.load("image/characters.png")
-
-        # 画像用の小さな描画領域を作成する
-        # pygame.SRCALPHAを指定すると、背景を透過することができる
+        # Ｂ－１）画像用の小さな描画領域を作成する
+        # Ｂ－２）pygame.SRCALPHAを指定すると、背景を透過することができる
         self.images = (
-            pygame,
-            surface((24, 24), pygame.SRCALPHA),
-            pygame,
-            surface((24, 24), pygame.SRCALPHA),
+            pygame.Surface((24, 24), pygame.SRCALPHA),
+            pygame.Surface((24, 24), pygame.SRCALPHA),
         )
-        self.rect = rect  # 描画用の四角
-        self.count = 0  # 描画用のカウンタ
-        self.on_draw = True  # 描画フラグ(Falseでは描画しない)
+        self.rect = rect  # Ｂ－３）描画用の四角
+        self.count = 0  # Ｂ－４）描画用のカウンタ
+        self.on_draw = True  # Ｂ－５）描画フラグ（Falseでは描画しない）
+        # Ｂ－６）画像１
+        self.images[0].blit(strip, (0, 0), Rect(offset0, 0, 24, 24))
+        # Ｂ－７）画像２
+        self.images[1].blit(strip, (0, 0), Rect(offset1, 0, 24, 24))
 
     # 移動処理
     def move(self, diff_x, diff_y):
@@ -37,8 +38,9 @@ class Drawable:
 
     # 描画処理
     def draw(self):
+        # Ｂ－８）描画フラグがFalseの場合は描画しない
         if self.on_draw:
-            # countの値によって、描画する画像を入れ替える
+            # Ｂ－９）countの値によって、描画する画像を入れ替える
             if self.count % 2 == 0:
                 self.surface.blit(self.images[0], self.rect.topleft)
             else:
@@ -53,7 +55,12 @@ class Ship(Drawable):
 
     # 移動処理
     def move(self, diff_x, diff_y):
-        pass
+        # Ｂ－１０）自機の移動、移動後の位置が画面外に行かない場合は移動する
+        if 12 <= self.rect.centerx + diff_x < self.window_size[0] - 12:
+            super().move(diff_x, diff_y)
+        # Ｂ－１１mainへ）画面外に行ってしまう場合は移動距離を０にするが、移動処理は行う
+        else:
+            super().move(0, 0)
 
 
 # 自機ショットクラス
