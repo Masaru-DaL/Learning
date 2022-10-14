@@ -115,6 +115,20 @@ def main():
                 move_x = -5 if is_left_move else 5
                 move_y = 0
 
+                # 「エリア」が左端または右端に到達して、下段移動していない場合
+                if (area.left < 10 or area.right > 590) and not is_down_move:
+                    # 左右移動フラグを逆にする
+                    is_left_move = not is_left_move
+                    # エイリアンの移動方向を、下に移動
+                    move_x, move_y = 0, 24
+                    # エイリアンの移動タイミングの感覚を2減らす(最小1)
+                    move_interval = max(1, move_interval - 2)
+                    # 下移動フラグをTrueにする
+                    is_down_move = True
+                else:
+                    # 下移動フラグをFalseにする
+                    is_down_move = False
+
                 # Ｃ－１６）設定した移動距離に応じて、エイリアンを移動する
                 for alien in aliens:
                     alien.move(move_x, move_y)
