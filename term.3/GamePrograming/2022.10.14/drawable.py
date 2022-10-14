@@ -26,6 +26,9 @@ class Drawable:
             pygame,
             surface((24, 24), pygame.SRCALPHA),
         )
+        self.rect = rect  # 描画用の四角
+        self.count = 0  # 描画用のカウンタ
+        self.on_draw = True  # 描画フラグ(Falseでは描画しない)
 
     # 移動処理
     def move(self, diff_x, diff_y):
@@ -34,7 +37,12 @@ class Drawable:
 
     # 描画処理
     def draw(self):
-        pass
+        if self.on_draw:
+            # countの値によって、描画する画像を入れ替える
+            if self.count % 2 == 0:
+                self.surface.blit(self.images[0], self.rect.topleft)
+            else:
+                self.surface.blit(self.images[1], self.rect.topleft)
 
 
 # 自機クラス
