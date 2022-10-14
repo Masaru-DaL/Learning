@@ -89,6 +89,12 @@ def main():
             loop_count += 1
             # 自機を移動する
             ship.move(ship_move_x, 0)
+            # 自機ショットを移動する
+            shot.move(0, -15)
+            # 自機ショットが画面外に行った場合
+            if shot.rect.bottom < 0:
+                # 描画フラグをFalseにする
+                shot.on_draw = False
 
             # Ｃ－１３）======= エイリアン軍団を移動する =======
             # Ｃ－１４）ループカウンタが、移動するタイミングの場合
