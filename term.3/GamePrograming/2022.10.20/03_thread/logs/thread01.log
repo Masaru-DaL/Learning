@@ -29,3 +29,14 @@
 2022-10-20 15:02:09,144:main:INFO:ループ処理の最後
 2022-10-20 15:02:10,159:main:INFO:ループ処理の最後
 2022-10-20 15:02:11,170:main:INFO:ループ処理の最後
+2022-10-20 15:10:56,393:main:INFO:ループ処理の最後
+2022-10-20 15:10:57,405:main:INFO:ループ処理の最後
+2022-10-20 15:10:58,231:main:ERROR:invalid literal for int() with base 10: 'dae'
+2022-10-20 15:10:58,409:main:INFO:ループ処理の最後
+2022-10-20 15:10:59,422:main:INFO:ループ処理の最後
+2022-10-20 15:10:59,941:main:ERROR:invalid literal for int() with base 10: 'gaeaf'
+2022-10-20 15:11:00,428:main:INFO:ループ処理の最後
+2022-10-20 15:11:01,439:main:INFO:ループ処理の最後
+2022-10-20 15:11:01,966:main:ERROR:invalid literal for int() with base 10: 'czdf'
+2022-10-20 15:11:02,449:main:INFO:ループ処理の最後
+2022-10-20 15:11:02,849:main:ERROR:invalid literal for int() with base 10: ''

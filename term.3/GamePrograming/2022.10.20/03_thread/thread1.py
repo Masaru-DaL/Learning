@@ -50,3 +50,7 @@ for _ in range(100):
     logger.info("ループ処理の最後")
     # タイマー（一定時間待つ）処理（１秒を指定）
     time.sleep(1)
+
+    # マルチスレッドが終了したら、こっちの関数も終わるようにする
+    if is_finish:
+        break
