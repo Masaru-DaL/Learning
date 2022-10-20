@@ -1,0 +1,5 @@
+2022.10.20 14:16:21:[DEBUG] Debugging information
+2022.10.20 14:16:21:[INFO] Informational message
+2022.10.20 14:16:21:[WARNING] Warning:config file server.conf not found
+2022.10.20 14:16:21:[ERROR] Error occurred
+2022.10.20 14:16:21:[CRITICAL] Critical error -- shutting down
