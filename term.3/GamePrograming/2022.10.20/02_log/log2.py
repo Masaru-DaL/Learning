@@ -3,8 +3,9 @@ from logging import getLogger
 import sys
 
 # ロガーの生成
-
+logger = getLogger(sys.argv[0])
 # 出力レベルの設定
+logger.setLevel(logging.DEBUG)
 
 
 # フォーマッタ
@@ -19,4 +20,5 @@ file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 
 # ログの出力
+logger.debug("debug message")
 logger.error("message")
