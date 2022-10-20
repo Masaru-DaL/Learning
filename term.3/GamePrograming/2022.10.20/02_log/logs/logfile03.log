@@ -1,0 +1,4 @@
+2022-10-20 14:45:16,944:main:INFO:Informational message
+2022-10-20 14:45:16,944:main:WARNING:Warning:config file server.conf not found
+2022-10-20 14:45:16,945:main:ERROR:Error occurred
+2022-10-20 14:45:16,945:main:CRITICAL:Critical error -- shutting down
