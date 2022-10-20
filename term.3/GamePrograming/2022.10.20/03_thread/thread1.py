@@ -29,7 +29,12 @@ def input_num():
             # ログの出力
             logger.error(e)
     print("処理を終了します")
+    global is_finish
+    is_finish = True
 
+
+# グローバル変数: 終了フラグ
+is_finish = False
 
 # input_num関数を対象にして、スレッドのインスタンスを作成
 input_thread = threading.Thread(target=input_num)
