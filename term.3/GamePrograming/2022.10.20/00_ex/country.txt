@@ -1,0 +1,271 @@
+AFGHANISTAN #  アフガニスタン・イスラム国
+ALAND ISLANDS #  オーランド諸島
+ALBANIA #  アルバニア共和国
+ALGERIA #  アルジェリア民主人民共和国
+AMERICAN SAMOA #  米領サモア
+ANDORRA #  アンドラ公国
+ANGOLA #  アンゴラ共和国
+ANGUILLA #  アンギラ
+ANTARCTICA #  南極
+ANTIGUA AND BARBUDA #  アンチグア・バーブーダ
+ARGENTINA #  アルゼンチン共和国
+ARMENIA #  アルメニア共和国
+ARUBA #  アルバ
+AUSTRALIA #  オーストラリア
+AUSTRIA #  オーストリア共和国
+AZERBAIJAN #  アゼルバイジャン共和国
+BAHAMAS #  バハマ国
+BAHRAIN #  バーレーン王国
+BANGLADESH #  バングラデシュ人民共和国
+BARBADOS #  バルバドス
+BELARUS #  ベラルーシ共和国
+BELGIUM #  ベルギー王国
+BELIZE #  ベリーズ
+BENIN #  ベナン共和国
+BERMUDA #  バミューダ諸島
+BHUTAN #  ブータン王国
+BOLIVIA, PLURINATIONAL STATE OF #  ボリビア多民族国
+BOSNIA AND HERZEGOVINA #  ボスニア・ヘルツェゴビナ
+BOTSWANA #  ボツワナ共和国
+BOUVET ISLAND #  ブーベ島
+BRAZIL #  ブラジル連邦共和国
+BRITISH ANTARCTIC TERRITORY #  英領南極地域
+BRITISH INDIAN OCEAN TERRITORY #  英領インド洋地域
+BRUNEI DARUSSALAM #  ブルネイ・ダルサラーム国
+BULGARIA #  ブルガリア共和国
+BURKINA FASO #  ブルキナファソ
+BURMA #  ビルマ連邦社会主義共和国
+BURUNDI #  ブルンジ共和国
+CAMBODIA #  カンボジア王国
+CAMEROON #  カメルーン共和国
+CANADA #  カナダ
+CANTON AND ENDERBURY ISLANDS #  カントン島・エンダーバリ島
+CAPE VERDE #  カーボベルデ共和国
+CAYMAN ISLANDS #  ケイマン諸島
+CENTRAL AFRICAN REPUBLIC #  中央アフリカ共和国
+CHAD #  チャド共和国
+CHILE #  チリ共和国
+CHINA #  中華人民共和国
+CHRISTMAS ISLAND #  クリスマス島
+COCOS (KEELING) ISLANDS #  ココス諸島
+COLOMBIA #  コロンビア共和国
+COMOROS #  コモロ連合
+CONGO #  コンゴ共和国
+CONGO, DEMOCRATIC REPUBLIC OF THE #  コンゴ民主共和国
+COOK ISLANDS #  クック諸島
+COSTA RICA #  コスタリカ共和国
+COTE D'IVOIRE #  コートジボアール共和国
+CROATIA #  クロアチア共和国
+CUBA #  キューバ共和国
+CYPRUS #  キプロス共和国
+CZECH REPUBLIC #  チェコ共和国
+DAHOMEY #  ダホメ共和国
+DENMARK #  デンマーク王国
+DJIBOUTI #  ジブチ共和国
+DOMINICA #  ドミニカ国
+DOMINICAN REPUBLIC #  ドミニカ共和国
+DRONNING MAUD LAND #  ドロニング・マウド
+EAST TIMOR #  東ティモール
+ECUADOR #  エクアドル共和国
+EGYPT #  エジプト・アラブ共和国
+EL SALVADOR #  エルサルバドル共和国
+EQUATORIAL GUINEA #  赤道ギニア共和国
+ERITREA #  エリトリア国
+ESTONIA #  エストニア共和国
+ETHIOPIA #  エチオピア連邦民主共和国
+FALKLAND ISLANDS(MALVINAS) #  フォークランド(マルビナス)諸島
+FAROE ISLANDS #  フェロー諸島
+FIJI #  フィジー諸島共和国
+FINLAND #  フィンランド共和国
+FRANCE #  フランス共和国
+FRANCE, METROPOLITAN #  フランス本国
+FRENCH GUIANA #  フランス領ギアナ
+FRENCH POLYNESIA #  フランス領ポリネシア
+FRENCH SOUTHERN AND ANTARCTIC TERRITORIES #  仏領諸島
+FRENCH SOUTHERN TERRITORIES #  フランス領極南諸島
+GABON #  ガボン共和国
+GAMBIA #  ガンビア共和国
+GEORGIA #  ジョージア
+GERMAN DEMOCRATIC REPUBLIC #  ドイツ民主共和国
+GERMANY #  ドイツ連邦共和国
+GHANA #  ガーナ共和国
+GIBRALTAR #  ジブラルタル
+GREECE #  ギリシア共和国
+GREENLAND #  グリーンランド
+GRENADA #  グレナダ
+GUADELOUPE #  グアドループ島
+GUAM #  グアム
+GUATEMALA #  グアテマラ共和国
+GUERNSEY #  ガーンジー島
+GUINEA #  ギニア共和国
+GUINEA-BISSAU #  ギニアビサウ共和国
+GUYANA #  ガイアナ協同共和国
+HAITI #  ハイチ共和国
+HEARD ISLAND AND MCDONALD ISLANDS #  ヘアド島・マクドナルド諸島
+HOLY SEE (VATICAN CITY STATE) #  バチカン市国
+HONDURAS #  ホンジュラス共和国
+HONG KONG #  香港特別行政区(ホンコン)
+HUNGARY #  ハンガリー共和国
+ICELAND #  アイスランド共和国
+INDIA #  インド
+INDONESIA #  インドネシア共和国
+IRAN, ISLAMIC REPUBLIC OF #  イラン・イスラム共和国
+IRAQ #  イラク共和国
+IRELAND #  アイルランド
+ISLE OF MAN #  マン島
+ISRAEL #  イスラエル国
+ITALY #  イタリア共和国
+JAMAICA #  ジャマイカ
+JAPAN #  日本国
+JERSEY #  ジャージー島
+JOHNSTON ISLAND #  ジョンストン島
+JORDAN #  ヨルダン・ハシミテ王国
+KAZAKHSTAN #  カザフスタン共和国
+KENYA #  ケニア共和国
+KIRIBATI #  キリバス共和国
+KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF #  (北朝鮮=朝鮮民主主義人民共和国)
+KOREA, REPUBLIC OF #  大韓民国
+KUWAIT #  クウェート国
+KYRGYZSTAN #  キルギス共和国
+LAO PEOPLE'S DEMOCRATIC REPUBLIC #  ラオス人民民主共和国
+LATVIA #  ラトビア共和国
+LEBANON #  レバノン共和国
+LESOTHO #  レソト王国
+LIBERIA #  リベリア共和国
+LIBYAN ARAB JAMAHIRIYA #  社会主義人民リビア・アラブ国
+LIECHTENSTEIN #  リヒテンシュタイン公国
+LITHUANIA #  リトアニア共和国
+LUXEMBOURG #  ルクセンブルク大公国
+MACAO #  マカオ(澳門)
+MACEDONIA, THE FORMER YUGOSLAV REPUBLIC OF #  マケドニア旧ユーゴスラビア共和国
+MADAGASCAR #  マダガスカル共和国
+MALAWI #  マラウイ共和国
+MALAYSIA #  マレーシア
+MALDIVES #  モルディヴ共和国
+MALI #  マリ共和国
+MALTA #  マルタ共和国
+MARSHALL ISLANDS #  マーシャル諸島共和国
+MARTINIQUE #  マルチニーク島
+MAURITANIA #  モーリタニア・イスラム共和国
+MAURITIUS #  モーリシャス共和国
+MAYOTTE #  マイヨット島
+MEXICO #  メキシコ合衆国
+MICRONESIA, FEDERATED STATES OF #  ミクロネシア連邦
+MIDWAY ISLANDS #  ミッドウェー諸島
+MOLDOVA, REPUBLIC OF #  モルドバ共和国
+MONACO #  モナコ公国
+MONGOLIA #  モンゴル国
+MONTENEGRO #  モンテネグロ
+MONTSERRAT #  モンセラット
+MOROCCO #  モロッコ王国
+MOZAMBIQUE #  モザンビーク共和国
+MYANMAR #  ミャンマー連邦
+NAMIBIA #  ナミビア共和国
+NAURU #  ナウル共和国
+NEPAL #  ネパール連邦民主共和国
+NETHERLANDS #  オランダ王国
+NETHERLANDS ANTILLES #  オランダ領アンティル
+NEUTRAL ZONE #  中立地帯
+NEW CALEDONIA #  ニューカレドニア
+NEW HEBRIDES #  ニューヘブリデス
+NEW ZEALAND #  ニュージーランド
+NICARAGUA #  ニカラグア共和国
+NIGER #  ニジェール共和国
+NIGERIA #  ナイジェリア連邦共和国
+NIUE #  ニウエ
+NO PLACE, UNKNOWN, OR UNDETERMINED #  出版地不明
+NORFOLK ISLAND #  ノーフォーク島
+NORTHERN MARIANA ISLANDS #  北マリアナ諸島
+NORWAY #  ノルウェー王国
+OMAN #  オマーン国
+PACIFIC ISLANDS(trust territory) #  太平洋諸島信託統治地域
+PAKISTAN #  パキスタン・イスラム共和国
+PALAU #  パラオ共和国
+PALESTINIAN TERRITORY, OCCUPIED #  パレスチナ占領区域
+PANAMA #  パナマ共和国
+PAPUA NEW GUINEA #  パプアニューギニア
+PARAGUAY #  パラグアイ共和国
+PERU #  ペルー共和国
+PHILIPPINES #  フィリピン共和国
+PITCAIRN #  ピトケアン島
+POLAND #  ポーランド共和国
+PORTUGAL #  ポルトガル共和国
+PUERTO RICO #  プエルトリコ
+QATAR #  カタール国
+REUNION #  レユニオン
+ROMANIA #  ルーマニア
+RUSSIAN FEDERATION #  ロシア連邦
+RWANDA #  ルワンダ共和国
+SAINT BARTHELEMY #  サン・バルテルミー島
+SAINT HELENA #  セントヘレナ島
+SAINT KITTS AND NEVIS #  セントクリストファー・ネイビス
+SAINT LUCIA #  セントルシア
+SAINT MARTIN (FRENCH PART) #  サン・マルタン島
+SAINT PIERRE AND MIQUELON #  サンピエール島・ミクロン島
+SAINT VINCENT AND THE GRENADINES #  セントビンセントおよびグレナディーン諸島
+SAMOA #  サモア独立国
+SAN MARINO #  サンマリノ共和国
+SAO TOME AND PRINCIPE #  サントメ・プリンシペ民主共和国
+SAUDI ARABIA #  サウジアラビア王国
+SENEGAL #  セネガル共和国
+SERBIA #  セルビア共和国
+SERBIA AND MONTENEGRO #  セルビア・モンテネグロ
+SEYCHELLES #  セイシェル共和国
+SIERRA LEONE #  シエラレオネ共和国
+SINGAPORE #  シンガポール共和国
+SLOVAKIA #  スロバキア共和国
+SLOVENIA #  スロベニア共和国
+SOLOMON ISLANDS #  ソロモン諸島
+SOMALIA #  ソマリア民主共和国
+SOUTH AFRICA #  南アフリカ共和国
+SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS #  南ジョージア島・南サンドイッチ諸島
+SOUTHERN RHODESIA #  南ローデシア
+SPAIN #  スペイン
+SRI LANKA #  スリランカ民主社会主義共和国
+SUDAN #  スーダン共和国
+SURINAME #  スリナム共和国
+SVALBARD AND JAN MAYEN #  スバールバル諸島・ヤンマイエン島
+SWAZILAND #  スワジランド王国
+SWEDEN #  スウェーデン王国
+SWITZERLAND #  スイス連邦
+SYRIAN ARAB REPUBLIC #  シリア・アラブ共和国
+TAIWAN, PROVINCE OF CHINA #  タイワン(台湾)
+TAJIKISTAN #  タジキスタン共和国
+TANZANIA, UNITED REPUBLIC OF #  タンザニア連合共和国
+THAILAND #  タイ王国
+TIMOR-LESTE #  東ティモール民主共和国
+TOGO #  トーゴ共和国
+TOKELAU #  トケラウ諸島
+TONGA #  トンガ王国
+TRINIDAD AND TOBAGO #  トリニダード・トバゴ共和国
+TUNISIA #  チュニジア共和国
+TURKEY #  トルコ共和国
+TURKMENISTAN #  トルクメニスタン
+TURKS AND CAICOS ISLANDS #  タークス諸島・カイコス諸島
+TUVALU #  ツバル
+UGANDA #  ウガンダ共和国
+UKRAINE #  ウクライナ
+UNITED ARAB EMIRATES #  アラブ首長国連邦
+UNITED KINGDOM #  グレートブリテンおよび北部アイルランド連合王国(英国)
+UNITED STATES #  アメリカ合衆国(米国)
+UNITED STATES MINOR OUTLYING ISLANDS #  米領太平洋諸島
+UNITED STATES MISC. PACIFIC ISLANDS #  米領太平洋諸島
+UPPER VOLTA #  オートボルタ共和国
+URUGUAY #  ウルグアイ東方共和国
+USSR #  ソビエト社会主義共和国連邦
+UZBEKISTAN #  ウズベキスタン共和国
+VANUATU #  バヌアツ共和国
+VENEZUELA, BOLIVARIAN REPUBLIC OF #  ベネズエラ・ボリバル共和国
+VIET NAM #  ベトナム社会主義共和国
+VIETNAM, DEMOCRATIC REPUBLIC OF #  ベトナム民主共和国
+VIRGIN ISLANDS, BRITISH #  英領バージン諸島
+VIRGIN ISLANDS, U.S. #  米領バージン諸島
+WAKE ISLAND #  ウェーク島
+WALLIS AND FUTUNA #  ワリス・フテュナ諸島
+WESTERN SAHARA #  西サハラ
+YEMEN #  イエメン共和国
+YEMEN, DEMOCRATIC #  イエメン民主人民共和国
+YUGOSLAVIA #  ユーゴスラビア連邦共和国
+ZAIRE #  ザイール共和国
+ZAMBIA #  ザンビア共和国
+ZIMBABWE #  ジンバブエ共和国
