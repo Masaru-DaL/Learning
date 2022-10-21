@@ -41,7 +41,7 @@ def init_game_info():
 
     # フィールドの一番下を８（壁）にする
     for index in range(Game.WIDTH):
-        Game.field[Game.HEIGHT - 1][index]
+        Game.field[Game.HEIGHT - 1][index] = 8
 
 
 # メイン処理

@@ -20,9 +20,9 @@ class Block:
         # 初期位置（横）を、端にならないようにランダムで設定
         self.xpos = randint(2, 10 - self.size)
         # 初期位置（縦）を、下の１ブロックだけ見えるように設定
-        self.ypos = 1  # 後で変更する
+        self.ypos = 1 - self.size
         # 落下タイミングを、現在のカウンタ＋間隔値に設定
-        pass
+        self.drop_timing = Game.count + Game.interval
 
     # ブロックが壁や他のブロックと衝突するかチェック
     def is_overlapped(self, xpos, ypos, turn):
