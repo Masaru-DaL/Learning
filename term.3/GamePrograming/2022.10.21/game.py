@@ -34,7 +34,7 @@ class Game:
     def check_gameover(cls):
         filled = 0  # 一番上の列にあるブロックの数
         # 一番上の列にあるブロックを数える
-        for cell in Game.filled[0]:
+        for cell in Game.field[0]:
             if cell != 0:
                 filled += 1
         # 2を超えていたらゲームオーバーにする(左右の壁で最低2はあるため)

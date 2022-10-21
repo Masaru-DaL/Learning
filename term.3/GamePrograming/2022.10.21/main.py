@@ -15,7 +15,7 @@ from game import Game
 
 # Pythonの基本処理
 pygame.init()
-pygame.key.set_repeat(250, 30)
+pygame.key.set_repeat(30, 30)
 Game.surface = pygame.display.set_mode([600, 600])
 clock = pygame.time.Clock()
 pygame.display.set_caption("*** 落ち物パズル ***")
@@ -81,7 +81,8 @@ def main():
             # ブロックの落下処理
             erased = Game.now_block.one_drop()
             # 『２の「消去した列数」乗』かける100点のスコアを加算
-            pass
+            if erased > 0:
+                Game.score += (2**erased) * 100
 
             # 現在の位置と回転を「次の状態の位置と回転」に設定
             next_x = Game.now_block.xpos
