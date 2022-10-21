@@ -59,17 +59,23 @@ class Block:
             # １つ下の段に落ちた場合にブロックや壁と衝突する場合
             if self.is_overlapped(self.xpos, self.ypos + 1, self.turn):
                 # 横縦ともに、ブロックのサイズだけ処理を行う
-
-                # 対象がフィールド内の場合
-
-                # 現在ブロックの対象の色を取得
-
-                # 色が無色でない場合
-
-                # フィールドの該当の色を、ブロックの色で設定する
-
+                for y_offset in range(self.size):
+                    for x_offset in range(self.size):
+                        # 対象がフィールド内の場合
+                        if (
+                            0 <= self.xpos + x_offset < Game.WIDTH
+                            and 0 <= self.ypos + y_offset < Game.HEIGHT
+                        ):
+                            # 現在ブロックの対象の色を取得
+                            val = self.data[y_offset * self.size + x_offset]
+                            # 色が無色でない場合
+                            if val != 0:
+                                # フィールドの該当の色を、ブロックの色で設定する
+                                Game.field[self.ypos + y_offset][
+                                    self.xpos + x_offset
+                                ] = val
                 # 揃った列の消去
-
+                erased = Block.erase_line()
                 # 次のブロックへ切り替える
                 Block.go_next_block()
             # 下にブロックがない場合
