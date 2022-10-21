@@ -27,16 +27,25 @@ class Block:
     # ブロックが壁や他のブロックと衝突するかチェック
     def is_overlapped(self, xpos, ypos, turn):
         # ブロックを引数の回転に合わせたものとする
-        pass
+        data = self.type[turn]
         # 横縦ともに、ブロックのサイズだけチェックを行う
+        for y_offset in range(self.size):
+            for x_offset in range(self.size):
+                # チェック対象がフィールド内の場合にチェックする
+                # ※画面外から落ちてくるので、そこでのチェックを防ぐため
+                if (
+                    0 <= xpos + x_offset < Game.WIDTH
+                    and 0 <= ypos + y_offset < Game.HEIGHT
+                ):
 
-        # チェック対象がフィールド内の場合にチェックする
-        # ※画面外から落ちてくるので、そこでのチェックを防ぐため
-
-        # 該当位置に今のブロックのデータがあって、
-        # フィールドにもブロックのデータがある場合は
-        # 「衝突した」としてTrueを返す
-
+                    # 該当位置に今のブロックのデータがあって、
+                    # フィールドにもブロックのデータがある場合は
+                    # 「衝突した」としてTrueを返す
+                    if (
+                        data[y_offset * self.size + x_offset] != 0
+                        and Game.field[ypos + y_offset][xpos + x_offset] != 0
+                    ):
+                        return True
         # １箇所も衝突しなかったら、Falseを返す
         return False
 
@@ -48,26 +57,26 @@ class Block:
         # 落下タイミングを超えた場合
         if self.drop_timing < Game.count:
             # １つ下の段に落ちた場合にブロックや壁と衝突する場合
+            if self.is_overlapped(self.xpos, self.ypos + 1, self.turn):
+                # 横縦ともに、ブロックのサイズだけ処理を行う
 
-            # 横縦ともに、ブロックのサイズだけ処理を行う
+                # 対象がフィールド内の場合
 
-            # 対象がフィールド内の場合
+                # 現在ブロックの対象の色を取得
 
-            # 現在ブロックの対象の色を取得
+                # 色が無色でない場合
 
-            # 色が無色でない場合
+                # フィールドの該当の色を、ブロックの色で設定する
 
-            # フィールドの該当の色を、ブロックの色で設定する
+                # 揃った列の消去
 
-            # 揃った列の消去
-
-            # 次のブロックへ切り替える
-
+                # 次のブロックへ切り替える
+                Block.go_next_block()
             # 下にブロックがない場合
-
-            # つぎの落下タイミングを計算して、ブロックの位置を１つ下に落とす
-            self.drop_timing = Game.count + Game.interval
-            self.ypos += 1
+            else:
+                # つぎの落下タイミングを計算して、ブロックの位置を１つ下に落とす
+                self.drop_timing = Game.count + Game.interval
+                self.ypos += 1
         # 消した列の数を戻り値にする
         return erased
 
