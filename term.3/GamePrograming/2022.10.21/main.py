@@ -33,12 +33,15 @@ def init_game_info():
     # 次のブロックとの入れ替え処理を最初に１度実施
     Block.go_next_block()
     # すべて「０（黒）」でフィールドを作成
-    pass
+    Game.field = [[0 for _ in range(Game.WIDTH)] for _ in range(Game.HEIGHT)]
     # フィールドの左右の端を８（壁）にする
-    pass
+    for ypos in range(Game.HEIGHT):
+        for xpos in range(Game.WIDTH):
+            Game.field[ypos][xpos] = 8 if xpos == 0 or xpos == Game.WIDTH - 1 else 0
 
     # フィールドの一番下を８（壁）にする
-    pass
+    for index in range(Game.WIDTH):
+        Game.field[Game.HEIGHT - 1][index]
 
 
 # メイン処理
@@ -101,7 +104,14 @@ def main():
         # ========== 描画処理 ==========
         Game.surface.fill((0, 0, 0))  # フィールドを黒で塗りつぶす
         # フィールドの値に応じて、四角形を描画
-        pass
+        for ypos in range(Game.HEIGHT):
+            for xpos in range(Game.WIDTH):
+                val = Game.field[ypos][xpos]
+                pygame.draw.rect(
+                    Game.surface,
+                    Game.COLORS[val],
+                    (25 + xpos * 25, 25 + ypos * 25, 24, 24),
+                )
 
         # ゲームオーバーでない場合、操作中ブロックを描画
         if not Game.is_gameover:
