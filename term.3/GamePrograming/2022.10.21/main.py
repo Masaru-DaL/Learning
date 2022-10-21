@@ -1,6 +1,15 @@
 import sys
 import pygame
-from pygame.locals import QUIT, KEYDOWN, K_LEFT, K_RIGHT, K_DOWN, K_UP, K_SPACE, K_RETURN
+from pygame.locals import (
+    QUIT,
+    KEYDOWN,
+    K_LEFT,
+    K_RIGHT,
+    K_DOWN,
+    K_UP,
+    K_SPACE,
+    K_RETURN,
+)
 from block import Block
 from game import Game
 
@@ -22,22 +31,20 @@ def init_game_info():
     Game.score = 0
     Game.is_gameover = False
     # 次のブロックとの入れ替え処理を最初に１度実施
-    pass
+    Block.go_next_block()
     # すべて「０（黒）」でフィールドを作成
     pass
     # フィールドの左右の端を８（壁）にする
     pass
-    
-    
-    
+
     # フィールドの一番下を８（壁）にする
     pass
-    
+
 
 # メイン処理
 def main():
-    smallfont = pygame.font.SysFont(None, 36)   # 小さい文字用のフォント
-    largefont = pygame.font.SysFont(None, 72)   # 大きい文字用のフォント
+    smallfont = pygame.font.SysFont(None, 36)  # 小さい文字用のフォント
+    largefont = pygame.font.SysFont(None, 72)  # 大きい文字用のフォント
     # ゲームオーバー用のメッセージ
     message_over = largefont.render("GAME OVER!!", True, (0, 255, 225))
     message_rect = message_over.get_rect()
@@ -48,7 +55,7 @@ def main():
 
     # ゲームのメインループ
     while True:
-        key = None      # 入力値を初期化
+        key = None  # 入力値を初期化
         # イベント処理ループ
         for event in pygame.event.get():
             # 終了処理
@@ -67,61 +74,52 @@ def main():
             if Game.count % 1000 == 0:
                 # ゲームスピードの間隔を２減らす（最低１）
                 Game.interval = max(1, Game.interval - 2)
-            
+
             # ブロックの落下処理
             pass
             # 『２の「消去した列数」乗』かける100点のスコアを加算
             pass
-            
 
             # 現在の位置と回転を「次の状態の位置と回転」に設定
             pass
-            
-            
-            
+
             # キーイベント処理に応じて、次の状態を設定
             # スペースキーまたは上キーが押されている場合、１段階回転（３の次は０に）
             pass
-                
+
             # 左右下キーはそれぞれの方向に移動
             pass
-            
-            
-            
-            
-            
 
             # ブロックの移動を実施
             # ※回転や移動ができるかのチェックも行う
             pass
-        
+
         # ゲームオーバーチェック
         # ゲームオーバーの場合、フラグがTrueになる
         Game.check_gameover()
 
-        # ========== 描画処理 ========== 
-        Game.surface.fill((0, 0, 0))    # フィールドを黒で塗りつぶす
+        # ========== 描画処理 ==========
+        Game.surface.fill((0, 0, 0))  # フィールドを黒で塗りつぶす
         # フィールドの値に応じて、四角形を描画
         pass
-        
-        
-        
-        
+
         # ゲームオーバーでない場合、操作中ブロックを描画
         if not Game.is_gameover:
-            pass
+            Game.now_block.draw()
 
         # 次のブロックの描画
-        # for ypos in range(Game.next_block.size):
-        #     for xpos in range(Game.next_block.size):
-        #         val = Game.next_block.data[xpos + ypos*Game.next_block.size]
-        #         pygame.draw.rect(Game.surface, Game.COLORS[val],
-        #                          (xpos*25 + 460, ypos*25 + 100, 24, 24))
+        for ypos in range(Game.next_block.size):
+            for xpos in range(Game.next_block.size):
+                val = Game.next_block.data[xpos + ypos * Game.next_block.size]
+                pygame.draw.rect(
+                    Game.surface,
+                    Game.COLORS[val],
+                    (xpos * 25 + 460, ypos * 25 + 100, 24, 24),
+                )
 
         # スコアの描画
         score_str = str(Game.score).zfill(6)
-        score_image = smallfont.render(score_str,
-                                       True, (0, 255, 0))
+        score_image = smallfont.render(score_str, True, (0, 255, 0))
         Game.surface.blit(score_image, (500, 30))
         # ゲームオーバーの場合
         if Game.is_gameover:
@@ -131,9 +129,10 @@ def main():
             if key == K_RETURN:
                 init_game_info()
 
-        pygame.display.update()     # 描画更新処理
-        clock.tick(15)              # 一定時間処理
+        pygame.display.update()  # 描画更新処理
+        clock.tick(15)  # 一定時間処理
+
 
 # メイン処理の呼び出し
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
