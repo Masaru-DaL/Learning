@@ -79,23 +79,31 @@ def main():
                 Game.interval = max(1, Game.interval - 2)
 
             # ブロックの落下処理
-            pass
+            erased = Game.now_block.one_drop()
             # 『２の「消去した列数」乗』かける100点のスコアを加算
             pass
 
             # 現在の位置と回転を「次の状態の位置と回転」に設定
-            pass
+            next_x = Game.now_block.xpos
+            next_y = Game.now_block.ypos
+            next_t = Game.now_block.turn
 
             # キーイベント処理に応じて、次の状態を設定
             # スペースキーまたは上キーが押されている場合、１段階回転（３の次は０に）
-            pass
+            if key == K_SPACE or key == K_UP:
+                next_t = (next_t + 1) % 4
 
             # 左右下キーはそれぞれの方向に移動
-            pass
+            elif key == K_RIGHT:
+                next_x += 1
+            elif key == K_LEFT:
+                next_x -= 1
+            elif key == K_DOWN:
+                next_y += 1
 
             # ブロックの移動を実施
             # ※回転や移動ができるかのチェックも行う
-            pass
+            Game.now_block.move(next_x, next_y, next_t)
 
         # ゲームオーバーチェック
         # ゲームオーバーの場合、フラグがTrueになる
