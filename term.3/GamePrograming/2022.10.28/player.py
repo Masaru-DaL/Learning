@@ -57,18 +57,30 @@ class Player(Character):
 
         # 上下左右キーが押されている場合にキャラを移動
         # 現在位置を取得
-        pass
+        posx, posy = self.get_pos()
+        dx, dy = self.get_dpos()
 
         # それぞれのキーに合わせて、移動後の位置を設定
-        pass
+        if Game.on_downkey():
+            dy += Character.MOVE_STEP
+        elif Game.on_upkey():
+            dy -= Character.MOVE_STEP
+        elif Game.on_rightkey:
+            dx += Character.MOVE_STEP
+        elif Game.on_leftkey:
+            dx -= Character.MOVE_STEP
+
+
         # 加算後の値で、プレイヤーの位置を計算
-        pass
+        posx, posy, dx, dy = self.calc_chara_pos(posx, posy, dx, dy)
         # マップ移動チェック
         pass
         # マップを変更していない場合
         pass
         # 移動可能チェックで移動可能なら移動（不能なら位置を変更しない）
-        pass
+        # とりあえず常に移動
+        self.set_pos(posx, posy)
+        self.set_dpos(dx, dy)
         # マップを変更した場合は移動
         pass
 

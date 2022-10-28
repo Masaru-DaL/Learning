@@ -25,7 +25,7 @@ def init_game_info():
     # フィールドクラスのインスタンスを作成して、ゲームクラスの変数に設定
     Game.field = Field(Game.START_FIELD)
     # プレイヤークラスのインスタンスを作成して、ゲームクラスの変数に設定
-    pass
+    Game.player = Player()
     # モンスター（初期配置）
     pass
 
@@ -36,7 +36,7 @@ def basic_draw():
     # モンスター達の描画
     pass
     # プレイヤーの描画
-    pass
+    Game.player.draw()
     # レベルの描画
     pass# 左空白埋めで５桁
     pass
@@ -52,7 +52,7 @@ def main():
     # ゲームのメインループ
     while True:
         # ゲームのカウンタを１加算
-        pass
+        Game.count += 1
         # イベントチェック処理（終了、キー入力）を実行
         Game.check_event()
 
@@ -61,7 +61,7 @@ def main():
         # フィールド上の場合
         if Game.phase == Phase.IN_FIELD:
             # プレイヤーの毎回処理
-            pass
+            Game.player.frame_process_img()
             # モンスターの毎回処理
             pass
             # 基本描画処理

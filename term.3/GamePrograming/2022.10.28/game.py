@@ -1,3 +1,4 @@
+from curses import KEY_ENTER
 import sys
 import pygame
 from pygame.locals import QUIT, KEYDOWN, KEYUP
@@ -48,29 +49,32 @@ class Game:
                 pygame.quit()
                 sys.exit()
             # キーダウン処理
-            pass
+            elif event.type == KEYDOWN:
+                if not event.key in Game.keymap:
+                    Game.keymap.append(event.key)
             # キーアップ処理
-            pass
+            elif event.type == KEYUP:
+                Game.keymap.remove(event.key)
 
     # クラスメソッド：キーチェック処理
     @classmethod
     def on_upkey(cls):
-        return None
+        return K_UP in Game.keymap
     @classmethod
     def on_downkey(cls):
-        return None
+        return K_DOWN in Game.keymap
     @classmethod
     def on_leftkey(cls):
-        return None
+        return K_LEFT in Game.keymap
     @classmethod
     def on_rightkey(cls):
-        return None
+        return K_RIGHT in Game.keymap
     @classmethod
     def on_spacekey(cls):
-        return None
+        return K_SPACE in Game.keymap
     @classmethod
-    def on_enterey(cls):
-        return None
+    def on_enterkey(cls):
+        return K_RETURN in Game.keymap
 
 # 処理段階（列挙型クラス）
 class Phase(Enum):
