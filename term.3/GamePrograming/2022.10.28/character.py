@@ -53,6 +53,6 @@ class Character(Square):
             self.image_no += 1
             self.image_no = self.image_no if self.image_no < len(self.image_list) else 0
             # 親クラス（Square）の画像を設定
-            pass
+            self.set_image(self.image_list[self.image_no])
             # 次の画像変更タイミングを設定
-            pass
+            self.next_img_count = Game.count + Character.CHANGE_IMAGE_INTERVAL
