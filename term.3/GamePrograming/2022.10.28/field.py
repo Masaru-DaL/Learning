@@ -27,8 +27,8 @@ class Field:
         # フィールド情報の設定
         new_field = Field.MAP_LIST[self.map_no]
         # チップリストの数だけ２重ループ
-        for y in range(Game.FIELD_HEIGHT):
-            for x in range(Game.FIELD_WIDTH):
+        for pos_y in range(Game.FIELD_HEIGHT):
+            for pos_x in range(Game.FIELD_WIDTH):
                 # フィールドの該当位置の情報を設定
                 self.chip_list[pos_y][pos_x].set_chip_no(new_field[pos_y][pos_x])
 
