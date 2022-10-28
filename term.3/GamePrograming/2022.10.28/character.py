@@ -34,10 +34,10 @@ class Character(Square):
             dx += Game.SQ_LEN
         elif dx >= Game.SQ_LEN:
             posx += 1
-            dx += Game.SQ_LEN
+            dx -= Game.SQ_LEN
 
         if dy < 0:
-            posy -= -1
+            posy -= 1
             dy += Game.SQ_LEN
         elif dy >= Game.SQ_LEN:
             posy += 1

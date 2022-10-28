@@ -34,22 +34,27 @@ class Field:
 
     # フィールドチェンジ（移動方向をfld_x, fld_yのプラスマイナス１でもらう）
     def change_field(self, fld_x, fld_y):
-        pass  # フィールド数
+        field_count = Game.MAP_WIDTH * Game.MAP_HEIGHT  # フィールド数
         # 左右に移動した場合は１を足す／引く
         # ただし、移動後の位置が上下のフィールドになってしまう場合は調整する
         # （移動前後のフィールドの段がずれる場合：１始まりなので１を引いてから割って比較）
-        pass
-        # フィールドの横の数－１だけ、逆方向に移動
-        pass
+        if (self.map_no - 1) // Game.MAP_WIDTH != (self.map_no + fld_x - 1) // Game.MAP_WIDTH:
+            # フィールドの横の数－１だけ、逆方向に移動
+            self.map_no += (Game.MAP_WIDTH - 1) * -fld_x
+        else:
+            self.map_no += fld_x
         # 上下に移動した場合は３（横マップ数）を足す／引く
-        pass
+        self.map_no += fld_x * Game.MAP_WIDTH
+
 
         # フィールド数を超えた場合は、マップ数を引く
-        pass
+        if self.map_no > field_count:
+            self.map_no -= field_count
         # ０以下になった場合は、マップ数を足す
-        pass
+        if self.map_no <= 0:
+            self.map_no += field_count
         # フィールド情報を読み込み
-        pass
+        self.read_map_info()
 
         # モンスターの再配置
         pass

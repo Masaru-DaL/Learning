@@ -31,7 +31,7 @@ class Player(Character):
 
     # マップ移動チェック
     def check_map_move(self, posx, posy, dx, dy):
-        pass
+        is_changed = False # マップ変更フラグ
         # 右マップへ移動（一番右＋dxが正）
         pass
         # マップを右へ、プレイヤー位置を左へ
@@ -65,9 +65,9 @@ class Player(Character):
             dy += Character.MOVE_STEP
         elif Game.on_upkey():
             dy -= Character.MOVE_STEP
-        elif Game.on_rightkey:
+        elif Game.on_rightkey():
             dx += Character.MOVE_STEP
-        elif Game.on_leftkey:
+        elif Game.on_leftkey():
             dx -= Character.MOVE_STEP
 
 
