@@ -6,7 +6,7 @@ from enum import Enum
 
 # ゲームの基本情報クラス
 class Game:
-    
+
     # ========== クラス定数 ==========
     MAP_WIDTH = 3                   # マップの横サイズ（フィールド数）
     MAP_HEIGHT = 3                  # マップの縦サイズ（フィールド数）
@@ -14,7 +14,7 @@ class Game:
     FIELD_HEIGHT = 10               # 画面の縦サイズ（スクエア数）
     SQ_LEN = 64                     # １スクエアの幅と高さ
     SQ_SIZE = (SQ_LEN, SQ_LEN)      # １スクエアのサイズ（幅、高さ）
-    
+
     START_FIELD = 1                 # 初期位置のマップNo
     START_PLAYER_POS_X = 5          # プレイヤーの初期位置（横）
     START_PLAYER_POS_Y = 5          # プレイヤーの初期位置（縦）
@@ -34,10 +34,10 @@ class Game:
     @classmethod
     def read_image_for_square(cls, image_file_path):
         # イメージファイルを読み込む
-        pass
+        image = pygame.image.load(image_file_path)
         # 画面のスクエアサイズに合わせて変形させたものを返却
-        return None
-    
+        return pygame.transform.scale(image, Game.SQ_SIZE)
+
     # クラスメソッド：イベントチェック処理
     @classmethod
     def check_event(cls):
@@ -76,11 +76,11 @@ class Game:
 class Phase(Enum):
     TITLE = 1           # タイトル画面
     GAME_START = 2      # ゲーム開始
-    
+
     IN_FIELD = 11       # フィールド画面
-    
+
     BATTLE_START = 30   # バトル開始
     IN_BATTLE = 31      # バトル中
     BATTLE_FINISH = 32  # バトル終了
-    
+
     GAME_OVER = 99      # ゲームオーバー
