@@ -1,0 +1,60 @@
+from game import Game
+# モンスターリストクラス
+class MonsterList:
+    
+    # モンスターリストの番号
+    MON_NO_DOG = 0
+    MON_NO_BEE = 1
+    
+    # モンスター情報取得関数各種
+    @classmethod
+    def get_monster_name(cls, monster_no):
+        return MonsterList.MONSTER_LIST[monster_no][0]
+    @classmethod
+    def get_monster_image_list(cls, monster_no):
+        return MonsterList.MONSTER_LIST[monster_no][1]
+    @classmethod
+    def get_monster_move_interval(cls, monster_no):
+        return MonsterList.MONSTER_LIST[monster_no][2]
+    @classmethod
+    def get_monster_dir_interval(cls, monster_no):
+        return MonsterList.MONSTER_LIST[monster_no][3]
+    @classmethod
+    def get_monster_stop_interval(cls, monster_no):
+        return MonsterList.MONSTER_LIST[monster_no][4]
+    @classmethod
+    def get_monster_unmovable_chips(cls, monster_no):
+        return MonsterList.MONSTER_LIST[monster_no][5]
+    @classmethod
+    def get_monster_attack_power(cls, monster_no):
+        return MonsterList.MONSTER_LIST[monster_no][6]
+
+    # モンスター１
+    MONSTER_DOG = (
+        "Dog Fighter",
+        (Game.read_image_for_square("image/enemy2.png"),
+        Game.read_image_for_square("image/enemy2.png")),
+        5,
+        20,
+        10,
+        [3],
+        2
+    )
+
+    # モンスター２
+    MONSTER_BEE = (
+        "Killer Bee",
+        (Game.read_image_for_square("image/enemy5.png"),
+        Game.read_image_for_square("image/enemy5.png")),
+        2,
+        12,
+        5,
+        [],
+        1
+    )
+
+    # モンスターリスト
+    MONSTER_LIST = (
+        MONSTER_DOG,
+        MONSTER_BEE
+    )
