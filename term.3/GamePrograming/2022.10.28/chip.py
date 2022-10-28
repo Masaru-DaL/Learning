@@ -11,14 +11,19 @@ class Chip(Square):
         self.chip_no = 0
         # チップ(フィールドの部品)の画像を読み込む
         self.images = (
-            Game.read_image_for_square("image/chip0.png")
+            Game.read_image_for_square("image/chip0.png"),
+            Game.read_image_for_square("image/chip1.png"),
+            Game.read_image_for_square("image/chip2.png"),
+            Game.read_image_for_square("image/chip3.png")
         )
 
 
     # チップ番号設定
     def set_chip_no(self, no):
         # 自身の持つ番号と、対応する画像を設定
-        pass
+        self.chip_no = no
+        self.set_image(self.images[no])
+        
 
     # 移動可能チェック
     def is_movable(self, unmovable_chip_list):
