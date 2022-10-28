@@ -14,13 +14,15 @@ class Field:
     # フィールド情報を読み込み
     def read_map_info(self):
         # 表示用のマスのリストを作成（初回のみ）
-        pass
-        # チップクラスのインスタンスをチップ数作成
-        pass
-        # チップリストの数だけ２重ループ
-        pass
-        # 位置と初期画像を指定
-        pass
+        if self.chip_list == None:
+            # チップクラスのインスタンスをチップ数作成
+            self.chip_list = [[Chip() for _ in range(Game.FIELD_WIDTH)] for _ in range(Game.FIELD_HEIGHT)]
+            # チップリストの数だけ２重ループ
+            for pos_y in range(Game.FIELD_HEIGHT):
+                for pos_x in range(Game.FIELD_WIDTH):
+                    # 位置と初期画像を指定
+                    self.chip_list[pos_y][pos_x].set_pos(pos_x, pos_y)
+                    self.chip_list[pos_y][pos_x].set_chip_no(0)
 
         # フィールド情報の設定
         pass
@@ -74,7 +76,9 @@ class Field:
     # 画面に描画
     def draw(self):
         # チップリストの数だけ２重ループ
-        pass
+        for y in range(Game.FIELD_HEIGHT):
+            for x in range(Game.FIELD_WIDTH):
+                self.chip_list[y][x].draw()
 
     # クラス変数：マップ情報
     MAP1 = (

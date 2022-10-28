@@ -21,9 +21,9 @@ def init_game_info():
     is_gameover = False     # ゲームオーバーフラグ
     monsters = None         # モンスター
     # 仮に、フィールド表示をスタート状態とする（最終的にはタイトル画面にする）
-    pass
+    Game.phase = Phase.IN_FIELD
     # フィールドクラスのインスタンスを作成して、ゲームクラスの変数に設定
-    pass
+    Game.field = Field(Game.START_FIELD)
     # プレイヤークラスのインスタンスを作成して、ゲームクラスの変数に設定
     pass
     # モンスター（初期配置）
@@ -32,7 +32,7 @@ def init_game_info():
 # 基本描画処理
 def basic_draw():
     # フィールドの描画
-    pass
+    Game.field.draw()
     # モンスター達の描画
     pass
     # プレイヤーの描画
@@ -43,11 +43,11 @@ def basic_draw():
     # HPの描画
     pass # 左空白埋めで５桁
     pass
-     
+
 # メイン処理
 def main():
     # ゲーム情報の初期化処理を実行
-    pass
+    init_game_info()
 
     # ゲームのメインループ
     while True:
@@ -56,17 +56,17 @@ def main():
         # イベントチェック処理（終了、キー入力）を実行
         Game.check_event()
 
-        pass    # 画面を黒で塗りつぶす
+        Game.surface.fill((0, 0, 0))    # 画面を黒で塗りつぶす
         # ===== ゲームフェーズによる処理段階分け =====
         # フィールド上の場合
-        pass
+        if Game.phase == Phase.IN_FIELD:
             # プレイヤーの毎回処理
-        pass
+            pass
             # モンスターの毎回処理
-        pass
+            pass
             # 基本描画処理
-        pass
-            
+            basic_draw()
+
         # ゲームオーバーの場合
         pass
             # 基本描画処理

@@ -17,7 +17,7 @@ class Square:
         x = self.pos[0] * Game.SQ_LEN + self.dxy[0]
         y = self.pos[1] * Game.SQ_LEN + self.dxy[1]
         # 画面に描画
-        Game.Surface.blit(self.image, (x, y), (0, 0, Game.SQ_LEN, Game.SQ_LEN))
+        Game.surface.blit(self.image, (x, y), (0, 0, Game.SQ_LEN, Game.SQ_LEN))
 
     # このスクエアの位置・サイズのRectを取得
     def get_rect(self):
