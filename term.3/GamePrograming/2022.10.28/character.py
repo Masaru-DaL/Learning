@@ -29,7 +29,23 @@ class Character(Square):
     def calc_chara_pos(self, posx, posy, dx, dy):
         # スクエアに対する端数が１スクエア分を超える
         # またはマイナスになる場合に値を調整
-        pass
+        if dx < 0:
+            posx -= 1
+            dx += Game.SQ_LEN
+        elif dx >= Game.SQ_LEN:
+            posx += 1
+            dx += Game.SQ_LEN
+
+        if dy < 0:
+            posy -= -1
+            dy += Game.SQ_LEN
+        elif dy >= Game.SQ_LEN:
+            posy += 1
+            dy -= Game.SQ_LEN
+
+        return posx, posy, dx, dy
+
+
 
     # キャラクター移動チェック
     def check_chara_move(self, posx, posy, dx, dy, unmovable_chip_list):
