@@ -16,7 +16,10 @@ class Field:
         # 表示用のマスのリストを作成（初回のみ）
         if self.chip_list == None:
             # チップクラスのインスタンスをチップ数作成
-            self.chip_list = [[Chip() for _ in range(Game.FIELD_WIDTH)] for _ in range(Game.FIELD_HEIGHT)]
+            self.chip_list = [
+                [Chip() for _ in range(Game.FIELD_WIDTH)]
+                for _ in range(Game.FIELD_HEIGHT)
+            ]
             # チップリストの数だけ２重ループ
             for pos_y in range(Game.FIELD_HEIGHT):
                 for pos_x in range(Game.FIELD_WIDTH):
@@ -38,14 +41,15 @@ class Field:
         # 左右に移動した場合は１を足す／引く
         # ただし、移動後の位置が上下のフィールドになってしまう場合は調整する
         # （移動前後のフィールドの段がずれる場合：１始まりなので１を引いてから割って比較）
-        if (self.map_no - 1) // Game.MAP_WIDTH != (self.map_no + fld_x - 1) // Game.MAP_WIDTH:
+        if (self.map_no - 1) // Game.MAP_WIDTH != (
+            self.map_no + fld_x - 1
+        ) // Game.MAP_WIDTH:
             # フィールドの横の数－１だけ、逆方向に移動
             self.map_no += (Game.MAP_WIDTH - 1) * -fld_x
         else:
             self.map_no += fld_x
         # 上下に移動した場合は３（横マップ数）を足す／引く
-        self.map_no += fld_x * Game.MAP_WIDTH
-
+        self.map_no += fld_y * Game.MAP_WIDTH
 
         # フィールド数を超えた場合は、マップ数を引く
         if self.map_no > field_count:
@@ -55,7 +59,6 @@ class Field:
             self.map_no += field_count
         # フィールド情報を読み込み
         self.read_map_info()
-
         # モンスターの再配置
         pass
         # マスのピッタリの位置に配置する

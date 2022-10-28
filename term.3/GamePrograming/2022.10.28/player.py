@@ -36,7 +36,7 @@ class Player(Character):
         if posx == Game.FIELD_WIDTH - 1 and dx > 0:
             # マップを右へ、プレイヤー位置を左へ
             Game.field.change_field(1, 0)
-            posx, dx = 0
+            posx, dx = 0, 0
             is_changed = True
         # 左マップへ移動（一番左より左）
         if posx < 0:
@@ -52,9 +52,11 @@ class Player(Character):
             posy, dy = 0, 0
             is_changed = True
         # 上マップへ移動（一番上より上）
-        pass
+        if posy < 0:
         # マップを上へ、プレイヤー位置を下へ
-        pass
+            Game.field.change_field(0, -1)
+            posy, dy = Game.FIELD_HEIGHT - 1, 0
+            is_changed = True
 
         # マップ変更後（変更してない場合も）の位置と変更フラグを返却
         return posx, posy, dx, dy, is_changed
@@ -80,7 +82,7 @@ class Player(Character):
         # 加算後の値で、プレイヤーの位置を計算
         posx, posy, dx, dy = self.calc_chara_pos(posx, posy, dx, dy)
         # マップ移動チェック
-        pass
+        posx, posy, dx, dy, is_changed = self.check_map_move(posx, posy, dx, dy)
         # マップを変更していない場合
         pass
         # 移動可能チェックで移動可能なら移動（不能なら位置を変更しない）
