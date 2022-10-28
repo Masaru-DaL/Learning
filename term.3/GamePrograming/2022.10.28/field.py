@@ -25,11 +25,12 @@ class Field:
                     self.chip_list[pos_y][pos_x].set_chip_no(0)
 
         # フィールド情報の設定
-        pass
+        new_field = Field.MAP_LIST[self.map_no]
         # チップリストの数だけ２重ループ
-        pass
-        # フィールドの該当位置の情報を設定
-        pass
+        for y in range(Game.FIELD_HEIGHT):
+            for x in range(Game.FIELD_WIDTH):
+                # フィールドの該当位置の情報を設定
+                self.chip_list[pos_y][pos_x].set_chip_no(new_field[pos_y][pos_x])
 
     # フィールドチェンジ（移動方向をfld_x, fld_yのプラスマイナス１でもらう）
     def change_field(self, fld_x, fld_y):
