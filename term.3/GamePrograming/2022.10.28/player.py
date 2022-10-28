@@ -31,19 +31,26 @@ class Player(Character):
 
     # マップ移動チェック
     def check_map_move(self, posx, posy, dx, dy):
-        is_changed = False # マップ変更フラグ
+        is_changed = False  # マップ変更フラグ
         # 右マップへ移動（一番右＋dxが正）
-        pass
-        # マップを右へ、プレイヤー位置を左へ
-        pass
+        if posx == Game.FIELD_WIDTH - 1 and dx > 0:
+            # マップを右へ、プレイヤー位置を左へ
+            Game.field.change_field(1, 0)
+            posx, dx = 0
+            is_changed = True
         # 左マップへ移動（一番左より左）
-        pass
-        # マップを左へ、プレイヤー位置を右へ
-        pass
+        if posx < 0:
+            # マップを左へ、プレイヤー位置を右へ
+            Game.field.change_field(-1, 0)
+            posx, dx = Game.FIELD_WIDTH - 1, 0
+            is_changed = True
+
         # 下マップへ移動（一番下＋dyが正）
-        pass
-        # マップを下へ、プレイヤー位置を上へ
-        pass
+        if posy == Game.FIELD_HEIGHT - 1 and dy > 0:
+            # マップを下へ、プレイヤー位置を上へ
+            Game.field.change_field(0, 1)
+            posy, dy = 0, 0
+            is_changed = True
         # 上マップへ移動（一番上より上）
         pass
         # マップを上へ、プレイヤー位置を下へ
@@ -69,7 +76,6 @@ class Player(Character):
             dx += Character.MOVE_STEP
         elif Game.on_leftkey():
             dx -= Character.MOVE_STEP
-
 
         # 加算後の値で、プレイヤーの位置を計算
         posx, posy, dx, dy = self.calc_chara_pos(posx, posy, dx, dy)
