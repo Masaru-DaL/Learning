@@ -18,34 +18,38 @@ class Monster(Character):
         mon_images = MonsterList.get_monster_image_list(monster_no)
         self.set_images(mon_images)
         # 名前
-        pass
+        self.name = MonsterList.get_monster_name(monster_no)
         # 攻撃力
-        pass
+        self.attack_power = MonsterList.get_monster_attack_power(monster_no)
         # 移動不能チップリスト
-        pass
+        self.unmovable_chips = MonsterList.get_monster_unmovable_chips(monster_no)
         # 移動インターバル
-        pass
+        self.move_interval = MonsterList.get_monster_move_interval(monster_no)
         # 移動方向変更タイミング
-        pass
+        self.direction_interval = MonsterList.get_monster_dir_interval(monster_no)
         # 移動後停止時間
-        pass
+        self.stop_interval = MonsterList.get_monster_stop_interval(monster_no)
         # 次移動開始時間
-        pass
+        self.next_move_count = 0
         # 移動方向
-        pass
+        self.move_x, self.move_y = 0, 0
         # 残り移動回数
-        pass
+        self.remain_move_time = 0
 
     # マップ移動チェック
     def check_map_move(self, posx, posy, dx, dy):
         # 右マップへ移動してしまう（一番右＋dxが正）
-        pass
+        if posx == Game.FIELD_WIDTH - 1 and dx > 0:
+            return False
         # 左マップへ移動（一番左より左）
-        pass
+        if posx < 0:
+            return False
         # 下マップへ移動（一番下＋dyが正）
-        pass
+        if posy == Game.FIELD_HEIGHT - 1 and dy > 0:
+            return False
         # 上マップへ移動（一番上より上）
-        pass
+        if posy < 0:
+            return False
 
         return True
 
@@ -53,17 +57,17 @@ class Monster(Character):
     def frame_process_img(self):
 
         # 移動中でない場合
-        pass
+        if self.move_x == 0 and self. move_y == 0:
             # 移動タイミングを超えている場合
-        pass
+            if self.next_move_count <= Game.count:
                 # 移動方向リスト
-        pass
+                move_dir_list = [(1, 0), (-1, 0), (0, 1), (0, -1)]
                 # 移動方向をランダムに設定
-        pass
+                self.move_x, self.move_y = random.choice(move_dir_list)
                 # 残り移動回数を設定
-        pass
+            pass
         # 移動中の場合
-        pass
+        else:
             # 移動タイミングを超えている場合
         pass
                 # 上下左右キーが押されている場合にキャラを移動
