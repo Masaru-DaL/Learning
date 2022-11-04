@@ -5,17 +5,18 @@ from monsterlist import MonsterList
 
 # モンスタークラス
 class Monster(Character):
-    
+
     # コンストラクタ
     def __init__(self, pos, monster_no):
         # 親クラスのコンストラクタを呼び出し
-        pass
+        super().__init__()
         # モンスター番号を設定
-        pass
+        self.monster_no = monster_no
         # モンスターの位置を設定（親クラスのメソッド）
-        pass
+        self.set_pos(pos[0], pos[1])
         # モンスターの画像を作成＆設定
-        pass
+        mon_images = MonsterList.get_monster_image_list(monster_no)
+        self.set_images(mon_images)
         # 名前
         pass
         # 攻撃力
@@ -50,7 +51,7 @@ class Monster(Character):
 
     # １フレームごとにする画像・処理
     def frame_process_img(self):
-        
+
         # 移動中でない場合
         pass
             # 移動タイミングを超えている場合
@@ -86,7 +87,7 @@ class Monster(Character):
         pass
                     # 次の移動タイミングを設定
         pass
-        
+
         # モンスターとプレイヤーの四角を取得
         pass
         # 重なった場合
@@ -98,7 +99,6 @@ class Monster(Character):
         pass
             # プレイヤーのHPが０以下になったら、フェイズをゲームオーバーにする
         pass
-        
-        # キャラクターの画像設定
-        pass
 
+        # キャラクターの画像設定
+        self.set_chara_animation()

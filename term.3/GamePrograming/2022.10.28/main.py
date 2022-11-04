@@ -27,14 +27,17 @@ def init_game_info():
     # プレイヤークラスのインスタンスを作成して、ゲームクラスの変数に設定
     Game.player = Player()
     # モンスター（初期配置）
-    pass
+    Game.monsters = []
+    Game.monsters.append(Monster((8, 1), MonsterList.MON_NO_DOG))
+    Game.monsters.append(Monster((2, 8), MonsterList.MON_NO_BEE))
 
 # 基本描画処理
 def basic_draw():
     # フィールドの描画
     Game.field.draw()
     # モンスター達の描画
-    pass
+    for monster in Game.monsters:
+        monster.draw()
     # プレイヤーの描画
     Game.player.draw()
     # レベルの描画
@@ -63,7 +66,8 @@ def main():
             # プレイヤーの毎回処理
             Game.player.frame_process_img()
             # モンスターの毎回処理
-            pass
+            for monster in Game.monsters:
+                monster.frame_process_img()
             # 基本描画処理
             basic_draw()
 
