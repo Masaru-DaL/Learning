@@ -87,13 +87,15 @@ class Monster(Character):
                 # 残り移動回数を１減算
                 self.remain_move_time -= 1
                 # 移動回数が０になったら
-        pass
+                if self.remain_move_time == 0:
                     # 次の移動タイミングを停止時間後に設定
-        pass
+                    self.next_move_count = Game.count + self.stop_interval
                     # 移動方向をなしに
-        pass
+                    self.move_x, self.move_y = 0, 0
+                # 残り移動回数がある場合
+                else:
                     # 次の移動タイミングを設定
-        pass
+                    self.next_move_count = Game.count + self.move_interval
 
         # モンスターとプレイヤーの四角を取得
         pass
