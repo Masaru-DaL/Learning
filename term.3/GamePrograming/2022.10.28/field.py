@@ -60,17 +60,21 @@ class Field:
         # フィールド情報を読み込み
         self.read_map_info()
         # モンスターの再配置
-        pass
-        # マスのピッタリの位置に配置する
-        pass
-        # 配置できるまでループする（100回で諦める）
-        pass
-        # プレイヤーが端からくるので、端には配置しない
-        pass
-        # モンスターが移動できない位置に配置されてしまった場合はやり直し
-        pass
-        # 移動できる位置ならそこに配置
-        pass
+        for monster in Game.monsters:
+            # マスのピッタリの位置に配置する
+            dx, dy = 0, 0
+            # 配置できるまでループする（100回で諦める）
+            for _ in range(100):
+                # プレイヤーが端からくるので、端には配置しない
+                posx = random.randint(2, Game.FIELD_WIDTH - 3)
+                posy = random.randint(2, Game.FIELD_HEIGHT - 3)
+                # モンスターが移動できない位置に配置されてしまった場合はやり直し
+                if not monster.check_chara_move(posx, posy, dx, dy, monster.unmovable_chips):
+                    continue
+                # 移動できる位置ならそこに配置
+                monster.set_pos(posx, posy)
+                monster.set_dpos(dx, dy)
+
 
     # 移動可能チェック
     def check_movable(self, pos_list, unmovable_chip_list):
