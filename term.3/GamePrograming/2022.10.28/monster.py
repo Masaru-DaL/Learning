@@ -69,20 +69,23 @@ class Monster(Character):
         # 移動中の場合
         else:
             # 移動タイミングを超えている場合
-            pass
+            if self.next_move_count <= Game.count:
                 # 上下左右キーが押されている場合にキャラを移動
                 # 現在位置を取得
-        pass
+                posx, posy = self.get_pos()
+                dx, dy = self.get_dpos()
                 # 移動方向に仮移動
-        pass
+                dx += Character.MOVE_STEP * self.move_x
+                dy += Character.MOVE_STEP * self.move_y
                 # 加算後の値で、位置を計算
-        pass
+                posx, posy, dx, dy = self.calc_chara_pos(posx, posy, dx, dy)
                 # マップ移動チェックで移動可能な場合
-        pass
+                if self.check_map_move(posx, posy, dx, dy):
                     # 移動可能チェックで移動可能なら移動（不能なら位置を変更しない）
-        pass
+                    self.set_pos(posx, posy)
+                    self.set_dpos(dx, dy)
                 # 残り移動回数を１減算
-        pass
+                self.remain_move_time -= 1
                 # 移動回数が０になったら
         pass
                     # 次の移動タイミングを停止時間後に設定
