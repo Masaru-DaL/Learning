@@ -23,10 +23,9 @@ class Chip(Square):
         # 自身の持つ番号と、対応する画像を設定
         self.chip_no = no
         self.set_image(self.images[no])
-        
+
 
     # 移動可能チェック
     def is_movable(self, unmovable_chip_list):
         # 移動不能チップの番号リストにない場合はTrueを返す
-        pass
-        return True
+        return self.chip_no not in unmovable_chip_list

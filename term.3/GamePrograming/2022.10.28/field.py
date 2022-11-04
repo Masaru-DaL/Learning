@@ -75,7 +75,7 @@ class Field:
     # 移動可能チェック
     def check_movable(self, pos_list, unmovable_chip_list):
         # チェック対象だけ繰り返し
-        pass
+        for pos in pos_list:
         # １つでも移動不可ならFalseを返却
         pass
         # すべての対象チップが移動可能な場合はTrueを返却
