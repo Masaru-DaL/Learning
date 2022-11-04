@@ -47,8 +47,10 @@ def basic_draw():
     Game.surface.blit(level_render, (680, 30))
 
     # HPの描画
-    pass # 左空白埋めで５桁
-    pass
+    hp_str = str(Game.player.hp).rjust(5)  # 左空白埋めで５桁
+    hp_render = smallfont.render(f"   HP:{hp_str}",
+                                    True, (255, 255, 255))
+    Game.surface.blit(hp_render, (680, 80))
 
 # メイン処理
 def main():
@@ -75,11 +77,13 @@ def main():
             basic_draw()
 
         # ゲームオーバーの場合
-        pass
+        elif Game.phase == Phase.GAME_OVER:
             # 基本描画処理
-        pass
+            basic_draw()
             # ゲームオーバーメッセージの描画
-        pass
+            go_render = largefont.render("Game Over...",
+                                        True, (255, 0, 0))
+            Game.surface.blit(go_render, (40, 300))
 
         pygame.display.update()     # 描画更新処理
         clock.tick(25)              # 一定時間処理
