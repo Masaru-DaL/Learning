@@ -41,8 +41,11 @@ def basic_draw():
     # プレイヤーの描画
     Game.player.draw()
     # レベルの描画
-    pass# 左空白埋めで５桁
-    pass
+    level_str = str(Game.player.level).rjust(5)  # 左空白埋めで５桁
+    level_render = smallfont.render(f"Level:{level_str}",
+                                    True, (255, 255, 255))
+    Game.surface.blit(level_render, (680, 30))
+
     # HPの描画
     pass # 左空白埋めで５桁
     pass

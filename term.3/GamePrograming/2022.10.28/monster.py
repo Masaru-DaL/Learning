@@ -99,16 +99,19 @@ class Monster(Character):
                     self.next_move_count = Game.count + self.move_interval
 
         # モンスターとプレイヤーの四角を取得
-        pass
+        monster_rect = self.get_rect()
+        player_rect = Game.player.get_rect()
         # 重なった場合
-        pass
+        if monster_rect.colliderect(player_rect):
             # モンスターを画面外に
             # （画面外に設定すると、移動チェックで出てこれなくなる…はず…）
-        pass
+            self.set_pos(-1, -1)
+            self.set_dpos(0, 0)
             # プレイヤーのHPをモンスターの攻撃力分減らす
-        pass
+            Game.player.hp -= self.attack_power
             # プレイヤーのHPが０以下になったら、フェイズをゲームオーバーにする
-        pass
+            if Game.player.hp <= 0:
+                Game.phase = Phase.GAME_OVER
 
         # キャラクターの画像設定
         self.set_chara_animation()
