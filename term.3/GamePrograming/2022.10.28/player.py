@@ -84,13 +84,16 @@ class Player(Character):
         # マップ移動チェック
         posx, posy, dx, dy, is_changed = self.check_map_move(posx, posy, dx, dy)
         # マップを変更していない場合
-        pass
-        # 移動可能チェックで移動可能なら移動（不能なら位置を変更しない）
-        # とりあえず常に移動
-        self.set_pos(posx, posy)
-        self.set_dpos(dx, dy)
+        if not is_changed:
+            # 移動可能チェックで移動可能なら移動（不能なら位置を変更しない）
+            if self.check_chara_move(posx, posy, dx, dy, Player.UNMOVABLE_CHIP_LIST):
+                self.set_pos(posx, posy)
+                self.set_dpos(dx, dy)
         # マップを変更した場合は移動
-        pass
+        else:
+            self.set_pos(posx, posy)
+            self.set_dpos(dx, dy)
+
 
         # キャラクターの画像設定
         self.set_chara_animation()

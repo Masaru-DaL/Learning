@@ -82,8 +82,9 @@ class Monster(Character):
                 # マップ移動チェックで移動可能な場合
                 if self.check_map_move(posx, posy, dx, dy):
                     # 移動可能チェックで移動可能なら移動（不能なら位置を変更しない）
-                    self.set_pos(posx, posy)
-                    self.set_dpos(dx, dy)
+                    if self.check_chara_move(posx, posy, dx, dy, self.unmovable_chips):
+                        self.set_pos(posx, posy)
+                        self.set_dpos(dx, dy)
                 # 残り移動回数を１減算
                 self.remain_move_time -= 1
                 # 移動回数が０になったら

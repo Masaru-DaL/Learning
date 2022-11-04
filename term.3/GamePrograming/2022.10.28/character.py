@@ -42,7 +42,6 @@ class Character(Square):
         elif dy >= Game.SQ_LEN:
             posy += 1
             dy -= Game.SQ_LEN
-
         return posx, posy, dx, dy
 
 
@@ -51,15 +50,18 @@ class Character(Square):
     def check_chara_move(self, posx, posy, dx, dy, unmovable_chip_list):
         check_pos_list = []         # チェック位置リスト
         # チェック対象に、移動先のposx, posyを追加
-        pass
+        check_pos_list.append((posx, posy))
         # もし、上下方向にずれがある場合、ひとつ下のマスもチェック対象に追加
-        pass
+        if dy != 0:
+            check_pos_list.append((posx, posy + 1))
         # もし、左右方向にずれがある場合、ひとつ右のマスもチェック対象に追加
-        pass
+        if dx != 0:
+            check_pos_list.append((posx + 1, posy))
         # もし、両方にずれがある場合、右下のマスもチェック対象に追加
-        pass
+        if dx != 0 and dy != 0:
+            check_pos_list.append((posx + 1, posy + 1))
         # フィールドクラスのチェックを実施し、その結果を戻り値に設定
-        pass
+        return Game.field.check_movable(check_pos_list, unmovable_chip_list)
 
     # キャラクターの画像（アニメーション）設定
     def set_chara_animation(self):
