@@ -25,9 +25,9 @@ class Player(Character):
         # 画像を設定
         self.set_images(p1_images)
         # レベルを設定
-        pass
+        self.level = Player.PLAYER_LV_1ST
         # ヒットポイントを設定
-        pass
+        self.hp = Player.PLAYER_HP_1ST
 
     # マップ移動チェック
     def check_map_move(self, posx, posy, dx, dy):

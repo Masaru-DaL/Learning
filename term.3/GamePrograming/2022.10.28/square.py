@@ -22,8 +22,9 @@ class Square:
     # このスクエアの位置・サイズのRectを取得
     def get_rect(self):
         # 位置を設定
-        pass
-        return None
+        x = self.pos[0] * Game.SQ_LEN + self.dxy[0]
+        y = self.pos[1] * Game.SQ_LEN + self.dxy[1]
+        return Rect(x, y, Game.SQ_LEN, Game.SQ_LEN)
 
     # 画像を設定
     def set_image(self, image):
