@@ -65,11 +65,11 @@ class Monster(Character):
                 # 移動方向をランダムに設定
                 self.move_x, self.move_y = random.choice(move_dir_list)
                 # 残り移動回数を設定
-            pass
+                self.remain_move_time = self.direction_interval
         # 移動中の場合
         else:
             # 移動タイミングを超えている場合
-        pass
+            pass
                 # 上下左右キーが押されている場合にキャラを移動
                 # 現在位置を取得
         pass
