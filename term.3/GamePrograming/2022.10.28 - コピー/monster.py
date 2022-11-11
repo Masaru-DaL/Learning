@@ -21,8 +21,6 @@ class Monster(Character):
         self.name = MonsterList.get_monster_name(monster_no)
         # 攻撃力
         self.attack_power = MonsterList.get_monster_attack_power(monster_no)
-        # ヒットポイント
-        self.hp = MonsterList.get_monster_hp(monster_no)
         # 移動不能チップリスト
         self.unmovable_chips = MonsterList.get_monster_unmovable_chips(monster_no)
         # 移動インターバル
@@ -37,10 +35,6 @@ class Monster(Character):
         self.move_x, self.move_y = 0, 0
         # 残り移動回数
         self.remain_move_time = 0
-        # 戦闘時の画像
-        self.battle_image_file = MonsterList.get_monster_battle_image_file(monster_no)
-        # 戦闘時の画像サイズ
-        self.battle_image_size = MonsterList.get_monster_battle_image_size(monster_no)
 
     # マップ移動チェック
     def check_map_move(self, posx, posy, dx, dy):
@@ -109,17 +103,15 @@ class Monster(Character):
         player_rect = Game.player.get_rect()
         # 重なった場合
         if monster_rect.colliderect(player_rect):
-            # # モンスターを画面外に
-            # # （画面外に設定すると、移動チェックで出てこれなくなる…はず…）
-            # self.set_pos(-1, -1)
-            # self.set_dpos(0, 0)
-            # # プレイヤーのHPをモンスターの攻撃力分減らす
-            # Game.player.hp -= self.attack_power
-            # # プレイヤーのHPが０以下になったら、フェイズをゲームオーバーにする
-            # if Game.player.hp <= 0:
-            #     Game.phase = Phase.GAME_OVER
-            Game.phase = Phase.IN_BATTLE
-            Game.battle.set_monster(self)
+            # モンスターを画面外に
+            # （画面外に設定すると、移動チェックで出てこれなくなる…はず…）
+            self.set_pos(-1, -1)
+            self.set_dpos(0, 0)
+            # プレイヤーのHPをモンスターの攻撃力分減らす
+            Game.player.hp -= self.attack_power
+            # プレイヤーのHPが０以下になったら、フェイズをゲームオーバーにする
+            if Game.player.hp <= 0:
+                Game.phase = Phase.GAME_OVER
 
         # キャラクターの画像設定
         self.set_chara_animation()

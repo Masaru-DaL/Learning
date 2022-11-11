@@ -4,7 +4,6 @@ from field import Field
 from player import Player
 from monster import Monster
 from monsterlist import MonsterList
-from battle import Battle
 
 # Pythonの基本処理
 pygame.init()
@@ -31,8 +30,6 @@ def init_game_info():
     Game.monsters = []
     Game.monsters.append(Monster((8, 1), MonsterList.MON_NO_DOG))
     Game.monsters.append(Monster((2, 8), MonsterList.MON_NO_BEE))
-    # 戦闘画面
-    Game.battle = Battle()
 
 # 基本描画処理
 def basic_draw():
@@ -78,14 +75,6 @@ def main():
                 monster.frame_process_img()
             # 基本描画処理
             basic_draw()
-
-        elif Game.phase == Phase.IN_BATTLE:
-            # 戦闘中の毎回処理
-            Game.battle.frame_process_btl()
-            # 基本描画処理
-            basic_draw()
-            # 先頭画面描画処理
-            Game.battle.draw()
 
         # ゲームオーバーの場合
         elif Game.phase == Phase.GAME_OVER:

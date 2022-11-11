@@ -29,7 +29,6 @@ class Game:
     field = None            # フィールド
     player = None           # プレイヤー
     monsters = None         # モンスター
-    battle = None
 
     # クラスメソッド：拡大縮小付き画像読み込み
     @classmethod

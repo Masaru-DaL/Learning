@@ -19,8 +19,8 @@ class Player(Character):
         self.set_pos(Game.START_PLAYER_POS_X, Game.START_PLAYER_POS_Y)
         # プレイヤーの画像を作成
         p1_images = (
-            Game.read_image_for_square("image/ghost1.png"),
-            Game.read_image_for_square("image/ghost2.png"),
+            Game.read_image_for_square("image/hero1.png"),
+            Game.read_image_for_square("image/hero2.png"),
         )
         # 画像を設定
         self.set_images(p1_images)

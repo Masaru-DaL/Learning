@@ -28,15 +28,6 @@ class MonsterList:
     @classmethod
     def get_monster_attack_power(cls, monster_no):
         return MonsterList.MONSTER_LIST[monster_no][6]
-    @classmethod
-    def get_monster_hp(cls, monster_no):
-        return MonsterList.MONSTER_LIST[monster_no][7]
-    @classmethod
-    def get_monster_battle_image_file(cls, monster_no):
-        return MonsterList.MONSTER_LIST[monster_no][8]
-    @classmethod
-    def get_monster_battle_image_size(cls, monster_no):
-        return MonsterList.MONSTER_LIST[monster_no][9]
 
     # モンスター１
     MONSTER_DOG = (
@@ -47,10 +38,7 @@ class MonsterList:
         20,
         10,
         [3],
-        1,
-        25,
-        "image/enemy2.png",
-        (285//3, 320//3)
+        2
     )
 
     # モンスター２
@@ -62,11 +50,7 @@ class MonsterList:
         12,
         5,
         [],
-        2,
-        10,
-        "image/enemy5.png",
-        #(440, 540)
-        (440//3, 540//3)
+        1
     )
 
     # モンスターリスト
