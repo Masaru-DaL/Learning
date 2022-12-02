@@ -3,64 +3,120 @@ import pygame
 from pygame.locals import *
 
 import os
+import sys
 
 # タイトル
 pygame.display.set_caption("The Water Margin ")
 
 CLOCK = pygame.time.Clock()
-FPS = 5
+FRAME_RATE = 60
+FRAME_POSE = 20 # ポーズフレーム
 
 # 32*30
 SCREEN_WIDTH = 960 # 32*30
 SCREEN_HEIGHT = 720 # 48*15
 
+CHARA_SIZE_WIDTH = 32
+CHARA_SIZE_HEIGHT = 48
+
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+############################
+### キャラクタークラス
+############################
 class Character(pygame.sprite.Sprite):
-    # インスタンス化の際に配置場所を渡
-    def __init__(self, pos_x, pos_y):
+
+    ### クラス変数
+    frame  = 0      # フレーム
+    flag   = 0      # 切り替えフラグ
+    images = []     # 画像リスト
+
+    ############################
+    ### 初期化メソッド
+    ############################
+    def __init__(self, name, x, y):
         pygame.sprite.Sprite.__init__(self)
 
-        # 画像ファイルのロード
-        _file_dir = os.path.dirname(__file__)
-        _sprite_sheet = pygame.image.load(os.path.join(_file_dir, "./images/Fighter.png")).convert_alpha()
+        ### ファイル読み込み
+        all_image = pygame.image.load(name).convert_alpha()
 
-        # 1枚の画像サイズを設定しておく
-        img_size_x, img_size_y = 32, 48
+        ### 画像サイズ取得
+        self.char_width  = all_image.get_width()
+        self.char_height = all_image.get_height()
 
-        '''subsurfaceを使用して画像の分割を行う
-        subsurfaceの引数は（開始x位置,開始y位置,横幅,立幅）
-        分割した画像を空のリストに追加'''
-        self._separate_images = []
-        for col in range(3):
-            img = _sprite_sheet.subsurface((img_size_x * col, 0, img_size_x, img_size_y))
-            self._separate_images.append(img)
+        ### キャラクターパターン格納
+        for i in range(0, self.char_height, CHARA_SIZE_HEIGHT):
+            for j in range(0, self.char_width, CHARA_SIZE_WIDTH):
+                c_pattern = pygame.Surface((CHARA_SIZE_WIDTH, CHARA_SIZE_HEIGHT))
+                c_pattern.blit(all_image, (0,0), (j,i,CHARA_SIZE_WIDTH,CHARA_SIZE_HEIGHT))
+                self.images.append(c_pattern)
 
-        # インデックスを設定。最初の画像と中心位置を設定
-        self.index = 0
-        self.image = self._separate_images[self.index]
-        self.rect = self.image.get_rect()
-        self.rect.center = (pos_x, pos_y)
+        ### キャラクター初期設定
+        self.image = self.images[0]
+        self.rect = self.image.get_rect(center=(x,y))
 
-    # フレーム毎に行う処理をupdateに記載する
-    # indexをフレーム毎に1増やし、画像を切り替える
-    def update(self):
-        if self.index < len(self._separate_images):
-            self.image = self._separate_images[self.index]
-            self.index += 1
+    ############################
+    ### キャラクター更新
+    ############################
+    def update(self, way):
+
+        ### 画像切り替え
+        self.image = self.images[int(self.frame / FRAME_POSE) + way * int(self.char_width / CHARA_SIZE_WIDTH)]
+
+        if self.flag == 0:
+            self.frame += 1
         else:
-            self.index = 0
+            self.frame -= 1
+
+        ### 繰り返し(images[0]→[1]→[2]→[1]→[0]→[1]...)
+        if   self.frame >= len(self.images) / int(self.char_height / CHARA_SIZE_HEIGHT) * FRAME_POSE:
+            self.frame = FRAME_POSE * 2 - 1
+            self.flag = 1
+        elif self.frame < 0:
+            self.frame = FRAME_POSE
+            self.flag = 0
+
+    ############################
+    ### キャラクター描画
+    ############################
+    def draw(self, surface):
+        surface.blit(self.image, self.rect)
+
+### マップ
+
+MAP1 = (
+#######  0  1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29  #####
+        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), # 0
+        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), # 1
+        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), # 2
+        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), # 3
+        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), # 4
+        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), # 5
+        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), # 6
+        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), # 7
+        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), # 8
+        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), # 9
+        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), # 10
+        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), # 11
+        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), # 12
+        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), # 13
+        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), # 14
+    )
 
 class Main:
     def __init__(self):
         pygame.init()
 
-        # インスタンス化 + 配置場所
-        player = Character(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
-        # spritegroupに格納する。groupに入れると何かと便利
-        self.characterSprite = pygame.sprite.GroupSingle(player)
+        player = Character("./images/$Fighter.png", int(SCREEN_WIDTH/2), int(SCREEN_HEIGHT/2))
+        self.characterSprite = pygame.sprite.Group(player)
+        # # インスタンス化 + 配置場所
+        # player = Character(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
+        # # spritegroupに格納する。groupに入れると何かと便利
+        # self.characterSprite = pygame.sprite.GroupSingle(player)
 
     def main(self):
+        way = 0 # キーイベント変数
+
         running = True
         while running:
             for event in pygame.event.get():
@@ -70,16 +126,30 @@ class Main:
                     if event.key == K_ESCAPE:
                         running = False
 
+                    ### 方向キー
+                    if event.key == K_DOWN:   # 下
+                            way = 0
+                            move_ip(0, 1)
+                    if event.key == K_LEFT:   # 左
+                            way = 1
+                    if event.key == K_RIGHT:  # 右
+                            way = 2
+                    if event.key == K_UP:     # 上
+                            way = 3
+
             SCREEN.fill((0,0,0))
+
+            # ここで次の画像が用意される
+            self.characterSprite.update(way)
 
             #グループを画面に描画
             self.characterSprite.draw(SCREEN)
-            # ここで次の画像が用意される
-            self.characterSprite.update()
+
 
             pygame.display.update()
-            CLOCK.tick(FPS)
+            CLOCK.tick(FRAME_RATE)
         pygame.quit()
+        sys.exit()
 
 main = Main()
 
