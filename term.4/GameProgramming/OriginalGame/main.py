@@ -185,7 +185,7 @@ def main():
                     exit()
 
                 # 方向キー
-                pygame.key.set_repeat(500, 30)
+                pygame.key.set_repeat(20, 30)
                 pressed_keys = pygame.key.get_pressed()
                 if pressed_keys[K_DOWN]:
                     player_y += CHARA_MOVE_SPEED
@@ -199,16 +199,7 @@ def main():
                 if pressed_keys[K_UP]:
                     player_y -= CHARA_MOVE_SPEED
                     way = 3
-                # elif event.key == K_DOWN:   # 下
-                #     # player_y += BLOCK_SIZE_HEIGHT
-                #     player_y += 1
-                #     way = 0
-                # elif event.key == K_LEFT:   # 左
-                #     way = 1
-                # elif event.key == K_RIGHT:  # 右
-                #     way = 2
-                # elif event.key == K_UP:     # 上
-                #     way = 3
+
 
     # # 背景画像の取得
     # bg = pygame.image.load("./images/background_image.png").convert_alpha()
