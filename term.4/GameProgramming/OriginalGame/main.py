@@ -9,17 +9,45 @@ import sys
 pygame.display.set_caption("The Water Margin ")
 
 CLOCK = pygame.time.Clock()
-FRAME_RATE = 60
+FRAME_RATE = 80
 FRAME_POSE = 20 # ポーズフレーム
 
 # 32*30
 SCREEN_WIDTH = 960 # 32*30
 SCREEN_HEIGHT = 720 # 48*15
 
-CHARA_SIZE_WIDTH = 32
-CHARA_SIZE_HEIGHT = 48
+CHARA_MOVE_SPEED = 5
+
+
+BLOCK_SIZE_WIDTH = 32
+BLOCK_SIZE_HEIGHT = 48
 
 SURFACE = Rect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)
+
+############################
+### フィールドクラス
+############################
+class Field(pygame.sprite.Sprite):
+    def __init__(self, name, x, y):
+        pygame.sprite.Sprite.__init__(self)
+
+        ### ファイル読み込み
+        self.image = pygame.image.load(name).convert()
+
+        ### 画像サイズ変更
+        self.image = pygame.transform.scale(self.image, (BLOCK_SIZE_WIDTH, BLOCK_SIZE_HEIGHT))
+
+        ### キャラクターオブジェクト生成
+        self.rect = self.image.get_rect()
+
+        ### ブロック位置設定
+        self.rect.left = x * (self.rect.width)
+        self.rect.top  = y * (self.rect.height)
+
+    # フィールドの描画
+    def draw(self, surface):
+        surface.blit(self.image, self.rect)
+
 
 ############################
 ### キャラクタークラス
@@ -34,7 +62,7 @@ class Character(pygame.sprite.Sprite):
     ############################
     ### 初期化メソッド
     ############################
-    def __init__(self, name, x, y):
+    def __init__(self, name):
         pygame.sprite.Sprite.__init__(self)
 
         ### ファイル読み込み
@@ -45,23 +73,23 @@ class Character(pygame.sprite.Sprite):
         self.char_height = all_image.get_height()
 
         ### キャラクターパターン格納
-        for i in range(0, self.char_height, CHARA_SIZE_HEIGHT):
-            for j in range(0, self.char_width, CHARA_SIZE_WIDTH):
-                c_pattern = pygame.Surface((CHARA_SIZE_WIDTH, CHARA_SIZE_HEIGHT))
-                c_pattern.blit(all_image, (0,0), (j,i,CHARA_SIZE_WIDTH,CHARA_SIZE_HEIGHT))
+        for i in range(0, self.char_height, BLOCK_SIZE_HEIGHT):
+            for j in range(0, self.char_width, BLOCK_SIZE_WIDTH):
+                c_pattern = pygame.Surface((BLOCK_SIZE_WIDTH, BLOCK_SIZE_HEIGHT))
+                c_pattern.blit(all_image, (0,0), (j,i,BLOCK_SIZE_WIDTH,BLOCK_SIZE_HEIGHT))
                 self.images.append(c_pattern)
 
         ### キャラクター初期設定
         self.image = self.images[0]
-        self.rect = self.image.get_rect(center=(x,y))
+        self.rect = self.image.get_rect()
 
     ############################
     ### キャラクター更新
     ############################
-    def update(self, way):
+    def update(self, player_x, player_y, way):
 
         ### 画像切り替え
-        self.image = self.images[int(self.frame / FRAME_POSE) + way * int(self.char_width / CHARA_SIZE_WIDTH)]
+        self.image = self.images[int(self.frame / FRAME_POSE) + way * int(self.char_width / BLOCK_SIZE_WIDTH)]
 
         if self.flag == 0:
             self.frame += 1
@@ -69,16 +97,18 @@ class Character(pygame.sprite.Sprite):
             self.frame -= 1
 
         ### 繰り返し(images[0]→[1]→[2]→[1]→[0]→[1]...)
-        if   self.frame >= len(self.images) / int(self.char_height / CHARA_SIZE_HEIGHT) * FRAME_POSE:
+        if   self.frame >= len(self.images) / int(self.char_height / BLOCK_SIZE_HEIGHT) * FRAME_POSE:
             self.frame = FRAME_POSE * 2 - 1
             self.flag = 1
         elif self.frame < 0:
             self.frame = FRAME_POSE
             self.flag = 0
 
-    ############################
-    ### キャラクター描画
-    ############################
+        # キャラクター位置
+        self.rect.centerx = player_x
+        self.rect.centery = player_y
+
+    # キャラクター描画
     def draw(self, surface):
         surface.blit(self.image, self.rect)
 
@@ -100,28 +130,36 @@ MAP1 = (
         (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1), # 11
         (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1), # 12
         (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1), # 13
-        (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1), # 14
+        (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 9), # 14
     )
 
 ############################
 ### メイン関数
 ############################
 def main():
+
+
     way = 0 # キーイベント変数
 
     # 画面初期化
     pygame.init()
     surface = pygame.display.set_mode(SURFACE.size)
 
+
     # キャラクター作成
-    player = Character("./images/$Fighter.png", int(SCREEN_WIDTH/2), int(SCREEN_HEIGHT/2))
-    characterSprite = pygame.sprite.Group(player)
+    player = Character("./images/$Fighter.png")
+    # キャラクターの初期位置
+    player_x = int(SCREEN_WIDTH/2)
+    player_y = int(SCREEN_HEIGHT/2)
+    # playerSprite = pygame.sprite.Group(player)
+    # playerSpriteRect = playerSprite.get_rect()
 
     # 時間オブジェクト生成
     clock = pygame.time.Clock()
 
     # 無限ループ
     while True:
+
         # フレームレート設定
         clock.tick(FRAME_RATE)
 
@@ -129,10 +167,10 @@ def main():
         surface.fill((0,0,0))
 
         # スプライト更新
-        characterSprite.update(way)
+        player.update(player_x, player_y, way)
 
         # スプライト描画
-        characterSprite.draw(surface)
+        player.draw(surface)
 
         # 画面更新
         pygame.display.update()
@@ -147,14 +185,30 @@ def main():
                     exit()
 
                 # 方向キー
-                elif event.key == K_DOWN:   # 下
-                        way = 0
-                elif event.key == K_LEFT:   # 左
-                        way = 1
-                elif event.key == K_RIGHT:  # 右
-                        way = 2
-                elif event.key == K_UP:     # 上
-                        way = 3
+                pygame.key.set_repeat(500, 30)
+                pressed_keys = pygame.key.get_pressed()
+                if pressed_keys[K_DOWN]:
+                    player_y += CHARA_MOVE_SPEED
+                    way = 0
+                if pressed_keys[K_LEFT]:
+                    player_x -= CHARA_MOVE_SPEED
+                    way = 1
+                if pressed_keys[K_RIGHT]:
+                    player_x += CHARA_MOVE_SPEED
+                    way = 2
+                if pressed_keys[K_UP]:
+                    player_y -= CHARA_MOVE_SPEED
+                    way = 3
+                # elif event.key == K_DOWN:   # 下
+                #     # player_y += BLOCK_SIZE_HEIGHT
+                #     player_y += 1
+                #     way = 0
+                # elif event.key == K_LEFT:   # 左
+                #     way = 1
+                # elif event.key == K_RIGHT:  # 右
+                #     way = 2
+                # elif event.key == K_UP:     # 上
+                #     way = 3
 
     # # 背景画像の取得
     # bg = pygame.image.load("./images/background_image.png").convert_alpha()
@@ -173,6 +227,26 @@ def main():
     #     screen.blit(bg, rect_bg)            # 背景画像の描画
     #     screen.blit(player, rect_player)    # プレイヤー画像の描画
 
+
+############################
+### キーイベントチェック処理関数
+############################
+def check_event():
+    keymap = []
+    # イベント処理ループ
+    for event in pygame.event.get():
+        # 終了処理
+        if event.type == QUIT:
+            pygame.quit()
+            sys.exit()
+        # # キーダウン処理
+        # elif event.type == KEYDOWN:
+        #     if not event.key in keymap:
+        #         keymap.append(event.key)
+        # # キーアップ処理
+        # elif event.type == KEYUP:
+        #     keymap.remove(event.key)
+
 ############################
 ### 終了関数
 ############################
@@ -184,4 +258,4 @@ def exit():
 ### メイン関数呼び出し
 ############################
 if __name__ == "__main__":
-    main.main()
+    main()
