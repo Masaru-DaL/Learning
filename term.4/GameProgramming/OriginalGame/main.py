@@ -19,7 +19,7 @@ SCREEN_HEIGHT = 720 # 48*15
 CHARA_SIZE_WIDTH = 32
 CHARA_SIZE_HEIGHT = 48
 
-SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+SURFACE = Rect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)
 
 ############################
 ### キャラクタークラス
@@ -93,66 +93,68 @@ MAP1 = (
         (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), # 4
         (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), # 5
         (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), # 6
-        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), # 7
-        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), # 8
-        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), # 9
-        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), # 10
-        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), # 11
-        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), # 12
-        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), # 13
-        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), # 14
+        (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1), # 7
+        (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1), # 8
+        (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1), # 9
+        (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1), # 10
+        (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1), # 11
+        (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1), # 12
+        (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1), # 13
+        (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1), # 14
     )
 
-class Main:
-    def __init__(self):
-        pygame.init()
+############################
+### メイン関数
+############################
+def main():
+    way = 0 # キーイベント変数
 
-        player = Character("./images/$Fighter.png", int(SCREEN_WIDTH/2), int(SCREEN_HEIGHT/2))
-        self.characterSprite = pygame.sprite.Group(player)
-        # # インスタンス化 + 配置場所
-        # player = Character(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
-        # # spritegroupに格納する。groupに入れると何かと便利
-        # self.characterSprite = pygame.sprite.GroupSingle(player)
+    # 画面初期化
+    pygame.init()
+    surface = pygame.display.set_mode(SURFACE.size)
 
-    def main(self):
-        way = 0 # キーイベント変数
+    # キャラクター作成
+    player = Character("./images/$Fighter.png", int(SCREEN_WIDTH/2), int(SCREEN_HEIGHT/2))
+    characterSprite = pygame.sprite.Group(player)
 
-        running = True
-        while running:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    running = False
-                if event.type == KEYDOWN:
-                    if event.key == K_ESCAPE:
-                        running = False
+    # 時間オブジェクト生成
+    clock = pygame.time.Clock()
 
-                    ### 方向キー
-                    if event.key == K_DOWN:   # 下
-                            way = 0
-                            move_ip(0, 1)
-                    if event.key == K_LEFT:   # 左
-                            way = 1
-                    if event.key == K_RIGHT:  # 右
-                            way = 2
-                    if event.key == K_UP:     # 上
-                            way = 3
+    # 無限ループ
+    while True:
+        # フレームレート設定
+        clock.tick(FRAME_RATE)
 
-            SCREEN.fill((0,0,0))
+        # 背景設定
+        surface.fill((0,0,0))
 
-            # ここで次の画像が用意される
-            self.characterSprite.update(way)
+        # スプライト更新
+        characterSprite.update(way)
 
-            #グループを画面に描画
-            self.characterSprite.draw(SCREEN)
+        # スプライト描画
+        characterSprite.draw(surface)
 
+        # 画面更新
+        pygame.display.update()
 
-            pygame.display.update()
-            CLOCK.tick(FRAME_RATE)
-        pygame.quit()
-        sys.exit()
+        # イベント取得
+        for event in pygame.event.get():
+            # 終了処理
+            if event.type == QUIT:
+                exit()
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    exit()
 
-main = Main()
-
+                # 方向キー
+                elif event.key == K_DOWN:   # 下
+                        way = 0
+                elif event.key == K_LEFT:   # 左
+                        way = 1
+                elif event.key == K_RIGHT:  # 右
+                        way = 2
+                elif event.key == K_UP:     # 上
+                        way = 3
 
     # # 背景画像の取得
     # bg = pygame.image.load("./images/background_image.png").convert_alpha()
@@ -171,6 +173,15 @@ main = Main()
     #     screen.blit(bg, rect_bg)            # 背景画像の描画
     #     screen.blit(player, rect_player)    # プレイヤー画像の描画
 
+############################
+### 終了関数
+############################
+def exit():
+    pygame.quit()
+    sys.exit()
 
+############################
+### メイン関数呼び出し
+############################
 if __name__ == "__main__":
     main.main()
