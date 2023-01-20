@@ -18,11 +18,20 @@ SCREEN_HEIGHT = 720 # 48*15
 
 CHARA_MOVE_SPEED = 5
 
-
 BLOCK_SIZE_WIDTH = 32
 BLOCK_SIZE_HEIGHT = 48
 
 SURFACE = Rect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)
+
+def load_image(dir, filename, colorkey=None):
+    file = os.path.join(dir, filename)
+    image = pygame.image.load(file)
+    image = image.convert()
+    if not colorkey == None:
+        if colorkey == -1:
+            colorkey = image.get_at((0, 0))
+        image.set_colorkey(colorkey, RLEACCEL)
+    return image
 
 ############################
 ### フィールドクラス
@@ -66,7 +75,7 @@ class Character(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         ### ファイル読み込み
-        all_image = pygame.image.load(name).convert_alpha()
+        all_image = pygame.image.load(name).convert()
 
         ### 画像サイズ取得
         self.char_width  = all_image.get_width()
@@ -77,6 +86,7 @@ class Character(pygame.sprite.Sprite):
             for j in range(0, self.char_width, BLOCK_SIZE_WIDTH):
                 c_pattern = pygame.Surface((BLOCK_SIZE_WIDTH, BLOCK_SIZE_HEIGHT))
                 c_pattern.blit(all_image, (0,0), (j,i,BLOCK_SIZE_WIDTH,BLOCK_SIZE_HEIGHT))
+                c_pattern.set_colorkey((0,0,0))     # キャラクター画像の背景を透過させる
                 self.images.append(c_pattern)
 
         ### キャラクター初期設定
@@ -133,29 +143,45 @@ MAP1 = (
         (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 9), # 14
     )
 
+MAP1_COORDINATES_X = ()
+MAP1_COORDINATES_Y = (330)
+
 ############################
 ### メイン関数
 ############################
 def main():
-
-
     way = 0 # キーイベント変数
+    map_flag = 1 # MAPフラグ：初期MAP1
+
 
     # 画面初期化
     pygame.init()
     surface = pygame.display.set_mode(SURFACE.size)
 
+    # 背景画像の取得
+    map1_bg = pygame.image.load("./images/MAP1.png").convert()
+    map2_bg = pygame.image.load("./images/MAP2.jpg").convert()
+
+    # 画面サイズに合わせて画像を調整する
+    fit_map1_bg = pygame.transform.scale(map1_bg, (SCREEN_WIDTH, SCREEN_HEIGHT))
+    fit_map2_bg = pygame.transform.scale(map2_bg, (SCREEN_WIDTH, SCREEN_HEIGHT))
+
+    map1_rect_bg = map1_bg.get_rect()
+    map2_rect_bg = fit_map2_bg.get_rect()
+
+
 
     # キャラクター作成
-    player = Character("./images/$Fighter.png")
+    player = Character("./images/Player.png")
     # キャラクターの初期位置
     player_x = int(SCREEN_WIDTH/2)
-    player_y = int(SCREEN_HEIGHT/2)
+    player_y = int(500)
     # playerSprite = pygame.sprite.Group(player)
     # playerSpriteRect = playerSprite.get_rect()
 
     # 時間オブジェクト生成
     clock = pygame.time.Clock()
+
 
     # 無限ループ
     while True:
@@ -164,7 +190,10 @@ def main():
         clock.tick(FRAME_RATE)
 
         # 背景設定
-        surface.fill((0,0,0))
+        if map_flag == 1:
+            surface.blit(fit_map1_bg, map1_rect_bg)
+        if map_flag == 2:
+            surface.blit(fit_map2_bg, map2_rect_bg)
 
         # スプライト更新
         player.update(player_x, player_y, way)
@@ -172,8 +201,15 @@ def main():
         # スプライト描画
         player.draw(surface)
 
+        # プレイヤーの座標
+        player_coordinates = player.rect.center
+        player_coordinates_x = player_coordinates[0]
+        player_coordinates_y = player_coordinates[1]
+
+
         # 画面更新
         pygame.display.update()
+
 
         # イベント取得
         for event in pygame.event.get():
@@ -184,21 +220,37 @@ def main():
                 if event.key == K_ESCAPE:
                     exit()
 
-                # 方向キー
-                pygame.key.set_repeat(20, 30)
-                pressed_keys = pygame.key.get_pressed()
-                if pressed_keys[K_DOWN]:
-                    player_y += CHARA_MOVE_SPEED
-                    way = 0
-                if pressed_keys[K_LEFT]:
-                    player_x -= CHARA_MOVE_SPEED
-                    way = 1
-                if pressed_keys[K_RIGHT]:
-                    player_x += CHARA_MOVE_SPEED
-                    way = 2
-                if pressed_keys[K_UP]:
-                    player_y -= CHARA_MOVE_SPEED
-                    way = 3
+                if map_flag == 1:
+                    # 方向キー
+                    pygame.key.set_repeat(20, 30)
+                    pressed_keys = pygame.key.get_pressed()
+                    if pressed_keys[K_DOWN]:
+                        if player_coordinates_y < SCREEN_HEIGHT-BLOCK_SIZE_HEIGHT/2:
+                            player_y += CHARA_MOVE_SPEED
+                            way = 0
+                    if pressed_keys[K_LEFT]:
+                        if player_coordinates_x > 0+BLOCK_SIZE_WIDTH/2:
+                            player_x -= CHARA_MOVE_SPEED
+                            way = 1
+                    if pressed_keys[K_RIGHT]:
+                        if player_coordinates_x < SCREEN_WIDTH-BLOCK_SIZE_WIDTH/2:
+                            player_x += CHARA_MOVE_SPEED
+                            way = 2
+                    if pressed_keys[K_UP]:
+                        player_y -= CHARA_MOVE_SPEED
+                        way = 3
+                        # MAP2に切り替わる場所に踏み入れた時
+                        if player_coordinates_y < 330:
+                            map_flag = 2
+                            # MAP2の初期位置にplayerを配置する
+                            player_x = int(SCREEN_WIDTH/2)
+                            player_y = int(SCREEN_HEIGHT-BLOCK_SIZE_HEIGHT/2)
+                            way = 3
+                            player.update(player_x, player_y, way)
+
+
+
+
 
 
     # # 背景画像の取得
