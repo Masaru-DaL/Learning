@@ -8,6 +8,8 @@ import sys
 # タイトル
 pygame.display.set_caption("The Water Margin ")
 
+
+
 CLOCK = pygame.time.Clock()
 FRAME_RATE = 80
 FRAME_POSE = 20 # ポーズフレーム
@@ -93,6 +95,7 @@ class Character(pygame.sprite.Sprite):
         self.image = self.images[0]
         self.rect = self.image.get_rect()
 
+
     ############################
     ### キャラクター更新
     ############################
@@ -121,6 +124,30 @@ class Character(pygame.sprite.Sprite):
     # キャラクター描画
     def draw(self, surface):
         surface.blit(self.image, self.rect)
+
+
+class MySprite(pygame.sprite.Sprite):
+    def __init__(self, filename, x, y, vx, vy):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load(filename).convert_alpha()
+        width = self.image.get_width()
+        height = self.image.get_height()
+        self.rect = Rect(x, y, width, height)
+        self.vx = vx
+        self.vy = vy
+
+    def update(self):
+        self.rect.move_ip(self.vx, self.vy)
+        # 壁にぶつかったら跳ね返る
+        if self.rect.left < 0 or self.rect.right > SURFACE.width:
+            self.vx = -self.vx
+        if self.rect.top < 0 or self.rect.bottom > SURFACE.height:
+            self.vy = -self.vy
+        # 画面からはみ出ないようにする
+        self.rect = self.rect.clamp(SURFACE)
+
+    def draw(self, screen):
+        screen.blit(self.image, self.rect)
 
 ### マップ
 
@@ -152,10 +179,13 @@ MAP1_COORDINATES_Y = (330)
 def main():
     way = 0 # キーイベント変数
     map_flag = 1 # MAPフラグ：初期MAP1
+    character_count = 0
+
 
 
     # 画面初期化
     pygame.init()
+    font = pygame.font.SysFont("hg正楷書体pro", 20)
     surface = pygame.display.set_mode(SURFACE.size)
 
     # 背景画像の取得
@@ -169,8 +199,6 @@ def main():
     map1_rect_bg = map1_bg.get_rect()
     map2_rect_bg = fit_map2_bg.get_rect()
 
-
-
     # キャラクター作成
     player = Character("./images/Player.png")
     # キャラクターの初期位置
@@ -179,13 +207,19 @@ def main():
     # playerSprite = pygame.sprite.Group(player)
     # playerSpriteRect = playerSprite.get_rect()
 
+    character1 = MySprite("./images/Assassin-Blue.png", 900, 520, 0, 0)
+
+
+    # キャラクターをスプライトグループに追加する
+    character_group = pygame.sprite.RenderUpdates()
+    character_group.add(character1)
+
     # 時間オブジェクト生成
     clock = pygame.time.Clock()
 
 
     # 無限ループ
     while True:
-
         # フレームレート設定
         clock.tick(FRAME_RATE)
 
@@ -195,8 +229,14 @@ def main():
         if map_flag == 2:
             surface.blit(fit_map2_bg, map2_rect_bg)
 
+        # text
+        text = font.render("仲間の数；"+ str(character_count), True, (0,0,0))
+        surface.blit(text, (800, 10))
+
         # スプライト更新
         player.update(player_x, player_y, way)
+
+        character_group.update()
 
         # スプライト描画
         player.draw(surface)
@@ -205,6 +245,40 @@ def main():
         player_coordinates = player.rect.center
         player_coordinates_x = player_coordinates[0]
         player_coordinates_y = player_coordinates[1]
+
+
+        character_group.draw(surface)
+
+        # キャラクター1の処理
+        if character_group.has(character1):
+            if player_coordinates_x > 910 and player_coordinates_x < 940 and player_coordinates_y > 520 and player_coordinates_y < 570:
+                character1.remove(character_group)
+                character_count += 1
+
+
+
+        # while not character_group.has(character1):
+        #     if player_coordinates_x > 910 and player_coordinates_x < 940 and player_coordinates_y > 520 and player_coordinates_y < 570:
+        #         character1.remove(character_group)
+        #     if not character_group.has(character1):
+        #         character_count += 1
+
+
+
+
+
+        # if player_coordinates_x > 910 and player_coordinates_x < 940 and player_coordinates_y > 520 and player_coordinates_y < 570:
+        #     character1.remove(character_group)
+
+
+
+
+
+
+
+        print(player_coordinates)
+        # print(player_coordinates_x)
+        # print(player_coordinates_y)
 
 
         # 画面更新
