@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 import pygame
 from pygame.locals import *
+import random
 
 import os
 import sys
@@ -121,6 +122,7 @@ class Character(pygame.sprite.Sprite):
         self.rect.centerx = player_x
         self.rect.centery = player_y
 
+
     # キャラクター描画
     def draw(self, surface):
         surface.blit(self.image, self.rect)
@@ -141,10 +143,32 @@ class MySprite(pygame.sprite.Sprite):
         # 壁にぶつかったら跳ね返る
         if self.rect.left < 0 or self.rect.right > SURFACE.width:
             self.vx = -self.vx
-        if self.rect.top < 0 or self.rect.bottom > SURFACE.height:
+        if self.rect.top < 330 or self.rect.bottom > SURFACE.height:
             self.vy = -self.vy
         # 画面からはみ出ないようにする
         self.rect = self.rect.clamp(SURFACE)
+    #     pass
+    #     # self.collision()
+    #     character_rect = self.rect
+    #     # player = Character("./images/Player.png")
+    #     # player_rect = Character.player.get_rect()
+
+    #     print("************************")
+    #     print(character_rect)
+    #     print(Character.get_rect())
+
+    # def collision(self):
+
+        # if character_rect == player_rect:
+        #     print(player_rect)
+        # self.rect.move_ip(self.vx, self.vy)
+        # # 壁にぶつかったら跳ね返る
+        # if self.rect.left < 0 or self.rect.right > SURFACE.width:
+        #     self.vx = -self.vx
+        # if self.rect.top < 0 or self.rect.bottom > SURFACE.height:
+        #     self.vy = -self.vy
+        # # 画面からはみ出ないようにする
+        # self.rect = self.rect.clamp(SURFACE)
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
@@ -207,12 +231,26 @@ def main():
     # playerSprite = pygame.sprite.Group(player)
     # playerSpriteRect = playerSprite.get_rect()
 
-    character1 = MySprite("./images/Assassin-Blue.png", 900, 520, 0, 0)
+    character1 = MySprite("./images/MAP1/Assassin-Blue.png", int(random.uniform(50, 800)), int(random.uniform(400, 600)), 1, 1)
+    character2 = MySprite("./images/MAP1/Bat-Black.png", int(random.uniform(50, 800)), int(random.uniform(400, 600)), 0, 0)
+    character3 = MySprite("./images/MAP1/C-Dullahan.png", int(random.uniform(50, 800)), int(random.uniform(400, 600)), 0, 0)
+    character4 = MySprite("./images/MAP1/CatPuppet-Green.png", int(random.uniform(50, 800)), int(random.uniform(400, 600)), 0, 0)
+    character5 = MySprite("./images/MAP1/Cockatrice-Blue.png", int(random.uniform(50, 800)), int(random.uniform(400, 600)), 0, 0)
+    character6 = MySprite("./images/MAP2/Fanatic-Green.png", int(random.uniform(50, 800)), int(random.uniform(400, 600)), 0, 0)
+    character7 = MySprite("./images/MAP2/Gazer-Normal.png", int(random.uniform(50, 800)), int(random.uniform(400, 600)), 0, 0)
+    character8 = MySprite("./images/MAP2/Ghost-Purple.png", int(random.uniform(50, 800)), int(random.uniform(400, 600)), 0, 0)
+    character9 = MySprite("./images/MAP2/Hornet-Red.png", int(random.uniform(50, 800)), int(random.uniform(400, 600)), 0, 0)
+    character10 = MySprite("./images/MAP2/Hound-Red.png", int(random.uniform(50, 800)), int(random.uniform(400, 600)), 0, 0)
+
+
 
 
     # キャラクターをスプライトグループに追加する
-    character_group = pygame.sprite.RenderUpdates()
-    character_group.add(character1)
+    map1_character_group = pygame.sprite.RenderUpdates()
+    map1_character_group.add(character1, character2, character3, character4, character5)
+
+    map2_character_group = pygame.sprite.RenderUpdates()
+    map2_character_group.add(character6, character7, character8, character9, character10)
 
     # 時間オブジェクト生成
     clock = pygame.time.Clock()
@@ -236,8 +274,6 @@ def main():
         # スプライト更新
         player.update(player_x, player_y, way)
 
-        character_group.update()
-
         # スプライト描画
         player.draw(surface)
 
@@ -246,39 +282,90 @@ def main():
         player_coordinates_x = player_coordinates[0]
         player_coordinates_y = player_coordinates[1]
 
+        # rect一覧
+        player_rect = player.rect
 
-        character_group.draw(surface)
-
-        # キャラクター1の処理
-        if character_group.has(character1):
-            if player_coordinates_x > 910 and player_coordinates_x < 940 and player_coordinates_y > 520 and player_coordinates_y < 570:
-                character1.remove(character_group)
-                character_count += 1
-
-
-
-        # while not character_group.has(character1):
-        #     if player_coordinates_x > 910 and player_coordinates_x < 940 and player_coordinates_y > 520 and player_coordinates_y < 570:
-        #         character1.remove(character_group)
-        #     if not character_group.has(character1):
-        #         character_count += 1
+        character1_rect = character1.rect
+        character2_rect = character2.rect
+        character3_rect = character3.rect
+        character4_rect = character4.rect
+        character5_rect = character5.rect
+        character6_rect = character6.rect
+        character7_rect = character7.rect
+        character8_rect = character8.rect
+        character9_rect = character9.rect
+        character10_rect = character10.rect
 
 
+        if map_flag == 1:
+            map1_character_group.update()
+            map1_character_group.draw(surface)
 
+            # キャラクター1の処理
+            if map1_character_group.has(character1):
+                if player_rect.colliderect(character1_rect):
+                    character1.remove(map1_character_group)
+                    character_count += 1
 
+            # キャラクター2の処理
+            if map1_character_group.has(character2):
+                if player_rect.colliderect(character2_rect):
+                    character2.remove(map1_character_group)
+                    character_count += 1
 
-        # if player_coordinates_x > 910 and player_coordinates_x < 940 and player_coordinates_y > 520 and player_coordinates_y < 570:
-        #     character1.remove(character_group)
+            # キャラクター3の処理
+            if map1_character_group.has(character3):
+                if player_rect.colliderect(character3_rect):
+                    character3.remove(map1_character_group)
+                    character_count += 1
 
+            # キャラクター4の処理
+            if map1_character_group.has(character4):
+                if player_rect.colliderect(character4_rect):
+                    character4.remove(map1_character_group)
+                    character_count += 1
 
+            # キャラクター5の処理
+            if map1_character_group.has(character5):
+                if player_rect.colliderect(character5_rect):
+                    character5.remove(map1_character_group)
+                    character_count += 1
 
+        if map_flag == 2:
+            map2_character_group.update()
+            map2_character_group.draw(surface)
 
+            # キャラクター6の処理
+            if map2_character_group.has(character6):
+                if player_rect.colliderect(character6_rect):
+                    character6.remove(map2_character_group)
+                    character_count += 1
+            # キャラクター7の処理
+            if map2_character_group.has(character7):
+                if player_rect.colliderect(character7_rect):
+                    character7.remove(map2_character_group)
+                    character_count += 1
+            # キャラクター5の処理
+            if map2_character_group.has(character8):
+                if player_rect.colliderect(character8_rect):
+                    character8.remove(map2_character_group)
+                    character_count += 1
+            # キャラクター5の処理
+            if map2_character_group.has(character9):
+                if player_rect.colliderect(character9_rect):
+                    character9.remove(map2_character_group)
+                    character_count += 1
+            # キャラクター5の処理
+            if map2_character_group.has(character10):
+                if player_rect.colliderect(character10_rect):
+                    character10.remove(map2_character_group)
+                    character_count += 1
+        # print(player.rect)
+        # print(character2.rect)
 
-
-
-        print(player_coordinates)
-        # print(player_coordinates_x)
-        # print(player_coordinates_y)
+        # print(player_coordinates)
+        print(player_coordinates_x)
+        print(player_coordinates_y)
 
 
         # 画面更新
@@ -318,9 +405,35 @@ def main():
                             map_flag = 2
                             # MAP2の初期位置にplayerを配置する
                             player_x = int(SCREEN_WIDTH/2)
-                            player_y = int(SCREEN_HEIGHT-BLOCK_SIZE_HEIGHT/2)
+                            player_y = int(SCREEN_HEIGHT-BLOCK_SIZE_HEIGHT)
                             way = 3
                             player.update(player_x, player_y, way)
+
+                elif map_flag == 2:
+                    # 方向キー
+                    pygame.key.set_repeat(20, 30)
+                    pressed_keys = pygame.key.get_pressed()
+                    if pressed_keys[K_DOWN]:
+                        player_y += CHARA_MOVE_SPEED
+                        way = 0
+                        # MAP1に切り替わる場所に踏み入れた時
+                        if player_coordinates_y > 700:
+                            map_flag = 1
+                            # MAP2の初期位置にplayerを配置する
+                            player_x = int(SCREEN_WIDTH/2)
+                            player_y = 400
+                            way = 3
+                            player.update(player_x, player_y, way)
+                    if pressed_keys[K_LEFT]:
+                        player_x -= CHARA_MOVE_SPEED
+                        way = 1
+                    if pressed_keys[K_RIGHT]:
+                        player_x += CHARA_MOVE_SPEED
+                        way = 2
+                    if pressed_keys[K_UP]:
+                        player_y -= CHARA_MOVE_SPEED
+                        way = 3
+
 
 
 
